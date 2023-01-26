@@ -54,14 +54,12 @@ void test_l1_PLAT_API_GetPowerState(void)
 
 void test_l1_PLAT_API_GetTemperature(void)
 {
-   #ifdef ENABLE_THERMAL_PROTECTION 
     pmError_t result;
     IARM_Bus_PWRMgr_ThermalState_t curState = IARM_BUS_PWRMGR_TEMPERATURE_NORMAL;
     float curTemperature = 0;
     float wifiTemperature = 0;
     result = PLAT_API_GetTemperature(&curState, &curTemperature, &wifiTemperature);
     UT_ASSERT_EQUAL( result, PM_SUCCESS);    
-   #endif 
 
 } 
 
@@ -71,9 +69,7 @@ void test_l1_PLAT_API_SetTempThresholds(void)
     pmError_t result;
     float tempHigh = 60.1; 
     float tempCritical = 80.5;
-    #ifdef ENABLE_THERMAL_PROTECTION 
     result = PLAT_API_SetTempThresholds(tempHigh, tempCritical);
-    #endif
     UT_ASSERT_EQUAL( result, PM_SUCCESS);    
 } 
 
@@ -85,26 +81,8 @@ void test_l1_PLAT_API_GetTempThresholds(void)
     float tempHigh = 0; 
     float tempCritical = 0;
     
-    #ifdef ENABLE_THERMAL_PROTECTION
     result = PLAT_API_GetTempThresholds(&tempHigh, &tempCritical);
-    #endif    
     UT_ASSERT_EQUAL( result, PM_SUCCESS);   
-
-    /* Negative Case*/
-    
-    /* Passing First argument as NULL
-     */
-    //float *arg1_tempHigh = NULL; 
-
-//    result = PLAT_API_GetTempThresholds(NULL, &tempCritical);
-//    UT_ASSERT_EQUAL( result, PM_INVALID_ARGUMENT); 
-//    UT_ASSERT_PTR_NULL(arg1_tempHigh);  
-
-    /* Passing Second argument as NULL
-     */
-//    result = PLAT_API_GetTempThresholds(&tempHigh, NULL);
-//    UT_ASSERT_EQUAL( result, PM_INVALID_ARGUMENT);   
-    
 } 
 
 
@@ -112,23 +90,12 @@ void test_l1_PLAT_API_DetemineClockSpeeds(void)
 {
     pmError_t result;
     
-    /* Positive Case*/
     uint32_t cpu_rate_Normal = 0;
     uint32_t cpu_rate_Scaled = 0;
     uint32_t cpu_rate_Minimal = 0;
     /* Positive Test cases*/    
-    #ifdef ENABLE_THERMAL_PROTECTION 
     result = PLAT_API_DetemineClockSpeeds(&cpu_rate_Normal, &cpu_rate_Scaled, &cpu_rate_Minimal);
-    #endif
-    //UT_ASSERT_EQUAL( result, PM_SUCCESS);   
-    //UT_ASSERT_TRUE(cpu_rate_Normal);
-    //UT_ASSERT_TRUE(cpu_rate_Scaled);
-    //UT_ASSERT_TRUE(cpu_rate_Minimal);
-    
-    /* Negative Case*/
-    //result = PLAT_API_DetemineClockSpeeds(NULL, NULL, NULL);
-    //UT_ASSERT_EQUAL( result, PM_INVALID_ARGUMENT);   
-
+    UT_ASSERT_EQUAL( result, PM_SUCCESS);   
 
 } 
 
@@ -138,15 +105,9 @@ void test_l1_PLAT_API_SetClockSpeed(void)
 
     /* Postive Case */
     uint32_t speed = 100;
- #ifdef ENABLE_THERMAL_PROTECTION 
     result = PLAT_API_SetClockSpeed(speed);
-    #endif
     UT_ASSERT_EQUAL(result, PM_SUCCESS)
 
-    /* Negative Value */
-    //speed = -100;
-    //result = PLAT_API_SetClockSpeed(speed);
-    //UT_ASSERT_EQUAL(result, PM_INVALID_ARGUMENT)
 }
 
 void test_l1_PLAT_API_GetClockSpeed(void)
@@ -155,15 +116,9 @@ void test_l1_PLAT_API_GetClockSpeed(void)
     
     /* Postive Case */
     uint32_t speed = 0;
-   #ifdef ENABLE_THERMAL_PROTECTION  
     result = PLAT_API_GetClockSpeed(&speed);
-    #endif
     UT_ASSERT_EQUAL(result, PM_SUCCESS)
-    //UT_ASSERT_TRUE(speed);
 
-    /* Negative Case*/
-//    result = PLAT_API_GetClockSpeed(NULL);
-  //  UT_ASSERT_EQUAL(result, PM_INVALID_ARGUMENT);
 }
 
 void test_l1_PLAT_TERM(void)
