@@ -25,7 +25,7 @@
 
 
 /**
- * @brief This function will do the unit testing of Naveen Tiwari  ().
+ * @brief This function will do the unit testing of PLAT_INIT().
  * This function will ensure underlying API implementation is handling
  * the invalid call sequences to the API properly.
  * This UT implementation will verify it by calling the function in all
