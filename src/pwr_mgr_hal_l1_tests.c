@@ -92,6 +92,33 @@
  */
 
 /**
+ * @brief Ensure PLAT_API_SetPowerState() returns correct error codes during negative scenarios
+ * 
+ * This test case ensures the following conditions:
+ * 1. PLAT_API_SetPowerState() should return PWRMGR_NOT_INITIALIZED due to power manager not being initialized.
+ * 2. Call PLAT_INIT() to initialize power manager.
+ * 3. PLAT_API_SetPowerState() will return PWRMGR_INVALID_ARGUMENT by sending an invalid value.
+ * 4. PLAT_TERM() will return PWRMGR_SUCCESS during successive calls
+ * 
+ * **Test Group ID:** Basic: 01@n
+ * **Test Case ID:** 007@n
+ * 
+ * **Pre-Conditions:**@n
+ * None.
+ * 
+ * **Dependencies:** None@n
+ * **User Interaction:** None
+ * 
+ * **Test Procedure:**@n
+ * |Variation / Step|Description|Test Data|Expected Result|Notes|
+ * |01|Call PLAT_API_SetPowerState() - call without initializing the module | newState=PWRMGR_POWERSTATE_ON | PWRMGR_NOT_INITIALIZED | Should Pass |
+ * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
+ * |03|Call PLAT_API_SetPowerState() - call with invalid value | newState=100 | PWRMGR_INVALID_ARGUMENT | Should Pass |
+ * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * 
+ */
+
+/**
  * @brief Ensure PLAT_API_GetPowerState() returns correct error codes during all of this API's invocation scenarios
  * 
  * This test case ensures the following conditions:
@@ -112,8 +139,34 @@
  * |Variation / Step|Description|Test Data|Expected Result|Notes|
  * |:--:|---------|----------|--------------|-----|
  * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |02|Call PLAT_API_GetPowerState() - get power state | | PWRMGR_SUCCESS | Should Pass |
+ * |02|Call PLAT_API_GetPowerState() - get power state | curState* | PWRMGR_SUCCESS | Should Pass |
  * |03|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * 
+ */
+/**
+ * @brief Ensure PLAT_API_GetPowerState() returns correct error codes during negative scenarios
+ * 
+ * This test case ensures the following conditions:
+ * 1. PLAT_API_GetPowerState() should return PWRMGR_NOT_INITIALIZED due to power manager not being initialized.
+ * 2. Call PLAT_INIT() to initialize power manager.
+ * 3. PLAT_API_GetPowerState() will return PWRMGR_INVALID_ARGUMENT by sending an invalid value.
+ * 4. PLAT_TERM() will return PWRMGR_SUCCESS during successive calls
+ * 
+ * **Test Group ID:** Basic: 01@n
+ * **Test Case ID:** 008@n
+ * 
+ * **Pre-Conditions:**@n
+ * None.
+ * 
+ * **Dependencies:** None@n
+ * **User Interaction:** None
+ * 
+ * **Test Procedure:**@n
+ * |Variation / Step|Description|Test Data|Expected Result|Notes|
+ * |01|Call PLAT_API_GetPowerState() - call without initializing the module | curState* | PWRMGR_NOT_INITIALIZED | Should Pass |
+ * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
+ * |03|Call PLAT_API_GetPowerState() - call with NULL pointer | curState*=NULL | PWRMGR_INVALID_ARGUMENT | Should Pass |
+ * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * 
  */
 
@@ -138,8 +191,35 @@
  * |Variation / Step|Description|Test Data|Expected Result|Notes|
  * |:--:|---------|----------|--------------|-----|
  * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |02|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=WAKEUPSRC_VOICE | PWRMGR_SUCCESS | Should Pass |
+ * |02|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=WAKEUPSRC_VOICE, enabled=false | PWRMGR_SUCCESS | Should Pass |
  * |03|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * 
+ */
+
+/**
+ * @brief Ensure PLAT_API_SetWakeupSrc() returns correct error codes during negative scenarios
+ * 
+ * This test case ensures the following conditions:
+ * 1. PLAT_API_SetWakeupSrc() should return PWRMGR_NOT_INITIALIZED due to power manager not being initialized.
+ * 2. Call PLAT_INIT() to initialize power manager.
+ * 3. PLAT_API_SetWakeupSrc() will return PWRMGR_INVALID_ARGUMENT by sending an invalid value.
+ * 4. PLAT_TERM() will return PWRMGR_SUCCESS during successive calls
+ * 
+ * **Test Group ID:** Basic: 01@n
+ * **Test Case ID:** 009@n
+ * 
+ * **Pre-Conditions:**@n
+ * None.
+ * 
+ * **Dependencies:** None@n
+ * **User Interaction:** None
+ * 
+ * **Test Procedure:**@n
+ * |Variation / Step|Description|Test Data|Expected Result|Notes|
+ * |01|Call PLAT_API_SetWakeupSrc() - call without initializing the module | newState=WAKEUPSRC_VOICE, enabled=false | PWRMGR_NOT_INITIALIZED | Should Pass |
+ * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
+ * |03|Call PLAT_API_SetWakeupSrc() - call with invalid value | newState=100 | PWRMGR_INVALID_ARGUMENT | Should Pass |
+ * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * 
  */
 
@@ -164,8 +244,35 @@
  * |Variation / Step|Description|Test Data|Expected Result|Notes|
  * |:--:|---------|----------|--------------|-----|
  * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |02|Call PLAT_API_GetWakeupSrc() - get wakeup source | | PWRMGR_SUCCESS | Should Pass |
+ * |02|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType, *enable| PWRMGR_SUCCESS | Should Pass |
  * |03|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * 
+ */
+
+/**
+ * @brief Ensure PLAT_API_GetWakeupSrc() returns correct error codes during negative scenarios
+ * 
+ * This test case ensures the following conditions:
+ * 1. PLAT_API_GetWakeupSrc() should return PWRMGR_NOT_INITIALIZED due to power manager not being initialized.
+ * 2. Call PLAT_INIT() to initialize power manager.
+ * 3. PLAT_API_GetWakeupSrc() will return PWRMGR_INVALID_ARGUMENT by sending an invalid value.
+ * 4. PLAT_TERM() will return PWRMGR_SUCCESS during successive calls
+ * 
+ * **Test Group ID:** Basic: 01@n
+ * **Test Case ID:** 010@n
+ * 
+ * **Pre-Conditions:**@n
+ * None.
+ * 
+ * **Dependencies:** None@n
+ * **User Interaction:** None
+ * 
+ * **Test Procedure:**@n
+ * |Variation / Step|Description|Test Data|Expected Result|Notes|
+ * |01|Call PLAT_API_GetWakeupSrc() - call without initializing the module | srcType, *enable | PWRMGR_NOT_INITIALIZED | Should Pass |
+ * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
+ * |03|Call PLAT_API_GetWakeupSrc() - call with NULL pointer | srcType, *enable=NULL | PWRMGR_INVALID_ARGUMENT | Should Pass |
+ * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * 
  */
 
@@ -190,113 +297,5 @@
  * |:--:|---------|----------|--------------|-----|
  * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
  * |02|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
- * 
- */
-
-/**
- * @brief Ensure PLAT_API_SetPowerState() returns correct error codes during negative scenarios
- * 
- * This test case ensures the following conditions:
- * 1. PLAT_API_SetPowerState() should return PWRMGR_NOT_INITIALIZED due to power manager not being initialized.
- * 2. Call PLAT_INIT() to initialize power manager.
- * 3. PLAT_API_SetPowerState() will return PWRMGR_INVALID_ARGUMENT by sending an invalid value.
- * 4. PLAT_TERM() will return PWRMGR_SUCCESS during successive calls
- * 
- * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 007@n
- * 
- * **Pre-Conditions:**@n
- * None.
- * 
- * **Dependencies:** None@n
- * **User Interaction:** None
- * 
- * **Test Procedure:**@n
- * |Variation / Step|Description|Test Data|Expected Result|Notes|
- * |01|Call PLAT_API_SetPowerState() - call without initializing the module | newState=PWRMGR_POWERSTATE_ON | PWRMGR_NOT_INITIALIZED | Should Pass |
- * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_API_SetPowerState() - call with invalid value | invalidState=100 | PWRMGR_INVALID_ARGUMENT | Should Pass |
- * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
- * 
- */
-
-/**
- * @brief Ensure PLAT_API_GetPowerState() returns correct error codes during negative scenarios
- * 
- * This test case ensures the following conditions:
- * 1. PLAT_API_GetPowerState() should return PWRMGR_NOT_INITIALIZED due to power manager not being initialized.
- * 2. Call PLAT_INIT() to initialize power manager.
- * 3. PLAT_API_GetPowerState() will return PWRMGR_INVALID_ARGUMENT by sending an invalid value.
- * 4. PLAT_TERM() will return PWRMGR_SUCCESS during successive calls
- * 
- * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 008@n
- * 
- * **Pre-Conditions:**@n
- * None.
- * 
- * **Dependencies:** None@n
- * **User Interaction:** None
- * 
- * **Test Procedure:**@n
- * |Variation / Step|Description|Test Data|Expected Result|Notes|
- * |01|Call PLAT_API_GetPowerState() - call without initializing the module | curState=NULL | PWRMGR_NOT_INITIALIZED | Should Pass |
- * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_API_GetPowerState() - call with NULL pointer | NULL | PWRMGR_INVALID_ARGUMENT | Should Pass |
- * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
- * 
- */
-
-/**
- * @brief Ensure PLAT_API_SetWakeupSrc() returns correct error codes during negative scenarios
- * 
- * This test case ensures the following conditions:
- * 1. PLAT_API_SetWakeupSrc() should return PWRMGR_NOT_INITIALIZED due to power manager not being initialized.
- * 2. Call PLAT_INIT() to initialize power manager.
- * 3. PLAT_API_SetWakeupSrc() will return PWRMGR_INVALID_ARGUMENT by sending an invalid value.
- * 4. PLAT_TERM() will return PWRMGR_SUCCESS during successive calls
- * 
- * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 009@n
- * 
- * **Pre-Conditions:**@n
- * None.
- * 
- * **Dependencies:** None@n
- * **User Interaction:** None
- * 
- * **Test Procedure:**@n
- * |Variation / Step|Description|Test Data|Expected Result|Notes|
- * |01|Call PLAT_API_SetWakeupSrc() - call without initializing the module | newState=WAKEUPSRC_VOICE | PWRMGR_NOT_INITIALIZED | Should Pass |
- * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_API_SetWakeupSrc() - call with invalid value | invalidState=100 | PWRMGR_INVALID_ARGUMENT | Should Pass |
- * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
- * 
- */
-
-/**
- * @brief Ensure PLAT_API_GetWakeupSrc() returns correct error codes during negative scenarios
- * 
- * This test case ensures the following conditions:
- * 1. PLAT_API_GetWakeupSrc() should return PWRMGR_NOT_INITIALIZED due to power manager not being initialized.
- * 2. Call PLAT_INIT() to initialize power manager.
- * 3. PLAT_API_GetWakeupSrc() will return PWRMGR_INVALID_ARGUMENT by sending an invalid value.
- * 4. PLAT_TERM() will return PWRMGR_SUCCESS during successive calls
- * 
- * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 010@n
- * 
- * **Pre-Conditions:**@n
- * None.
- * 
- * **Dependencies:** None@n
- * **User Interaction:** None
- * 
- * **Test Procedure:**@n
- * |Variation / Step|Description|Test Data|Expected Result|Notes|
- * |01|Call PLAT_API_GetWakeupSrc() - call without initializing the module | curSrc=NULL | PWRMGR_NOT_INITIALIZED | Should Pass |
- * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_API_GetWakeupSrc() - call with NULL pointer | NULL | PWRMGR_INVALID_ARGUMENT | Should Pass |
- * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * 
  */
