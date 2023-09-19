@@ -24,7 +24,7 @@
 #include "plat_power.h"
 
 /**
- * @brief Ensure PLAT_INIT() returns correct error codes during all of this API's invocation scenarios
+ * @brief Ensure PLAT_INIT() returns correct error codes during positive scenarios
  * @todo Check to see additional failures to see if they can be trigger. If not, mention that they are not reproducible
  * 
  * This test case ensures the following conditions:
@@ -75,7 +75,7 @@
  */
 
 /**
- * @brief Ensure PLAT_API_SetPowerState() returns correct error codes during all of this API's invocation scenarios
+ * @brief Ensure PLAT_API_SetPowerState() returns correct error codes during positive scenarios
  * 
  * This test case ensures the following conditions:
  * 1. PLAT_INIT() is called to initialize power manager.
@@ -128,7 +128,7 @@
  */
 
 /**
- * @brief Ensure PLAT_API_GetPowerState() returns correct error codes during all of this API's invocation scenarios
+ * @brief Ensure PLAT_API_GetPowerState() returns correct error codes during positive scenarios
  * 
  * This test case ensures the following conditions:
  * 1. PLAT_INIT() is called to initialize power manager.
@@ -180,7 +180,7 @@
  */
 
 /**
- * @brief Ensure PLAT_API_SetWakeupSrc() returns correct error codes during all of this API's invocation scenarios
+ * @brief Ensure PLAT_API_SetWakeupSrc() returns correct error codes during positive scenarios
  * 
  * This test case ensures the following conditions:
  * 1. PLAT_INIT() is called to initialize power manager.
@@ -233,7 +233,7 @@
  */
 
 /**
- * @brief Ensure PLAT_API_GetWakeupSrc() returns correct error codes during all of this API's invocation scenarios
+ * @brief Ensure PLAT_API_GetWakeupSrc() returns correct error codes during positive scenarios
  * 
  * This test case ensures the following conditions:
  * 1. PLAT_INIT() is called to initialize power manager.
@@ -286,7 +286,7 @@
  */
 
 /**
- * @brief Ensure PLAT_TERM() returns correct error codes during all of this API's invocation scenarios
+ * @brief Ensure PLAT_TERM() returns correct error codes during positive scenarios
  * 
  * This test case ensures the following conditions:
  * 1. PLAT_INIT() is called to initialize power manager.
