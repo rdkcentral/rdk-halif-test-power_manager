@@ -23,22 +23,6 @@
 #include <ut.h>
 #include "plat_power.h"
 
-
-/**
- * @brief This function will do the unit testing of PLAT_INIT().
- * This function will ensure underlying API implementation is handling
- * the invalid call sequences to the API properly.
- * This UT implementation will verify it by calling the function in all
- * invalid possibilities.
- * In all the invalid call sequence 
- * scenarios API should return the expected error codes defined in the respective HAL
- * documentation. Please see all the expected error codes and respective scenarios
- * in which the error codes will be returned.
- * PM_SUCCESS: will be returned if PLAT_INIT() is executed successfully.
- * PM_GENERAL_ERROR : will be returned if PLAT_INIT is called second time or 
- * underlying platform implementation is failed.
- */
-
 /**
  * @brief Ensure PLAT_INIT() returns correct error codes during all of this API's invocation scenarios
  * 
