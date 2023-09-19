@@ -25,6 +25,31 @@
 
 /**
  * @brief Ensure PLAT_INIT() returns correct error codes during all of this API's invocation scenarios
+ * @todo Check to see additional failures to see if they can be trigger. If not, mention that they are not reproducible
+ * 
+ * This test case ensures the following conditions:
+ * 1. PLAT_INIT() should return PWRMGR_SUCCESS when initializing the module.
+ * 2. PLAT_TERM() should return PWRMGR_SUCCESS after successful termination.
+ * 
+ * **Test Group ID:** Basic: 01@n
+ * **Test Case ID:** 001@n
+ * 
+ * **Pre-Conditions:**@n
+ * None.
+ * 
+ * **Dependencies:** None@n
+ * **User Interaction:** None
+ * 
+ * **Test Procedure:**@n
+ * |Variation / Step|Description|Test Data|Expected Result|Notes|
+ * |:--:|---------|----------|--------------|-----|
+ * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
+ * |02|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * 
+ */
+
+/**
+ * @brief Ensure PLAT_INIT() returns correct error codes during negative scenarios
  * 
  * This test case ensures the following conditions:
  * 1. PLAT_INIT() should return PWRMGR_SUCCESS when initializing the module.
@@ -32,7 +57,7 @@
  * 3. PLAT_TERM() should return PWRMGR_SUCCESS after successful termination.
  * 
  * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 001@n
+ * **Test Case ID:** 002@n
  * 
  * **Pre-Conditions:**@n
  * None.
@@ -58,7 +83,7 @@
  * 3. PLAT_TERM() should return PWRMGR_SUCCESS after successful termination.
  * 
  * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 002@n
+ * **Test Case ID:** 003@n
  * 
  * **Pre-Conditions:**@n
  * None.
@@ -85,7 +110,7 @@
  * 4. PLAT_TERM() will return PWRMGR_SUCCESS during successive calls
  * 
  * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 007@n
+ * **Test Case ID:** 004@n
  * 
  * **Pre-Conditions:**@n
  * None.
@@ -97,7 +122,7 @@
  * |Variation / Step|Description|Test Data|Expected Result|Notes|
  * |01|Call PLAT_API_SetPowerState() - call without initializing the module | newState=PWRMGR_POWERSTATE_ON | PWRMGR_NOT_INITIALIZED | Should Pass |
  * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_API_SetPowerState() - call with invalid value | newState=100 | PWRMGR_INVALID_ARGUMENT | Should Pass |
+ * |03|Call PLAT_API_SetPowerState() - call with invalid value | newState=PWRMGR_POWERSTATE_MAX | PWRMGR_INVALID_ARGUMENT | Should Pass |
  * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * 
  */
@@ -111,7 +136,7 @@
  * 3. PLAT_TERM() should return PWRMGR_SUCCESS after successful termination.
  * 
  * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 003@n
+ * **Test Case ID:** 005@n
  * 
  * **Pre-Conditions:**@n
  * None.
@@ -137,7 +162,7 @@
  * 4. PLAT_TERM() will return PWRMGR_SUCCESS during successive calls
  * 
  * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 008@n
+ * **Test Case ID:** 006@n
  * 
  * **Pre-Conditions:**@n
  * None.
@@ -163,7 +188,7 @@
  * 3. PLAT_TERM() should return PWRMGR_SUCCESS after successful termination.
  * 
  * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 004@n
+ * **Test Case ID:** 007@n
  * 
  * **Pre-Conditions:**@n
  * None.
@@ -190,7 +215,7 @@
  * 4. PLAT_TERM() will return PWRMGR_SUCCESS during successive calls
  * 
  * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 009@n
+ * **Test Case ID:** 008@n
  * 
  * **Pre-Conditions:**@n
  * None.
@@ -202,7 +227,7 @@
  * |Variation / Step|Description|Test Data|Expected Result|Notes|
  * |01|Call PLAT_API_SetWakeupSrc() - call without initializing the module | newState=WAKEUPSRC_VOICE, enabled=false | PWRMGR_NOT_INITIALIZED | Should Pass |
  * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_API_SetWakeupSrc() - call with invalid value | newState=100 | PWRMGR_INVALID_ARGUMENT | Should Pass |
+ * |03|Call PLAT_API_SetWakeupSrc() - call with invalid value | newState=PWRMGR_WAKEUPSRC_MAX | PWRMGR_INVALID_ARGUMENT | Should Pass |
  * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * 
  */
@@ -216,7 +241,7 @@
  * 3. PLAT_TERM() should return PWRMGR_SUCCESS after successful termination.
  * 
  * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 005@n
+ * **Test Case ID:** 009@n
  * 
  * **Pre-Conditions:**@n
  * None.
@@ -268,7 +293,7 @@
  * 2. PLAT_TERM() should return PWRMGR_SUCCESS by terminating the power manager correctly.
  * 
  * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 006@n
+ * **Test Case ID:** 011@n
  * 
  * **Pre-Conditions:**@n
  * None.
@@ -281,5 +306,27 @@
  * |:--:|---------|----------|--------------|-----|
  * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
  * |02|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * 
+ */
+
+/**
+ * @brief Ensure PLAT_TERM() returns correct error codes during negative scenarios
+ * 
+ * This test case ensures the following conditions:
+ * 1. PLAT_TERM() should return PWRMGR_ALREADY_INITIALIZED by calling power manager before it is initialized.
+ * 
+ * **Test Group ID:** Basic: 01@n
+ * **Test Case ID:** 012@n
+ * 
+ * **Pre-Conditions:**@n
+ * None.
+ * 
+ * **Dependencies:** None@n
+ * **User Interaction:** None
+ * 
+ * **Test Procedure:**@n
+ * |Variation / Step|Description|Test Data|Expected Result|Notes|
+ * |:--:|---------|----------|--------------|-----|
+ * |01|Call PLAT_TERM() - close interface | | PWRMGR_ALREADY_INITIALIZED | Should Pass |
  * 
  */
