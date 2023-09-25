@@ -88,261 +88,12 @@ void test_l1_plat_power_negative_PLAT_INIT (void)
 	UT_FAIL(This function needs to be implemented!); 
 }
 
-/**
- * @brief Ensure PLAT_API_SetPowerState() returns correct error codes during positive scenarios
- * 
- * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 003@n
- * 
- * **Pre-Conditions:**@n
- * None.
- * 
- * **Dependencies:** None@n
- * **User Interaction:** None
- * 
- * **Test Procedure:**@n
- * |Variation / Step|Description|Test Data|Expected Result|Notes|
- * |:--:|---------|----------|--------------|-----|
- * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |02|Call PLAT_API_SetPowerState() - set a power state | newState=PWRMGR_POWERSTATE_ON | PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
- * 
- */
-void test_l1_plat_power_positive_PLAT_API_SetPowerState (void)
-{
-	UT_FAIL(This function needs to be implemented!); 
-}
-
-/**
- * @brief Ensure PLAT_API_SetPowerState() returns correct error codes during negative scenarios
- * 
- * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 004@n
- * 
- * **Pre-Conditions:**@n
- * None.
- * 
- * **Dependencies:** None@n
- * **User Interaction:** None
- * 
- * **Test Procedure:**@n
- * |Variation / Step|Description|Test Data|Expected Result|Notes|
- * |01|Call PLAT_API_SetPowerState() - call without initializing the module | newState=PWRMGR_POWERSTATE_ON | PWRMGR_NOT_INITIALIZED | Should Pass |
- * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_API_SetPowerState() - call with invalid value | newState=PWRMGR_POWERSTATE_MAX | PWRMGR_INVALID_ARGUMENT | Should Pass |
- * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
- * 
- */
-void test_l1_plat_power_negative_PLAT_API_SetPowerState (void)
-{
-	UT_FAIL(This function needs to be implemented!); 
-}
-
-/**
- * @brief Ensure PLAT_API_GetPowerState() returns correct error codes during positive scenarios
- * 
- * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 005@n
- * 
- * **Pre-Conditions:**@n
- * None.
- * 
- * **Dependencies:** None@n
- * **User Interaction:** None
- * 
- * **Test Procedure:**@n
- * |Variation / Step|Description|Test Data|Expected Result|Notes|
- * |:--:|---------|----------|--------------|-----|
- * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |02|Call PLAT_API_GetPowerState() - get power state | curState* | PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
- * 
- */
-void test_l1_plat_power_positive_PLAT_API_GetPowerState (void)
-{
-	UT_FAIL(This function needs to be implemented!); 
-}
-
-/**
- * @brief Ensure PLAT_API_GetPowerState() returns correct error codes during negative scenarios
- * 
- * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 006@n
- * 
- * **Pre-Conditions:**@n
- * None.
- * 
- * **Dependencies:** None@n
- * **User Interaction:** None
- * 
- * **Test Procedure:**@n
- * |Variation / Step|Description|Test Data|Expected Result|Notes|
- * |01|Call PLAT_API_GetPowerState() - call without initializing the module | curState* | PWRMGR_NOT_INITIALIZED | Should Pass |
- * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_API_GetPowerState() - call with NULL pointer | curState*=NULL | PWRMGR_INVALID_ARGUMENT | Should Pass |
- * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
- * 
- */
-void test_l1_plat_power_negative_PLAT_API_GetPowerState (void)
-{
-	UT_FAIL(This function needs to be implemented!); 
-}
-
-/**
- * @brief Ensure PLAT_API_SetWakeupSrc() returns correct error codes during positive scenarios
- * 
- * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 007@n
- * 
- * **Pre-Conditions:**@n
- * None.
- * 
- * **Dependencies:** None@n
- * **User Interaction:** None
- * 
- * **Test Procedure:**@n
- * |Variation / Step|Description|Test Data|Expected Result|Notes|
- * |:--:|---------|----------|--------------|-----|
- * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |02|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=WAKEUPSRC_VOICE, enabled=false | PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
- * 
- */
-void test_l1_plat_power_positive_PLAT_API_SetWakeupSrc (void)
-{
-	UT_FAIL(This function needs to be implemented!); 
-}
-
-/**
- * @brief Ensure PLAT_API_SetWakeupSrc() returns correct error codes during negative scenarios
- * 
- * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 008@n
- * 
- * **Pre-Conditions:**@n
- * None.
- * 
- * **Dependencies:** None@n
- * **User Interaction:** None
- * 
- * **Test Procedure:**@n
- * |Variation / Step|Description|Test Data|Expected Result|Notes|
- * |01|Call PLAT_API_SetWakeupSrc() - call without initializing the module | newState=WAKEUPSRC_VOICE, enabled=false | PWRMGR_NOT_INITIALIZED | Should Pass |
- * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_API_SetWakeupSrc() - call with invalid value | newState=PWRMGR_WAKEUPSRC_MAX | PWRMGR_INVALID_ARGUMENT | Should Pass |
- * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
- * 
- */
-void test_l1_plat_power_negative_PLAT_API_SetWakeupSrc (void)
-{
-	UT_FAIL(This function needs to be implemented!); 
-}
-
-/**
- * @brief Ensure PLAT_API_GetWakeupSrc() returns correct error codes during positive scenarios
- * 
- * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 009@n
- * 
- * **Pre-Conditions:**@n
- * None.
- * 
- * **Dependencies:** None@n
- * **User Interaction:** None
- * 
- * **Test Procedure:**@n
- * |Variation / Step|Description|Test Data|Expected Result|Notes|
- * |:--:|---------|----------|--------------|-----|
- * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |02|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType, *enable| PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
- * 
- */
-void test_l1_plat_power_positive_PLAT_API_GetWakeupSrc (void)
-{
-	UT_FAIL(This function needs to be implemented!); 
-}
-
-/**
- * @brief Ensure PLAT_API_GetWakeupSrc() returns correct error codes during negative scenarios
- * 
- * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 010@n
- * 
- * **Pre-Conditions:**@n
- * None.
- * 
- * **Dependencies:** None@n
- * **User Interaction:** None
- * 
- * **Test Procedure:**@n
- * |Variation / Step|Description|Test Data|Expected Result|Notes|
- * |01|Call PLAT_API_GetWakeupSrc() - call without initializing the module | srcType, *enable | PWRMGR_NOT_INITIALIZED | Should Pass |
- * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_API_GetWakeupSrc() - call with NULL pointer | srcType, *enable=NULL | PWRMGR_INVALID_ARGUMENT | Should Pass |
- * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
- * 
- */
-void test_l1_plat_power_negative_PLAT_API_GetWakeupSrc (void)
-{
-	UT_FAIL(This function needs to be implemented!); 
-}
-
-/**
- * @brief Ensure PLAT_Reset() returns correct error codes during positive scenarios
- * 
- * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 011@n
- * 
- * **Pre-Conditions:**@n
- * None.
- * 
- * **Dependencies:** None@n
- * **User Interaction:** None
- * 
- * **Test Procedure:**@n
- * |Variation / Step|Description|Test Data|Expected Result|Notes|
- * |:--:|---------|----------|--------------|-----|
- * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |02|Call PLAT_Reset() - reset power state | newState=PWRMGR_POWERSTATE_ON | PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
- * 
- */
-void test_l1_plat_power_positive_PLAT_Reset (void)
-{
-	UT_FAIL(This function needs to be implemented!); 
-}
-
-/**
- * @brief Ensure PLAT_Reset() returns correct error codes during negative scenarios
- * 
- * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 012@n
- * 
- * **Pre-Conditions:**@n
- * None.
- * 
- * **Dependencies:** None@n
- * **User Interaction:** None
- * 
- * **Test Procedure:**@n
- * |Variation / Step|Description|Test Data|Expected Result|Notes|
- * |01|Call PLAT_Reset() - call without initializing the module | newState=PWRMGR_POWERSTATE_ON | PWRMGR_NOT_INITIALIZED | Should Pass |
- * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_Reset() - call with invalid value | newState=PWRMGR_POWERSTATE_MAX | PWRMGR_INVALID_ARGUMENT | Should Pass |
- * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
- * 
- */
-void test_l1_plat_power_negative_PLAT_Reset (void)
-{
-	UT_FAIL(This function needs to be implemented!); 
-}
 
 /**
  * @brief Ensure PLAT_TERM() returns correct error codes during positive scenarios
  * 
  * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 013@n
+ * **Test Case ID:** 003@n
  * 
  * **Pre-Conditions:**@n
  * None.
@@ -366,7 +117,7 @@ void test_l1_plat_power_positive_PLAT_TERM (void)
  * @brief Ensure PLAT_TERM() returns correct error codes during negative scenarios
  * 
  * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 014@n
+ * **Test Case ID:** 004@n
  * 
  * **Pre-Conditions:**@n
  * None.
@@ -377,10 +128,296 @@ void test_l1_plat_power_positive_PLAT_TERM (void)
  * **Test Procedure:**@n
  * |Variation / Step|Description|Test Data|Expected Result|Notes|
  * |:--:|---------|----------|--------------|-----|
- * |01|Call PLAT_TERM() - close interface | | PWRMGR_ALREADY_INITIALIZED | Should Pass |
+ * |01|Call PLAT_TERM() - close interface | | PWRMGR_NOT_INITIALIZED | Should Pass |
+ * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
+ * |03|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * |04|Call PLAT_TERM() - close interface again | | PWRMGR_NOT_INITIALIZED | Should Pass |
  * 
  */
 void test_l1_plat_power_negative_PLAT_TERM (void)
+{
+	UT_FAIL(This function needs to be implemented!); 
+}
+
+/**
+ * @brief Ensure PLAT_API_SetPowerState() returns correct error codes during positive scenarios
+ * 
+ * **Test Group ID:** Basic: 01@n
+ * **Test Case ID:** 005@n
+ * 
+ * **Pre-Conditions:**@n
+ * None.
+ * 
+ * **Dependencies:** None@n
+ * **User Interaction:** None
+ * 
+ * **Test Procedure:**@n
+ * |Variation / Step|Description|Test Data|Expected Result|Notes|
+ * |:--:|---------|----------|--------------|-----|
+ * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
+ * |02|Call PLAT_API_SetPowerState() - set a power state | newState=PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP | PWRMGR_SUCCESS | Should Pass |
+ * |03|Call PLAT_API_SetPowerState() - set a power state | newState=PWRMGR_POWERSTATE_STANDBY_LIGHT_SLEEP | PWRMGR_SUCCESS | Should Pass |
+ * |04|Call PLAT_API_SetPowerState() - set a power state | newState=PWRMGR_POWERSTATE_ON | PWRMGR_SUCCESS | Should Pass |
+ * |05|Call PLAT_API_SetPowerState() - set a power state | newState=PWRMGR_POWERSTATE_STANDBY | PWRMGR_SUCCESS | Should Pass |
+ * |06|Call PLAT_API_SetPowerState() - set a power state | newState=PWRMGR_POWERSTATE_OFF | PWRMGR_SUCCESS | Should Pass |
+ * |07|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * 
+ */
+void test_l1_plat_power_positive_PLAT_API_SetPowerState (void)
+{
+	UT_FAIL(This function needs to be implemented!); 
+}
+
+/**
+ * @brief Ensure PLAT_API_SetPowerState() returns correct error codes during negative scenarios
+ * 
+ * **Test Group ID:** Basic: 01@n
+ * **Test Case ID:** 006@n
+ * 
+ * **Pre-Conditions:**@n
+ * None.
+ * 
+ * **Dependencies:** None@n
+ * **User Interaction:** None
+ * 
+ * **Test Procedure:**@n
+ * |Variation / Step|Description|Test Data|Expected Result|Notes|
+ * |01|Call PLAT_API_SetPowerState() - call without initializing the module | newState=PWRMGR_POWERSTATE_ON | PWRMGR_NOT_INITIALIZED | Should Pass |
+ * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
+ * |03|Call PLAT_API_SetPowerState() - call with invalid value | newState=PWRMGR_POWERSTATE_MAX | PWRMGR_INVALID_ARGUMENT | Should Pass |
+ * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * |05|Call PLAT_API_SetPowerState() - call after terminating the module | newState=PWRMGR_POWERSTATE_ON | PWRMGR_NOT_INITIALIZED | Should Pass |
+ * 
+ */
+void test_l1_plat_power_negative_PLAT_API_SetPowerState (void)
+{
+	UT_FAIL(This function needs to be implemented!); 
+}
+
+/**
+ * @brief Ensure PLAT_API_GetPowerState() returns correct error codes during positive scenarios
+ * 
+ * **Test Group ID:** Basic: 01@n
+ * **Test Case ID:** 007@n
+ * 
+ * **Pre-Conditions:**@n
+ * None.
+ * 
+ * **Dependencies:** None@n
+ * **User Interaction:** None
+ * 
+ * **Test Procedure:**@n
+ * |Variation / Step|Description|Test Data|Expected Result|Notes|
+ * |:--:|---------|----------|--------------|-----|
+ * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
+ * |02|Call PLAT_API_GetPowerState() - get power state | curState* | PWRMGR_SUCCESS | Should Pass |
+ * |03|Call PLAT_API_GetPowerState() - get power state | curState* | PWRMGR_SUCCESS | Should Pass |
+ * |04|Verify that PLAT_API_GetPowerState returns the same value | | | Should Pass |
+ * |05|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * 
+ */
+void test_l1_plat_power_positive_PLAT_API_GetPowerState (void)
+{
+	UT_FAIL(This function needs to be implemented!); 
+}
+
+/**
+ * @brief Ensure PLAT_API_GetPowerState() returns correct error codes during negative scenarios
+ * 
+ * **Test Group ID:** Basic: 01@n
+ * **Test Case ID:** 008@n
+ * 
+ * **Pre-Conditions:**@n
+ * None.
+ * 
+ * **Dependencies:** None@n
+ * **User Interaction:** None
+ * 
+ * **Test Procedure:**@n
+ * |Variation / Step|Description|Test Data|Expected Result|Notes|
+ * |01|Call PLAT_API_GetPowerState() - call without initializing the module | curState* | PWRMGR_NOT_INITIALIZED | Should Pass |
+ * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
+ * |03|Call PLAT_API_GetPowerState() - call with NULL pointer | curState*=NULL | PWRMGR_INVALID_ARGUMENT | Should Pass |
+ * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * |05|Call PLAT_API_GetPowerState() - call after terminating the module | curState* | PWRMGR_NOT_INITIALIZED | Should Pass |
+ * 
+ */
+void test_l1_plat_power_negative_PLAT_API_GetPowerState (void)
+{
+	UT_FAIL(This function needs to be implemented!); 
+}
+
+/**
+ * @brief Ensure PLAT_API_SetWakeupSrc() returns correct error codes during positive scenarios
+ * 
+ * **Test Group ID:** Basic: 01@n
+ * **Test Case ID:** 009@n
+ * 
+ * **Pre-Conditions:**@n
+ * None.
+ * 
+ * **Dependencies:** None@n
+ * **User Interaction:** None
+ * 
+ * **Test Procedure:**@n
+ * |Variation / Step|Description|Test Data|Expected Result|Notes|
+ * |:--:|---------|----------|--------------|-----|
+ * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
+ * |02|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=WAKEUPSRC_VOICE, enabled=false | PWRMGR_SUCCESS | Should Pass |
+ * |03|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=WAKEUPSRC_VOICE, enabled=true | PWRMGR_SUCCESS | Should Pass |
+ * |04|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_PRESENCE_DETECTION, enabled=false | PWRMGR_SUCCESS | Should Pass |
+ * |05|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_BLUETOOTH, enabled=false | PWRMGR_SUCCESS | Should Pass |
+ * |06|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_WIFI, enabled=false | PWRMGR_SUCCESS | Should Pass |
+ * |07|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_IR, enabled=false | PWRMGR_SUCCESS | Should Pass |
+ * |08|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_POWER_KEY, enabled=false | PWRMGR_SUCCESS | Should Pass |
+ * |09|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_TIMER, enabled=false | PWRMGR_SUCCESS | Should Pass |
+ * |10|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_CEC, enabled=false | PWRMGR_SUCCESS | Should Pass |
+ * |11|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_LAN, enabled=false | PWRMGR_SUCCESS | Should Pass |
+ * |12|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * 
+ */
+void test_l1_plat_power_positive_PLAT_API_SetWakeupSrc (void)
+{
+	UT_FAIL(This function needs to be implemented!); 
+}
+
+/**
+ * @brief Ensure PLAT_API_SetWakeupSrc() returns correct error codes during negative scenarios
+ * 
+ * **Test Group ID:** Basic: 01@n
+ * **Test Case ID:** 010@n
+ * 
+ * **Pre-Conditions:**@n
+ * None.
+ * 
+ * **Dependencies:** None@n
+ * **User Interaction:** None
+ * 
+ * **Test Procedure:**@n
+ * |Variation / Step|Description|Test Data|Expected Result|Notes|
+ * |01|Call PLAT_API_SetWakeupSrc() - call without initializing the module | newState=WAKEUPSRC_VOICE, enabled=false | PWRMGR_NOT_INITIALIZED | Should Pass |
+ * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
+ * |03|Call PLAT_API_SetWakeupSrc() - call with invalid value | newState=PWRMGR_WAKEUPSRC_MAX | PWRMGR_INVALID_ARGUMENT | Should Pass |
+ * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * |05|Call PLAT_API_SetWakeupSrc() - call after terminating the module | newState=WAKEUPSRC_VOICE, enabled=false | PWRMGR_NOT_INITIALIZED | Should Pass |
+ * 
+ */
+void test_l1_plat_power_negative_PLAT_API_SetWakeupSrc (void)
+{
+	UT_FAIL(This function needs to be implemented!); 
+}
+
+/**
+ * @brief Ensure PLAT_API_GetWakeupSrc() returns correct error codes during positive scenarios
+ * 
+ * **Test Group ID:** Basic: 01@n
+ * **Test Case ID:** 011@n
+ * 
+ * **Pre-Conditions:**@n
+ * None.
+ * 
+ * **Dependencies:** None@n
+ * **User Interaction:** None
+ * 
+ * **Test Procedure:**@n
+ * |Variation / Step|Description|Test Data|Expected Result|Notes|
+ * |:--:|---------|----------|--------------|-----|
+ * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
+ * |02|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=WAKEUPSRC_VOICE, *enable| PWRMGR_SUCCESS | Should Pass |
+ * |03|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_PRESENCE_DETECTION, *enable| PWRMGR_SUCCESS | Should Pass |
+ * |04|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_BLUETOOTH, *enable| PWRMGR_SUCCESS | Should Pass |
+ * |05|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_WIFI, *enable| PWRMGR_SUCCESS | Should Pass |
+ * |06|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_IR, *enable| PWRMGR_SUCCESS | Should Pass |
+ * |07|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_POWER_KEY, *enable| PWRMGR_SUCCESS | Should Pass |
+ * |08|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_TIMER, *enable| PWRMGR_SUCCESS | Should Pass |
+ * |09|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_CEC, *enable| PWRMGR_SUCCESS | Should Pass |
+ * |10|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_LAN, *enable| PWRMGR_SUCCESS | Should Pass |
+ * |11|Verify that PLAT_API_GetWakeupSrc returns the same values upon return | | | Should Pass |
+ * |12|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * 
+ */
+void test_l1_plat_power_positive_PLAT_API_GetWakeupSrc (void)
+{
+	UT_FAIL(This function needs to be implemented!); 
+}
+
+/**
+ * @brief Ensure PLAT_API_GetWakeupSrc() returns correct error codes during negative scenarios
+ * 
+ * **Test Group ID:** Basic: 01@n
+ * **Test Case ID:** 012@n
+ * 
+ * **Pre-Conditions:**@n
+ * None.
+ * 
+ * **Dependencies:** None@n
+ * **User Interaction:** None
+ * 
+ * **Test Procedure:**@n
+ * |Variation / Step|Description|Test Data|Expected Result|Notes|
+ * |01|Call PLAT_API_GetWakeupSrc() - call without initializing the module | srcType, *enable | PWRMGR_NOT_INITIALIZED | Should Pass |
+ * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
+ * |03|Call PLAT_API_GetWakeupSrc() - call with NULL pointer | srcType, *enable=NULL | PWRMGR_INVALID_ARGUMENT | Should Pass |
+ * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * |05|Call PLAT_API_GetWakeupSrc() - call after terminating the module | srcType, *enable | PWRMGR_NOT_INITIALIZED | Should Pass |
+ * 
+ */
+void test_l1_plat_power_negative_PLAT_API_GetWakeupSrc (void)
+{
+	UT_FAIL(This function needs to be implemented!); 
+}
+
+/**
+ * @brief Ensure PLAT_Reset() returns correct error codes during positive scenarios
+ * 
+ * **Test Group ID:** Basic: 01@n
+ * **Test Case ID:** 013@n
+ * 
+ * **Pre-Conditions:**@n
+ * None.
+ * 
+ * **Dependencies:** None@n
+ * **User Interaction:** None
+ * 
+ * **Test Procedure:**@n
+ * |Variation / Step|Description|Test Data|Expected Result|Notes|
+ * |:--:|---------|----------|--------------|-----|
+ * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
+ * |02|Call PLAT_Reset() - set a power state | newState=PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP | PWRMGR_SUCCESS | Should Pass |
+ * |03|Call PLAT_Reset() - set a power state | newState=PWRMGR_POWERSTATE_STANDBY_LIGHT_SLEEP | PWRMGR_SUCCESS | Should Pass |
+ * |04|Call PLAT_Reset() - set a power state | newState=PWRMGR_POWERSTATE_ON | PWRMGR_SUCCESS | Should Pass |
+ * |05|Call PLAT_Reset() - set a power state | newState=PWRMGR_POWERSTATE_STANDBY | PWRMGR_SUCCESS | Should Pass |
+ * |06|Call PLAT_Reset() - set a power state | newState=PWRMGR_POWERSTATE_OFF | PWRMGR_SUCCESS | Should Pass |
+ * |07|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * 
+ */
+void test_l1_plat_power_positive_PLAT_Reset (void)
+{
+	UT_FAIL(This function needs to be implemented!); 
+}
+
+/**
+ * @brief Ensure PLAT_Reset() returns correct error codes during negative scenarios
+ * 
+ * **Test Group ID:** Basic: 01@n
+ * **Test Case ID:** 014@n
+ * 
+ * **Pre-Conditions:**@n
+ * None.
+ * 
+ * **Dependencies:** None@n
+ * **User Interaction:** None
+ * 
+ * **Test Procedure:**@n
+ * |Variation / Step|Description|Test Data|Expected Result|Notes|
+ * |01|Call PLAT_Reset() - call without initializing the module | newState=PWRMGR_POWERSTATE_ON | PWRMGR_NOT_INITIALIZED | Should Pass |
+ * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
+ * |03|Call PLAT_Reset() - call with invalid value | newState=PWRMGR_POWERSTATE_MAX | PWRMGR_INVALID_ARGUMENT | Should Pass |
+ * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * |05|Call PLAT_Reset() - call after terminating the module | newState=PWRMGR_POWERSTATE_ON | PWRMGR_NOT_INITIALIZED | Should Pass |
+ * 
+ */
+void test_l1_plat_power_negative_PLAT_Reset (void)
 {
 	UT_FAIL(This function needs to be implemented!); 
 }
@@ -403,6 +440,8 @@ int test_l1_plat_power_register ( void )
 
 	UT_add_test( pSuite, "PLAT_INIT_L1_positive" ,test_l1_plat_power_positive_PLAT_INIT );
 	UT_add_test( pSuite, "PLAT_INIT_L1_negative" ,test_l1_plat_power_negative_PLAT_INIT );
+    UT_add_test( pSuite, "PLAT_TERM_L1_positive" ,test_l1_plat_power_positive_PLAT_TERM );
+	UT_add_test( pSuite, "PLAT_TERM_L1_negative" ,test_l1_plat_power_negative_PLAT_TERM );
 	UT_add_test( pSuite, "PLAT_API_SetPowerState_L1_positive" ,test_l1_plat_power_positive_PLAT_API_SetPowerState );
 	UT_add_test( pSuite, "PLAT_API_SetPowerState_L1_negative" ,test_l1_plat_power_negative_PLAT_API_SetPowerState );
 	UT_add_test( pSuite, "PLAT_API_GetPowerState_L1_positive" ,test_l1_plat_power_positive_PLAT_API_GetPowerState );
@@ -413,8 +452,6 @@ int test_l1_plat_power_register ( void )
 	UT_add_test( pSuite, "PLAT_API_GetWakeupSrc_L1_negative" ,test_l1_plat_power_negative_PLAT_API_GetWakeupSrc );
 	UT_add_test( pSuite, "PLAT_Reset_L1_positive" ,test_l1_plat_power_positive_PLAT_Reset );
 	UT_add_test( pSuite, "PLAT_Reset_L1_negative" ,test_l1_plat_power_negative_PLAT_Reset );
-	UT_add_test( pSuite, "PLAT_TERM_L1_positive" ,test_l1_plat_power_positive_PLAT_TERM );
-	UT_add_test( pSuite, "PLAT_TERM_L1_negative" ,test_l1_plat_power_negative_PLAT_TERM );
 	
 
 	return 0;
