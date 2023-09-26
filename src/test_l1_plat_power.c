@@ -32,6 +32,35 @@
 * Ref to API Definition specification documentation : [halSpec.md](../../../docs/halSpec.md)
 */
 
+/**
+ * @addtogroup HPK HPK
+ * @{
+ * @addtogroup POWER_MANAGER POWER_MANAGER
+ * @{
+ *
+ */
+
+/**
+ * @defgroup POWER_MANAGER_TESTS POWER_MANAGER_TESTS
+ * @{
+ * @par
+ * Unit Testing Suite for Power Manager  HAL
+ */
+
+/**
+* @file test_l1_plat_power.c
+* @page POWER_MANAGER_L1_Tests POWER_MANAGER Level 1 Tests
+*
+* ## Module's Role
+* This module includes Level 1 functional tests (success and failure scenarios)
+* This is to ensure that the API meets the operational requirements of the Power Manager across all vendors
+*
+* **Pre-Conditions:**  None@n
+* **Dependencies:** None@n
+*
+* Ref to API Definition specification documentation : [halSpec.md](../../../docs/halSpec.md)
+*/
+
 #include <string.h>
 #include <stdlib.h>
 
@@ -40,7 +69,6 @@
 
 /**
  * @brief Ensure PLAT_INIT() returns correct error codes during positive scenarios
- * @todo Check to see additional failures to see if they can be trigger. If not, mention that they are not reproducible
  * 
  * **Test Group ID:** Basic: 01@n
  * **Test Case ID:** 001@n
@@ -69,6 +97,8 @@ void test_l1_plat_power_positive_PLAT_INIT (void)
  * **Test Group ID:** Basic: 01@n
  * **Test Case ID:** 002@n
  * 
+ * @note The error code PWRMGR_INIT_FAILURE is not able to be tested here.
+ * 
  * **Pre-Conditions:**@n
  * None.
  * 
@@ -79,7 +109,7 @@ void test_l1_plat_power_positive_PLAT_INIT (void)
  * |Variation / Step|Description|Test Data|Expected Result|Notes|
  * |:--:|---------|----------|--------------|-----|
  * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |02|Call PLAT_INIT() again | | PWRMGR_ALREADY_INITIALIZED | Should Pass |
+ * |02|Call PLAT_INIT() - again open interface | | PWRMGR_ALREADY_INITIALIZED | Should Pass |
  * |03|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * 
  */
@@ -118,6 +148,8 @@ void test_l1_plat_power_positive_PLAT_TERM (void)
  * 
  * **Test Group ID:** Basic: 01@n
  * **Test Case ID:** 004@n
+ * 
+ * @note The error code PWRMGR_TERM_FAILURE is not able to be tested here.
  * 
  * **Pre-Conditions:**@n
  * None.
@@ -174,6 +206,8 @@ void test_l1_plat_power_positive_PLAT_API_SetPowerState (void)
  * **Test Group ID:** Basic: 01@n
  * **Test Case ID:** 006@n
  * 
+ * @note The error code PWRMGR_SET_FAILURE is not able to be tested here.
+ * 
  * **Pre-Conditions:**@n
  * None.
  * 
@@ -200,6 +234,7 @@ void test_l1_plat_power_negative_PLAT_API_SetPowerState (void)
  * **Test Group ID:** Basic: 01@n
  * **Test Case ID:** 007@n
  * 
+ * 
  * **Pre-Conditions:**@n
  * None.
  * 
@@ -212,7 +247,7 @@ void test_l1_plat_power_negative_PLAT_API_SetPowerState (void)
  * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
  * |02|Call PLAT_API_GetPowerState() - get power state | curState* | PWRMGR_SUCCESS | Should Pass |
  * |03|Call PLAT_API_GetPowerState() - get power state | curState* | PWRMGR_SUCCESS | Should Pass |
- * |04|Verify that PLAT_API_GetPowerState returns the same value | | | Should Pass |
+ * |04|Verify that PLAT_API_GetPowerState() calls returns the same value | | | Should Pass |
  * |05|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * 
  */
@@ -226,6 +261,8 @@ void test_l1_plat_power_positive_PLAT_API_GetPowerState (void)
  * 
  * **Test Group ID:** Basic: 01@n
  * **Test Case ID:** 008@n
+ * 
+ * @note The error code PWRMGR_GET_FAILURE is not able to be tested here.
  * 
  * **Pre-Conditions:**@n
  * None.
@@ -263,8 +300,8 @@ void test_l1_plat_power_negative_PLAT_API_GetPowerState (void)
  * |Variation / Step|Description|Test Data|Expected Result|Notes|
  * |:--:|---------|----------|--------------|-----|
  * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |02|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=WAKEUPSRC_VOICE, enabled=false | PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=WAKEUPSRC_VOICE, enabled=true | PWRMGR_SUCCESS | Should Pass |
+ * |02|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_VOICE, enabled=false | PWRMGR_SUCCESS | Should Pass |
+ * |03|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_VOICE, enabled=true | PWRMGR_SUCCESS | Should Pass |
  * |04|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_PRESENCE_DETECTION, enabled=false | PWRMGR_SUCCESS | Should Pass |
  * |05|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_BLUETOOTH, enabled=false | PWRMGR_SUCCESS | Should Pass |
  * |06|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_WIFI, enabled=false | PWRMGR_SUCCESS | Should Pass |
@@ -286,6 +323,8 @@ void test_l1_plat_power_positive_PLAT_API_SetWakeupSrc (void)
  * 
  * **Test Group ID:** Basic: 01@n
  * **Test Case ID:** 010@n
+ * 
+ * @note The error code PWRMGR_SET_FAILURE is not able to be tested here.
  * 
  * **Pre-Conditions:**@n
  * None.
@@ -323,7 +362,7 @@ void test_l1_plat_power_negative_PLAT_API_SetWakeupSrc (void)
  * |Variation / Step|Description|Test Data|Expected Result|Notes|
  * |:--:|---------|----------|--------------|-----|
  * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |02|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=WAKEUPSRC_VOICE, *enable| PWRMGR_SUCCESS | Should Pass |
+ * |02|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_VOICE, *enable| PWRMGR_SUCCESS | Should Pass |
  * |03|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_PRESENCE_DETECTION, *enable| PWRMGR_SUCCESS | Should Pass |
  * |04|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_BLUETOOTH, *enable| PWRMGR_SUCCESS | Should Pass |
  * |05|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_WIFI, *enable| PWRMGR_SUCCESS | Should Pass |
@@ -332,8 +371,9 @@ void test_l1_plat_power_negative_PLAT_API_SetWakeupSrc (void)
  * |08|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_TIMER, *enable| PWRMGR_SUCCESS | Should Pass |
  * |09|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_CEC, *enable| PWRMGR_SUCCESS | Should Pass |
  * |10|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_LAN, *enable| PWRMGR_SUCCESS | Should Pass |
- * |11|Verify that PLAT_API_GetWakeupSrc returns the same values upon return | | | Should Pass |
- * |12|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * |11|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_LAN, *enable| PWRMGR_SUCCESS | Should Pass |
+ * |12|Verify that PLAT_API_GetWakeupSrc() returns the same values upon return | | | Should Pass |
+ * |13|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * 
  */
 void test_l1_plat_power_positive_PLAT_API_GetWakeupSrc (void)
@@ -346,6 +386,8 @@ void test_l1_plat_power_positive_PLAT_API_GetWakeupSrc (void)
  * 
  * **Test Group ID:** Basic: 01@n
  * **Test Case ID:** 012@n
+ * 
+ * @note The error code PWRMGR_GET_FAILURE is not able to be tested here.
  * 
  * **Pre-Conditions:**@n
  * None.
@@ -401,6 +443,8 @@ void test_l1_plat_power_positive_PLAT_Reset (void)
  * 
  * **Test Group ID:** Basic: 01@n
  * **Test Case ID:** 014@n
+ * 
+ * @note The error code PWRMGR_SET_FAILURE is not able to be tested here.
  * 
  * **Pre-Conditions:**@n
  * None.
