@@ -642,7 +642,7 @@ void test_l1_plat_power_positive_PLAT_API_GetWakeupSrc (void)
         ret = PLAT_API_GetWakeupSrc(sources[i], &enable1);
         UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS);
 
-        if (i == sizeof(sources) - 1) {
+        if (i == sizeof(sources) - 2) {
             // Save the result from the penultimate call
             enable2 = enable1;
         }
