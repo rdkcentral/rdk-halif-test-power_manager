@@ -19,15 +19,11 @@
 
 /**
 * @file TODO: test_l1_plat_power.c
-* @page module_name TODO: Required field, name of the main module
-* @subpage sub_page_name TODO: Add a function group if relevant
+* @page module_name plat_power.h
 *
 * ## Module's Role
-* TODO: Explain the module's role in the system in general
-* This is to ensure that the API meets the operational requirements of the module across all vendors.
+* These tests are used to verify the return codes for the plat_power functions.
 *
-* **Pre-Conditions:**  TODO: Add pre-conditions if any@n
-* **Dependencies:** TODO: Add dependencies if any@n
 *
 * Ref to API Definition specification documentation : [halSpec.md](../../../docs/halSpec.md)
 */
@@ -64,8 +60,12 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include "plat_power.h"
 #include <ut.h>
 #include <ut_log.h>
+
+static int gTestGroup = 1;
+static int gTestID = 1;
 
 /**
  * @brief Ensure PLAT_INIT() returns correct error codes during positive scenarios
@@ -126,6 +126,7 @@ void test_l1_plat_power_positive_PLAT_INIT (void)
  */
 void test_l1_plat_power_negative_PLAT_INIT (void)
 {
+    gTestID = 2;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
 	pmStatus_t ret;
 
@@ -166,6 +167,7 @@ void test_l1_plat_power_negative_PLAT_INIT (void)
  */
 void test_l1_plat_power_positive_PLAT_TERM (void)
 {
+    gTestID = 3;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
 	 pmStatus_t ret;
 
@@ -204,6 +206,7 @@ void test_l1_plat_power_positive_PLAT_TERM (void)
  */
 void test_l1_plat_power_negative_PLAT_TERM (void)
 {
+    gTestID = 4;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
 	pmStatus_t ret;
 
@@ -251,6 +254,7 @@ void test_l1_plat_power_negative_PLAT_TERM (void)
  */
 void test_l1_plat_power_positive_PLAT_API_SetPowerState (void)
 {
+    gTestID = 5;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
 	pmStatus_t ret;
 
@@ -304,6 +308,7 @@ void test_l1_plat_power_positive_PLAT_API_SetPowerState (void)
  */
 void test_l1_plat_power_negative_PLAT_API_SetPowerState (void)
 {
+    gTestID = 6;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
 	pmStatus_t ret;
 
@@ -354,6 +359,7 @@ void test_l1_plat_power_negative_PLAT_API_SetPowerState (void)
  */
 void test_l1_plat_power_positive_PLAT_API_GetPowerState (void)
 {
+    gTestID = 7;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
 	pmStatus_t ret;
     PWRMgr_PowerState_t state1, state2;
@@ -404,6 +410,7 @@ void test_l1_plat_power_positive_PLAT_API_GetPowerState (void)
  */
 void test_l1_plat_power_negative_PLAT_API_GetPowerState (void)
 {
+    gTestID = 8;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
 	pmStatus_t ret;
     PWRMgr_PowerState_t state;
@@ -469,6 +476,7 @@ void test_l1_plat_power_negative_PLAT_API_GetPowerState (void)
  */
 void test_l1_plat_power_positive_PLAT_API_SetWakeupSrc (void)
 {
+    gTestID = 9;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
 	pmStatus_t ret;
 
@@ -545,6 +553,7 @@ void test_l1_plat_power_positive_PLAT_API_SetWakeupSrc (void)
  */
 void test_l1_plat_power_negative_PLAT_API_SetWakeupSrc (void)
 {
+    gTestID = 10;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
 	pmStatus_t ret;
 
@@ -604,6 +613,7 @@ void test_l1_plat_power_negative_PLAT_API_SetWakeupSrc (void)
  */
 void test_l1_plat_power_positive_PLAT_API_GetWakeupSrc (void)
 {
+    gTestID = 11;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
 	pmStatus_t ret;
     bool enable1, enable2;
@@ -672,6 +682,7 @@ void test_l1_plat_power_positive_PLAT_API_GetWakeupSrc (void)
  */
 void test_l1_plat_power_negative_PLAT_API_GetWakeupSrc (void)
 {
+    gTestID = 12;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
 	pmStatus_t ret;
     bool enable;
@@ -725,6 +736,7 @@ void test_l1_plat_power_negative_PLAT_API_GetWakeupSrc (void)
  */
 void test_l1_plat_power_positive_PLAT_Reset (void)
 {
+    gTestID = 13;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
 	pmStatus_t ret;
     PWRMgr_PowerState_t powerStates[] = {
@@ -777,6 +789,7 @@ void test_l1_plat_power_positive_PLAT_Reset (void)
  */
 void test_l1_plat_power_negative_PLAT_Reset (void)
 {
+    gTestID = 14;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
 	pmStatus_t ret;
     
