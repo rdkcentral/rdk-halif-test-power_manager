@@ -16,9 +16,37 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 */
+/**
+ * @addtogroup HPK Hardware Porting Kit
+ * @{
+ * @par The Hardware Porting Kit
+ * HPK is the next evolution of the well-defined Hardware Abstraction Layer
+ * (HAL), but augmented with more comprehensive documentation and test suites
+ * that OEM or SOC vendors can use to self-certify their ports before taking
+ * them to RDKM for validation or to an operator for final integration and
+ * deployment. The Hardware Porting Kit effectively enables an OEM and/or SOC
+ * vendor to self-certify their own Video Accelerator devices, with minimal RDKM
+ * assistance.
+ *
+ */
 
 /**
-* @file TODO: test_l1_plat_power.c
+ * @addtogroup POWER_MANAGER Power Manager Module
+ * @{
+ */
+
+/**
+ * @defgroup POWER_MANAGER_HAL Power Manager HALTEST
+ * @{
+ */
+
+/**
+ * @defgroup PLAT_POWER_HALTEST_L1 Plat Power L1 test cases
+ * @{
+ */
+
+/**
+* @file test_l1_plat_power.c
 * @page module_name plat_power.h
 *
 * ## Module's Role
@@ -27,21 +55,6 @@
 *
 * Ref to API Definition specification documentation : [halSpec.md](../../../docs/halSpec.md)
 */
-
-/**
- * @addtogroup HPK HPK
- * @{
- * @addtogroup POWER_MANAGER POWER_MANAGER
- * @{
- *
- */
-
-/**
- * @defgroup POWER_MANAGER_TESTS POWER_MANAGER_TESTS
- * @{
- * @par
- * Unit Testing Suite for Power Manager  HAL
- */
 
 /**
 * @file test_l1_plat_power.c
@@ -850,3 +863,7 @@ int test_l1_plat_power_register ( void )
 
 	return 0;
 } 
+/** @} */ // End of PLAT_POWER_HALTEST_L1
+/** @} */ // End of POWER_MANAGER_HALTEST
+/** @} */ // End of POWER_MANAGER
+/** @} */ // End of HPK
