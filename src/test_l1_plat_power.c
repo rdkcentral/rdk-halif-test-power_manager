@@ -88,6 +88,7 @@ static int gTestID = 1;
  */
 void test_l1_plat_power_positive_PLAT_INIT (void)
 {
+    gTestID = 1;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID); 
 	pmStatus_t ret;
 
