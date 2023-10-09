@@ -528,11 +528,13 @@ void test_l1_plat_power_positive_PLAT_API_SetWakeupSrc (void)
     for(int i = 0; i < sizeof(tests); i++) {
         UT_LOG("\n Function: %s Wake up source test inputs values :[%d%d]\n", __FUNCTION__, tests[i].src, tests[i].enabled);
         ret = PLAT_API_SetWakeupSrc(tests[i].src, tests[i].enabled);
-        if(!UT_ASSERT_EQUAL_NOT_FATAL(ret, PWRMGR_SUCCESS)){// Ensure the returned value is PWRMGR_SUCCESS. If not, check to see if operation is not supported
+        if(ret == PWRMGR_OPERATION_NOT_SUPPORTED){// Check for operation not supported case
             UT_ASSERT_EQUAL(ret, PWRMGR_OPERATION_NOT_SUPPORTED)
             UT_LOG("\n Function: %s Wake up source is not supported\n", __FUNCTION__);
-
         } 
+        else{
+            UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS)
+        }
 
     }
 
