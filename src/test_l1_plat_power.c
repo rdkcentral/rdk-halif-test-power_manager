@@ -16,6 +16,7 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 */
+
 /**
  * @addtogroup HPK Hardware Porting Kit
  * @{
@@ -36,7 +37,7 @@
  */
 
 /**
- * @defgroup POWER_MANAGER_HAL Power Manager HALTEST
+ * @addtogroup POWER_MANAGER_HALTEST Power Manager HAL Tests
  * @{
  */
 

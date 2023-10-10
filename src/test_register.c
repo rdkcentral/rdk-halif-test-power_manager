@@ -17,6 +17,35 @@
 *  limitations under the License.
 */
 
+/**
+ * @addtogroup HPK Hardware Porting Kit
+ * @{
+ * @par The Hardware Porting Kit
+ * HPK is the next evolution of the well-defined Hardware Abstraction Layer
+ * (HAL), but augmented with more comprehensive documentation and test suites
+ * that OEM or SOC vendors can use to self-certify their ports before taking
+ * them to RDKM for validation or to an operator for final integration and
+ * deployment. The Hardware Porting Kit effectively enables an OEM and/or SOC
+ * vendor to self-certify their own Video Accelerator devices, with minimal RDKM
+ * assistance.
+ *
+ */
+
+/**
+ * @addtogroup POWER_MANAGER Power Manager Module
+ * @{
+ */
+
+/**
+ * @addtogroup POWER_MANAGER_HALTEST Power Manager HAL Tests
+ * @{
+ */
+
+/**
+ * @defgroup PLAT_POWER_HALTEST_REGISTER Power Manager Tests' Registration
+ * @{
+ */
+
 #include <ut.h>
 
 /**

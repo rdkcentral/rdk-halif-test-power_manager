@@ -18,16 +18,45 @@
 */
 
 /**
-* @file TODO: main.c
-* @page module_name TODO: Required field, name of the main module
-* @subpage sub_page_name TODO: Add a function group if relevant
+ * @addtogroup HPK Hardware Porting Kit
+ * @{
+ * @par The Hardware Porting Kit
+ * HPK is the next evolution of the well-defined Hardware Abstraction Layer
+ * (HAL), but augmented with more comprehensive documentation and test suites
+ * that OEM or SOC vendors can use to self-certify their ports before taking
+ * them to RDKM for validation or to an operator for final integration and
+ * deployment. The Hardware Porting Kit effectively enables an OEM and/or SOC
+ * vendor to self-certify their own Video Accelerator devices, with minimal RDKM
+ * assistance.
+ *
+ */
+
+/**
+ * @addtogroup POWER_MANAGER Power Manager Module
+ * @{
+ */
+
+/**
+ * @defgroup POWER_MANAGER_HALTEST Power Manager HAL Tests
+ * @{
+ */
+
+/**
+ * @defgroup PLAT_POWER_HALTEST_MAIN Power Manager Test Main File
+ * @{
+ */
+
+/**
+* @file main.c
+* @page module_name @todo Required field, name of the main module
+* @subpage sub_page_name @todo Add a function group if relevant
 *
 * ## Module's Role
-* TODO: Explain the module's role in the system in general
+* @todo Explain the module's role in the system in general
 * This is to ensure that the API meets the operational requirements of the module across all vendors.
 *
-* **Pre-Conditions:**  TODO: Add pre-conditions if any@n
-* **Dependencies:** TODO: Add dependencies if any@n
+* **Pre-Conditions:**  @todo Add pre-conditions if any@n
+* **Dependencies:** @todo Add dependencies if any@n
 *
 * Ref to API Definition specification documentation : [halSpec.md](../../../docs/halSpec.md)
 */

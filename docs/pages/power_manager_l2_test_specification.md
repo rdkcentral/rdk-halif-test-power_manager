@@ -1,4 +1,5 @@
 # L2 Test Specification template
+
 ## History
 
 | Version | Date(YY-MM-DD) | Author |Comments |
