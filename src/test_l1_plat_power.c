@@ -74,6 +74,7 @@
 #include <stdlib.h>
 
 #include "plat_power.h"
+#include <stdbool.h>
 #include <ut.h>
 #include <ut_log.h>
 
