@@ -5,7 +5,7 @@ TEST_REPO=git@github.com:comcast-sky/rdk-components-ut-core.git
 
 # Set default UT_PROJECT_VERSION to master
 if [ -z "${UT_PROJECT_VERSION}" ]; then
-    UT_PROJECT_VERSION=master 
+    UT_PROJECT_VERSION=master
 fi
 
 # Check if the common document configuration is present, if not clone it
