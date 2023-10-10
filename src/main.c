@@ -95,3 +95,8 @@ int main(int argc, char** argv)
 	return 0;
 
 }
+
+/** @} */ // End of PLAT_POWER_HALTEST_MAIN
+/** @} */ // End of POWER_MANAGER_HALTEST
+/** @} */ // End of POWER_MANAGER
+/** @} */ // End of HPK

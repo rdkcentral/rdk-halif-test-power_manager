@@ -42,7 +42,7 @@
  */
 
 /**
- * @defgroup PLAT_POWER_HALTEST_L1 Plat Power L1 test cases
+ * @defgroup PLAT_POWER_HALTEST_L1 Power Manager L1 Test Cases
  * @{
  */
 

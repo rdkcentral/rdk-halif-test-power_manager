@@ -78,3 +78,8 @@ int UT_register_APIDEF_l2_tests( void )
 
 	return registerFailed;
 }
+
+/** @} */ // End of PLAT_POWER_HALTEST_REGISTER
+/** @} */ // End of POWER_MANAGER_HALTEST
+/** @} */ // End of POWER_MANAGER
+/** @} */ // End of HPK

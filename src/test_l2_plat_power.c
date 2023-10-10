@@ -104,3 +104,8 @@ int test_l2_plat_power_register ( void )
 
 	return 0;
 } 
+
+/** @} */ // End of PLAT_POWER_HALTEST_L2
+/** @} */ // End of POWER_MANAGER_HALTEST
+/** @} */ // End of POWER_MANAGER
+/** @} */ // End of HPK
