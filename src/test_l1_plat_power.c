@@ -654,7 +654,7 @@ void test_l1_plat_power_positive_PLAT_API_GetWakeupSrc (void)
     };
 
     // Step 2-11: Verify that using all the wake up sources do not throw errors
-    for (int i = 0; i < sizeof(sources)); i++) {
+    for (int i = 0; i < sizeof(sources); i++) {
         UT_LOG("\n Function: %s Wake up source :[%d]\n", __FUNCTION__, sources[i]);
         ret = PLAT_API_GetWakeupSrc(sources[i], &enable1);
         UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS);
