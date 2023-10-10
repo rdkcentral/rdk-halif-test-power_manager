@@ -48,17 +48,6 @@
 
 /**
 * @file test_l1_plat_power.c
-* @page module_name plat_power.h
-*
-* ## Module's Role
-* These tests are used to verify the return codes for the plat_power functions.
-*
-*
-* Ref to API Definition specification documentation : [halSpec.md](../../../docs/halSpec.md)
-*/
-
-/**
-* @file test_l1_plat_power.c
 * @page POWER_MANAGER_L1_Tests POWER_MANAGER Level 1 Tests
 *
 * ## Module's Role
