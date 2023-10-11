@@ -57,7 +57,7 @@
 * **Pre-Conditions:**  None@n
 * **Dependencies:** None@n
 *
-* Ref to API Definition specification documentation : [halSpec.md](../../../docs/halSpec.md)
+* Ref to API Definition specification documentation : [power-manager_halSpec.md](../../../docs/pages/power-manager_halSpec.md)
 */
 
 #include <string.h>
