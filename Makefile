@@ -33,7 +33,7 @@ TOP_DIR := $(ROOT_DIR)
 
 SRC_DIRS = $(ROOT_DIR)/src
 INC_DIRS := $(ROOT_DIR)/../include
-HAL_LIB := libiarmmgrs-power-hal
+HAL_LIB := iarmmgrs-power-hal
 SKELTON_SRCS := $(ROOT_DIR)/skeletons/src/plat_power.c
 
 ifeq ($(TARGET),)
