@@ -249,11 +249,7 @@ void test_l1_plat_power_negative_PLAT_TERM (void)
  * |Variation / Step|Description|Test Data|Expected Result|Notes|
  * |:--:|---------|----------|--------------|-----|
  * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |02|Call PLAT_API_SetPowerState() - set a power state | newState=PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP | PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_API_SetPowerState() - set a power state | newState=PWRMGR_POWERSTATE_STANDBY_LIGHT_SLEEP | PWRMGR_SUCCESS | Should Pass |
- * |04|Call PLAT_API_SetPowerState() - set a power state | newState=PWRMGR_POWERSTATE_ON | PWRMGR_SUCCESS | Should Pass |
- * |05|Call PLAT_API_SetPowerState() - set a power state | newState=PWRMGR_POWERSTATE_STANDBY | PWRMGR_SUCCESS | Should Pass |
- * |06|Call PLAT_API_SetPowerState() - set a power state | newState=PWRMGR_POWERSTATE_OFF | PWRMGR_SUCCESS | Should Pass |
+ * |02|Call PLAT_API_SetPowerState() - Loop through and set for all values in PWRMgr_PowerState_t | newState=PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP | PWRMGR_SUCCESS | Should Pass |
  * |07|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * 
  */
@@ -458,25 +454,9 @@ void test_l1_plat_power_negative_PLAT_API_GetPowerState (void)
  * |Variation / Step|Description|Test Data|Expected Result|Notes|
  * |:--:|---------|----------|--------------|-----|
  * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |02|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_VOICE, enabled=false | PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_VOICE, enabled=true | PWRMGR_SUCCESS | Should Pass |
- * |04|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_PRESENCE_DETECTION, enabled=false | PWRMGR_SUCCESS | Should Pass |
- * |05|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_PRESENCE_DETECTION, enabled=true | PWRMGR_SUCCESS | Should Pass |
- * |06|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_BLUETOOTH, enabled=false | PWRMGR_SUCCESS | Should Pass |
- * |07|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_BLUETOOTH, enabled=true | PWRMGR_SUCCESS | Should Pass |
- * |08|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_WIFI, enabled=false | PWRMGR_SUCCESS | Should Pass |
- * |09|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_WIFI, enabled=true | PWRMGR_SUCCESS | Should Pass |
- * |10|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_IR, enabled=false | PWRMGR_SUCCESS | Should Pass |
- * |11|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_IR, enabled=true | PWRMGR_SUCCESS | Should Pass |
- * |12|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_POWER_KEY, enabled=false | PWRMGR_SUCCESS | Should Pass |
- * |13|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_POWER_KEY, enabled=true | PWRMGR_SUCCESS | Should Pass |
- * |14|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_TIMER, enabled=false | PWRMGR_SUCCESS | Should Pass |
- * |15|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_TIMER, enabled=true | PWRMGR_SUCCESS | Should Pass |
- * |16|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_CEC, enabled=false | PWRMGR_SUCCESS | Should Pass |
- * |17|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_CEC, enabled=true | PWRMGR_SUCCESS | Should Pass |
- * |18|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_LAN, enabled=false | PWRMGR_SUCCESS | Should Pass |
- * |19|Call PLAT_API_SetWakeupSrc() - set wakeup source | newSrc=PWRMGR_WAKEUPSRC_LAN, enabled=true | PWRMGR_SUCCESS | Should Pass |
- * |20|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * |02|Call PLAT_API_SetWakeupSrc() - Loop through all PWRMGR_WakeupSrcType_t and set to false| newSrc=PWRMGR_WAKEUPSRC_VOICE, enabled=false | PWRMGR_SUCCESS | Should Pass |
+ * |03|Call PLAT_API_SetWakeupSrc() - Loop through all PWRMGR_WakeupSrcType_t and set to true| newSrc=PWRMGR_WAKEUPSRC_VOICE, enabled=true | PWRMGR_SUCCESS | Should Pass |
+ * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * 
  */
 void test_l1_plat_power_positive_PLAT_API_SetWakeupSrc (void)
@@ -603,18 +583,9 @@ void test_l1_plat_power_negative_PLAT_API_SetWakeupSrc (void)
  * |Variation / Step|Description|Test Data|Expected Result|Notes|
  * |:--:|---------|----------|--------------|-----|
  * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |02|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_VOICE, *enable| PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_PRESENCE_DETECTION, *enable| PWRMGR_SUCCESS | Should Pass |
- * |04|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_BLUETOOTH, *enable| PWRMGR_SUCCESS | Should Pass |
- * |05|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_WIFI, *enable| PWRMGR_SUCCESS | Should Pass |
- * |06|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_IR, *enable| PWRMGR_SUCCESS | Should Pass |
- * |07|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_POWER_KEY, *enable| PWRMGR_SUCCESS | Should Pass |
- * |08|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_TIMER, *enable| PWRMGR_SUCCESS | Should Pass |
- * |09|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_CEC, *enable| PWRMGR_SUCCESS | Should Pass |
- * |10|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_LAN, *enable| PWRMGR_SUCCESS | Should Pass |
- * |11|Call PLAT_API_GetWakeupSrc() - get wakeup source | srcType=PWRMGR_WAKEUPSRC_LAN, *enable| PWRMGR_SUCCESS | Should Pass |
- * |12|Verify that PLAT_API_GetWakeupSrc() returns the same values upon return | | | Should Pass |
- * |13|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * |02|Call PLAT_API_GetWakeupSrc() - Loop through get PWRMGR_WakeupSrcType_t and call the last value twice | srcType=PWRMGR_WAKEUPSRC_VOICE, *enable| PWRMGR_SUCCESS | Should Pass |
+ * |03|Verify that PLAT_API_GetWakeupSrc() returns the same values upon return | | | Should Pass |
+ * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * 
  */
 void test_l1_plat_power_positive_PLAT_API_GetWakeupSrc (void)
@@ -732,11 +703,7 @@ void test_l1_plat_power_negative_PLAT_API_GetWakeupSrc (void)
  * |Variation / Step|Description|Test Data|Expected Result|Notes|
  * |:--:|---------|----------|--------------|-----|
  * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |02|Call PLAT_Reset() - set a power state | newState=PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP | PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_Reset() - set a power state | newState=PWRMGR_POWERSTATE_STANDBY_LIGHT_SLEEP | PWRMGR_SUCCESS | Should Pass |
- * |04|Call PLAT_Reset() - set a power state | newState=PWRMGR_POWERSTATE_ON | PWRMGR_SUCCESS | Should Pass |
- * |05|Call PLAT_Reset() - set a power state | newState=PWRMGR_POWERSTATE_STANDBY | PWRMGR_SUCCESS | Should Pass |
- * |06|Call PLAT_Reset() - set a power state | newState=PWRMGR_POWERSTATE_OFF | PWRMGR_SUCCESS | Should Pass |
+ * |02|Call PLAT_Reset() - Loop through PWRMgr_PowerState_t as input value | newState=PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP | PWRMGR_SUCCESS | Should Pass |
  * |07|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * 
  */
