@@ -48,17 +48,16 @@
 
 /**
 * @file main.c
-* @page module_name @todo Required field, name of the main module
-* @subpage sub_page_name @todo Add a function group if relevant
+* @page PLAT_POWER_HALTEST_MAIN
 *
 * ## Module's Role
-* @todo Explain the module's role in the system in general
-* This is to ensure that the API meets the operational requirements of the module across all vendors.
+* This module includes the main file for L1 and L2 tests
+* This is to ensure that the API meets the operational requirements of the Power Manager across all vendors
 *
-* **Pre-Conditions:**  @todo Add pre-conditions if any@n
-* **Dependencies:** @todo Add dependencies if any@n
+* **Pre-Conditions:**  None@n
+* **Dependencies:** None@n
 *
-* Ref to API Definition specification documentation : [halSpec.md](../../../docs/halSpec.md)
+* Ref to API Definition specification documentation : [power-manager_halSpec.md](../../../docs/power-manager_halSpec.md)
 */
 
 #include <ut.h>

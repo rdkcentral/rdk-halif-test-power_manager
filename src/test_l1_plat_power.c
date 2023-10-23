@@ -276,7 +276,7 @@ void test_l1_plat_power_positive_PLAT_API_SetPowerState (void)
     };
 
     // Variation/step 02-06: Call PLAT_API_SetPowerState() - set a power state
-    for (int i = 0; i < sizeof(powerStates) / sizeof(PWRMgr_PowerState_t); i++) {
+    for (int i = 0; i < sizeof(powerStates); i++) {
         UT_LOG("\n Function: %s Setting power state :[%d]\n", __FUNCTION__, powerStates[i]);
         ret = PLAT_API_SetPowerState(powerStates[i]);
         UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
