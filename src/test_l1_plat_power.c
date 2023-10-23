@@ -113,7 +113,6 @@ void test_l1_plat_power_positive_PLAT_INIT (void)
  * **Test Group ID:** Basic: 01@n
  * **Test Case ID:** 002@n
  * 
- * @note The error code PWRMGR_INIT_FAILURE is not able to be tested here.
  * 
  * **Pre-Conditions:**@n
  * None.
@@ -128,6 +127,8 @@ void test_l1_plat_power_positive_PLAT_INIT (void)
  * |02|Call PLAT_INIT() - again open interface | | PWRMGR_ALREADY_INITIALIZED | Should Pass |
  * |03|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * 
+ * 
+ * @note The error code PWRMGR_INIT_FAILURE is not able to be tested here.
  */
 void test_l1_plat_power_negative_PLAT_INIT (void)
 {
@@ -192,8 +193,6 @@ void test_l1_plat_power_positive_PLAT_TERM (void)
  * **Test Group ID:** Basic: 01@n
  * **Test Case ID:** 004@n
  * 
- * @note The error code PWRMGR_TERM_FAILURE is not able to be tested here.
- * 
  * **Pre-Conditions:**@n
  * None.
  * 
@@ -208,6 +207,7 @@ void test_l1_plat_power_positive_PLAT_TERM (void)
  * |03|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * |04|Call PLAT_TERM() - close interface again | | PWRMGR_NOT_INITIALIZED | Should Pass |
  * 
+ * @note The error code PWRMGR_TERM_FAILURE is not able to be tested here.
  */
 void test_l1_plat_power_negative_PLAT_TERM (void)
 {
@@ -294,8 +294,6 @@ void test_l1_plat_power_positive_PLAT_API_SetPowerState (void)
  * **Test Group ID:** Basic: 01@n
  * **Test Case ID:** 006@n
  * 
- * @note The error code PWRMGR_SET_FAILURE is not able to be tested here.
- * 
  * **Pre-Conditions:**@n
  * None.
  * 
@@ -310,6 +308,8 @@ void test_l1_plat_power_positive_PLAT_API_SetPowerState (void)
  * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * |05|Call PLAT_API_SetPowerState() - call after terminating the module | newState=PWRMGR_POWERSTATE_ON | PWRMGR_NOT_INITIALIZED | Should Pass |
  * 
+ * 
+ * @note The error code PWRMGR_SET_FAILURE is not able to be tested here.
  */
 void test_l1_plat_power_negative_PLAT_API_SetPowerState (void)
 {
@@ -396,8 +396,6 @@ void test_l1_plat_power_positive_PLAT_API_GetPowerState (void)
  * **Test Group ID:** Basic: 01@n
  * **Test Case ID:** 008@n
  * 
- * @note The error code PWRMGR_GET_FAILURE is not able to be tested here.
- * 
  * **Pre-Conditions:**@n
  * None.
  * 
@@ -412,6 +410,8 @@ void test_l1_plat_power_positive_PLAT_API_GetPowerState (void)
  * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * |05|Call PLAT_API_GetPowerState() - call after terminating the module | curState* | PWRMGR_NOT_INITIALIZED | Should Pass |
  * 
+ * 
+ * @note The error code PWRMGR_GET_FAILURE is not able to be tested here.
  */
 void test_l1_plat_power_negative_PLAT_API_GetPowerState (void)
 {
@@ -541,8 +541,6 @@ void test_l1_plat_power_positive_PLAT_API_SetWakeupSrc (void)
  * **Test Group ID:** Basic: 01@n
  * **Test Case ID:** 010@n
  * 
- * @note The error code PWRMGR_SET_FAILURE is not able to be tested here.
- * 
  * **Pre-Conditions:**@n
  * None.
  * 
@@ -557,6 +555,7 @@ void test_l1_plat_power_positive_PLAT_API_SetWakeupSrc (void)
  * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * |05|Call PLAT_API_SetWakeupSrc() - call after terminating the module | newState=WAKEUPSRC_VOICE, enabled=false | PWRMGR_NOT_INITIALIZED | Should Pass |
  * 
+ * @note The error code PWRMGR_SET_FAILURE is not able to be tested here.
  */
 void test_l1_plat_power_negative_PLAT_API_SetWakeupSrc (void)
 {
@@ -670,8 +669,6 @@ void test_l1_plat_power_positive_PLAT_API_GetWakeupSrc (void)
  * **Test Group ID:** Basic: 01@n
  * **Test Case ID:** 012@n
  * 
- * @note The error code PWRMGR_GET_FAILURE is not able to be tested here.
- * 
  * **Pre-Conditions:**@n
  * None.
  * 
@@ -686,6 +683,8 @@ void test_l1_plat_power_positive_PLAT_API_GetWakeupSrc (void)
  * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * |05|Call PLAT_API_GetWakeupSrc() - call after terminating the module | srcType, *enable | PWRMGR_NOT_INITIALIZED | Should Pass |
  * 
+ * 
+ * @note The error code PWRMGR_GET_FAILURE is not able to be tested here.
  */
 void test_l1_plat_power_negative_PLAT_API_GetWakeupSrc (void)
 {
@@ -777,8 +776,6 @@ void test_l1_plat_power_positive_PLAT_Reset (void)
  * **Test Group ID:** Basic: 01@n
  * **Test Case ID:** 014@n
  * 
- * @note The error code PWRMGR_SET_FAILURE is not able to be tested here.
- * 
  * **Pre-Conditions:**@n
  * None.
  * 
@@ -793,6 +790,8 @@ void test_l1_plat_power_positive_PLAT_Reset (void)
  * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * |05|Call PLAT_Reset() - call after terminating the module | newState=PWRMGR_POWERSTATE_ON | PWRMGR_NOT_INITIALIZED | Should Pass |
  * 
+ * 
+ * @note The error code PWRMGR_SET_FAILURE is not able to be tested here.
  */
 void test_l1_plat_power_negative_PLAT_Reset (void)
 {
