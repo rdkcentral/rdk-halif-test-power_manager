@@ -1,5 +1,5 @@
 /**
-*  If not stated otherwise in this file or this component's Licenses.txt
+*  If not stated otherwise in this file or this component's LICENSE
 *  file the following copyright and licenses apply:
 *
 *  Copyright 2022 RDK Management
@@ -39,25 +39,29 @@
 /**
  * @defgroup POWER_MANAGER_HALTEST Power Manager HAL Tests
  * @{
+ *
  */
 
 /**
- * @defgroup PLAT_POWER_HALTEST_MAIN Power Manager Test Main File
+ * @defgroup PLAT_POWER_HALTEST_MAIN Power Manager HAL Tests Main File
  * @{
+ * @parblock
+ *
+ * ### Tests for Power Manager HAL :
+ *
+ * This is to ensure that the API meets the operational requirements of the module across all vendors.
+ *
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ *
+ * Refer to API Definition specification documentation : [power-manager_halSpec.md](../../docs/pages/power-manager_halSpec.md)
+ *
+ * @endparblock
  */
 
 /**
 * @file main.c
-* @page PLAT_POWER_HALTEST_MAIN
 *
-* ## Module's Role
-* This module includes the main file for L1 and L2 tests
-* This is to ensure that the API meets the operational requirements of the Power Manager across all vendors
-*
-* **Pre-Conditions:**  None@n
-* **Dependencies:** None@n
-*
-* Ref to API Definition specification documentation : [power-manager_halSpec.md](../../../docs/power-manager_halSpec.md)
 */
 
 #include <ut.h>

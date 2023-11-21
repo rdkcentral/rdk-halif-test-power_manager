@@ -1,5 +1,5 @@
 /**
-*  If not stated otherwise in this file or this component's Licenses.txt
+*  If not stated otherwise in this file or this component's LICENSE
 *  file the following copyright and licenses apply:
 *
 *  Copyright 2022 RDK Management
@@ -37,21 +37,35 @@
  */
 
 /**
- * @addtogroup POWER_MANAGER_HALTEST Power Manager HAL Tests
+ * @defgroup POWER_MANAGER_HALTEST Power Manager HAL Tests
  * @{
+ *
  */
 
 /**
- * @defgroup PLAT_POWER_HALTEST_REGISTER Power Manager Tests' Registration
+ * @addtogroup POWER_MANAGER_HALTEST_Register Power Manager HAL Tests Register File
  * @{
+ * @parblock
+ *
+ * ### Registration of tests for Power Manager HAL :
+ *
+ * Registration of tests for Power Manager HAL.
+ * This is to ensure that the APIs meets the operational requirements of the module across all vendors.
+ *
+ * **Pre-Conditions:**  None @n
+ * **Dependencies:** None @n
+ *
+ * Refer to API Definition specification documentation : [power-manager_halSpec.md](../../docs/pages/power-manager_halSpec.md)
+ *
+ * @endparblock
+ */
+
+/**
+ * @file test_register.c
+ *
  */
 
 #include <ut.h>
-
-/**
- * @brief Register test functionality
- * 
- */
 
 /* L1 Testing Functions */
 extern int test_l1_plat_power_register( void );

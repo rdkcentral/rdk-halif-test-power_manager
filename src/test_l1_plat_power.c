@@ -1,5 +1,5 @@
 /**
-*  If not stated otherwise in this file or this component's Licenses.txt
+*  If not stated otherwise in this file or this component's LICENSE
 *  file the following copyright and licenses apply:
 *
 *  Copyright 2022 RDK Management
@@ -42,23 +42,26 @@
  */
 
 /**
- * @defgroup PLAT_POWER_HALTEST_L1 Power Manager L1 Test Cases
+ * @defgroup PLAT_POWER_HALTEST_L1 Power Manager HAL Tests L1 File
  * @{
+ * @parblock
+ *
+ * ### L1 Tests for Power Manager HAL :
+ *
+ * Level 1 unit test cases for all APIs of Power Manager HAL
+ *
+ * **Pre-Conditions:**  None@n
+ * **Dependencies:** None@n
+ *
+ * Refer to API Definition specification documentation : [power-manager_halSpec.md](../../docs/pages/power-manager_halSpec.md)
+ *
+ * @endparblock
  */
 
 /**
-* @file test_l1_plat_power.c
-* @page POWER_MANAGER_L1_Tests POWER_MANAGER Level 1 Tests
-*
-* ## Module's Role
-* This module includes Level 1 functional tests (success and failure scenarios)
-* This is to ensure that the API meets the operational requirements of the Power Manager across all vendors
-*
-* **Pre-Conditions:**  None@n
-* **Dependencies:** None@n
-*
-* Ref to API Definition specification documentation : [power-manager_halSpec.md](../../../docs/pages/power-manager_halSpec.md)
-*/
+ * @file test_l1_plat_power.c
+ *
+ */
 
 #include <string.h>
 #include <stdlib.h>

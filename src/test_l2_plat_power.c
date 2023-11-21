@@ -1,5 +1,5 @@
 /**
-*  If not stated otherwise in this file or this component's Licenses.txt
+*  If not stated otherwise in this file or this component's LICENSE
 *  file the following copyright and licenses apply:
 *
 *  Copyright 2022 RDK Management
@@ -39,26 +39,30 @@
 /**
  * @addtogroup POWER_MANAGER_HALTEST Power Manager HAL Tests
  * @{
+ *
  */
 
 /**
- * @defgroup PLAT_POWER_HALTEST_L2 Power Manager L2 Test Cases
+ * @defgroup PLAT_POWER_HALTEST_L2 Power Manager HAL Test L2 File
  * @{
+ * @parblock
+ *
+ * ### L2 Tests for Power Manager HAL :
+ *
+ * Level 2 module tests will perform module level testing by exercising the full set of APIs to validate various use cases.
+ * This is to ensure that the APIs meets the operational requirements of the module across all vendors.
+ *
+ * **Pre-Conditions:**  None @n
+ * **Dependencies:** None @n
+ *
+ * Refer to API Definition specification documentation : [power-manager_halSpec.md](../../docs/pages/power-manager_halSpec.md)
+ *
+ * @endparblock
  */
 
 /**
 * @file test_l2_plat_power.c
-* @page module_name @todo Required field, name of the main module
-* @subpage sub_page_name @todo Add a function group if relevant
 *
-* ## Module's Role
-* @todo Explain the module's role in the system in general
-* This is to ensure that the API meets the operational requirements of the module across all vendors.
-*
-* **Pre-Conditions:**  @todo Add pre-conditions if any@n
-* **Dependencies:** @todo Add dependencies if any@n
-*
-* Ref to API Definition specification documentation : [halSpec.md](../../../docs/halSpec.md)
 */
 
 #include <string.h>
