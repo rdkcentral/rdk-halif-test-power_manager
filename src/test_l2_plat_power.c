@@ -72,12 +72,12 @@
 #include <ut_log.h>
 
 /**
-* @brief @todo Describe the object of the test
+* @brief TODO Describe the object of the test
 *
-* @todo Add the description of what is tested and why in this test
+* TODO Add the description of what is tested and why in this test
 *
-* **Test Group ID:** @todo Add the group this test belongs to - Basic (for L1): 01 / Module (L2): 02 / Stress (L2): 03)@n
-* **Test Case ID:** @todo Add the ID of the test case so that it can be logically tracked in the logs@n
+* **Test Group ID:** TODO Add the group this test belongs to - Basic (for L1): 01 / Module (L2): 02 / Stress (L2): 03)@n
+* **Test Case ID:** TODO Add the ID of the test case so that it can be logically tracked in the logs@n
 *
 * **Test Procedure:**
 * Refer to UT specification documentation [l2_module_test_specification.md](l2_module_test_specification.md)
