@@ -580,7 +580,7 @@ void test_l1_plat_power_negative_PLAT_API_SetWakeupSrc (void)
  * **Dependencies:** None@n
  * **User Interaction:** None
  * 
- * @todo Do the double check first
+ * todo Do the double check first
  * 
  * **Test Procedure:**@n
  * |Variation / Step|Description|Test Data|Expected Result|Notes|
