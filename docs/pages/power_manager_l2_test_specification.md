@@ -18,7 +18,7 @@
 
 ## Overview
 
-This document describes the level 2 testing suite for the <component> module.
+This document describes the level 2 testing suite for the module.
 
 ### Acronyms, Terms and Abbreviations
 
