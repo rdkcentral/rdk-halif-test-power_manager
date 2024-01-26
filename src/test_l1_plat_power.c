@@ -82,22 +82,6 @@ static int gTestID = 1;
       }\
 }\
 
-#define PLAT_ASSERT_AUTO_TERM_NOT_EQUAL(value, comparison){\
-	if(value == comparison){\
-		UT_LOG("\n In %s Comparison: [%d = %d]\n", __FUNCTION__, value, comparison);\
-		PLAT_TERM();\
-		UT_FAIL_FATAL();\
-	}\
-}\
-
-#define DS_ASSERT_AUTO_TERM_STRING(value, comparison){\
-          if(value != comparison){\
-		UT_LOG("\n In %s Comparison: [%s = %s]\n", __FUNCTION__, value, comparison);\
-		PLAT_TERM();\
-		UT_FAIL_FATAL();\
-	}\
-}\
-
 /**
  * @brief Ensure PLAT_INIT() returns correct error codes during positive scenarios
  * 
