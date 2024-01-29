@@ -84,7 +84,7 @@
 */
 void test_l2_plat_power (void)
 {
-	UT_FAIL(This function needs to be implemented!); 
+	UT_FAIL("This function needs to be implemented!");
 }
 
 static UT_test_suite_t * pSuite = NULL;
