@@ -22,7 +22,7 @@ This repository contains the Unit Test Suites (L1) for Power Manager `HAL`.
 |SNo|Document Name|Document Description|Document Link|
 |---|-------------|--------------------|-------------|
 |1|`HAL` Specification Document|This document provides specific information on the APIs for which tests are written in this module|[power-manager_halSpec.md -v1.0.2](https://github.com/rdkcentral/rdk-halif-power_manager/blob/1.0.2/docs/pages/power-manager_halSpec.md "power-manager_halSpec.md")|
-|2|`L1` Tests |`L1` Test Case File for this module |[test_l1_plat_power.c -v1.0.2](https://github.com/rdkcentral/rdk-halif-test-power_manager/blob/1.0.2/src/test_l1_plat_power.c "test_l1_plat_power.c")|
+|2|`L1` Tests |`L1` Test Case File for this module |[test_l1_plat_power.c -v1.0.4](https://github.com/rdkcentral/rdk-halif-test-power_manager/blob/1.0.4/src/test_l1_plat_power.c "test_l1_plat_power.c")|
 
 ## Notes
 
