@@ -33,7 +33,7 @@ The current test cases will verify responses from connected devices for a subset
 
 |S.No.|Test Functionality|Description|
 |-----|------------------|-----------|
-| 1 | [Set And Get Various Power States](#set-and-get-various-power-states)|Power Manager should set the current state provided by caller and same should be retrived |
+| 1 | [Set And Get Various Power States](#set-and-get-various-power-states)|Power Manager should set the power state provided by caller and same should be retrived |
 | 2| [Testing Wakeup Source](#testing-wakeup-source)| Power manager should accept the supported wakeup soruces and device should wakeup from standby/sleep modes using wakeup sources set by caller|
 | 3|[Test Reset Functionlity](#test-reset-functionlity) | Power manager should reboot the device |
 
@@ -48,7 +48,7 @@ NA
 ## Testing Wakeup Source
 |S.No.|Test Functionality|Description|L2|L3|Control plane requirements|
 |-----|------------------|-----------|--|--|--------------------------|
-| 1 |[Testing Wakeup Source](#testing-wakeup-source)| Power manager should accept the supported wakeup soruces and device should wakeup from standby/sleep modes using wakeup sources set by caller|NA|Y|Control panel to trigger the wakeup source (IR, Bluetooth, front panel etc)|
+| 1 |[Testing Wakeup Source](#testing-wakeup-source)| Power manager should accept the supported wakeup soruces and device should wakeup from standby/sleep modes using wakeup sources set by caller|NA|Y|Control panel to trigger the wakeup source. Supported Wakeup sources are: <br/> <ul><li>Voice Wakeup</li><li>Presence Detection wake up</li><li>Bluetooth wake up</li><li>Wifi wake up</li><li>IR wake up</li><li>Power key wake up</li><li>Timer wake up</li><li>CEC wake up</li><li>LAN wake up</li></ul>|
 ### Emulator Requirements
 - Boot configuration: Wakeup sources supported by the device
 ### Control Plane Requirements
