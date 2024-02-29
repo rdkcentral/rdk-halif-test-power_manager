@@ -1,18 +1,18 @@
 # Power Manager Test Document
- 
+
 ## Version History
- 
+
 |Date(DD/MM/YY)|Comment|Version|
 |--------------|-------|-------|
 |20/02/24|First Release|1.0.0|
- 
+
 ## Table of Contents
 
 - [Acronyms, Terms and Abbreviations](#acronyms-terms-and-abbreviations)
 - [Overview](#overview)
 - [Power Manager RDK HAL Functionality](#power-manager-rdk-hal-functionality)
 - [Test Scenarios](#test-scenarios)
- 
+
 ## Acronyms, Terms and Abbreviations
 
 - `HAL` - Hardware Abstraction Layer
@@ -36,6 +36,7 @@ Refer [Power Manager HAL header](https://github.com/rdkcentral/rdk-halif-power_m
 ## Power Manager RDK HAL Functionality
 
 The `HAL` layer of Power Manager facilitate the following functionalities:
+
 - Sets the Wakeup Sources for Standby/Light Sleep/Deep Sleep Mode
 - Maintains the power state
 - Resets the device on user requests
@@ -106,14 +107,15 @@ The `HAL` layer of Power Manager facilitate the following functionalities:
 |-----------|--|--|--------------------------|
 |Set status of various wakeup sources and retrives status for verification |Y|`NA`|`NA`|
 
-### Test Startup Requirement
+### Test Startup Requirement - Set and Get Status of Wakeup Sources
 
 `NA`
 
-### Emulator Requirements
+### Emulator Requirements - Set and Get Status of Wakeup Sources
 
 Boot configuration: Wakeup sources supported by the device
 Wakeup sources:
+
 - Voice Wakeup
 - Presence Detection wake up
 - Bluetooth wake up
@@ -124,11 +126,11 @@ Wakeup sources:
 - `CEC` wake up
 - `LAN` wake up</li></ul>
 
-### Control Plane Requirements
+### Control Plane Requirements - Set and Get Status of Wakeup Sources
 
 `NA`
 
-### Test Procedure
+### Test Procedure - Set and Get Status of Wakeup Sources
 
 |Title|Details|
 |-----|-------|
@@ -167,17 +169,18 @@ Wakeup sources:
 |-----------|--|--|--------------------------|
 |Power manager should accept the supported wakeup soruces and device should wakeup from standby/sleep modes using wakeup sources set by caller|`NA`|Y|Control panel to trigger the wakeup source|
 
-### Test Startup Requirement
+### Test Startup Requirement - Testing Wakeup Source
 
 `NA`
 
-### Emulator Requirements
+### Emulator Requirements - Testing Wakeup Source
 
 Boot configuration: Wakeup sources supported by the device
 
-### Control Plane Requirements
+### Control Plane Requirements - Testing Wakeup Source
 
 Control panel to trigger the wakeup source. Supported Wakeup sources are:
+
 - Voice Wakeup
 - Presence Detection wake up
 - Bluetooth wake up
@@ -188,7 +191,7 @@ Control panel to trigger the wakeup source. Supported Wakeup sources are:
 - `CEC` wake up
 - `LAN` wake up</li></ul>
 
-### Test Procedure
+### Test Procedure - Testing Wakeup Source
 
 |Title|Details|
 |-----|-------|
@@ -222,18 +225,19 @@ Control panel to trigger the wakeup source. Supported Wakeup sources are:
 |-----------|--|--|--------------------------|
 |Power manager should reboot the device|Y|`NA`|`NA`|
 
-### Test Startup Requirement
+### Test Startup Requirement - Test Reset Functionlity
 
 `NA`
 
-### Emulator Requirements
+### Emulator Requirements - Test Reset Functionlity
 
 `NA`
 
-### Control Plane Requirements
+### Control Plane Requirements - Test Reset Functionlity
+
 `NA`
 
-### Test Procedure
+### Test Procedure - Test Reset Functionlity
 
 |Title|Details|
 |-----|-------|
@@ -254,4 +258,3 @@ Control panel to trigger the wakeup source. Supported Wakeup sources are:
 |Variation / Steps|Description|Test Data|Expected Result|Notes|
 |-----------------|-----------|---------|---------------|-----|
 |01|Reboot the box|`NA`|Reboot the box|Should be successful|
-
