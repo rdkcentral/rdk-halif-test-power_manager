@@ -53,15 +53,15 @@ The Power manger `HAL` provides a set of `APIs` to initialize, query and set the
 |-----------|--|--|--------------------------|
 |Set various power states and retrive it for verification |Y|`NA`|`NA`|
 
-### Test Startup Requirement
+### Test Startup Requirement - Set And Get Power States
 
 `NA`
 
-### Emulator Requirements
+### Emulator Requirements - Set And Get Power States
 
 `NA`
 
-### Control Plane Requirements
+### Control Plane Requirements - Set And Get Power States
 
 `NA`
 
