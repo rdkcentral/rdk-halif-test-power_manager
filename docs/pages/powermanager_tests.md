@@ -10,7 +10,7 @@
 
 - [Acronyms, Terms and Abbreviations](#acronyms-terms-and-abbreviations)
 - [Introduction](#introduction)
-- [Module Description](#module-description)(#power-manager-rdk-hal-functionality)
+- [Module Description](#module-description)
 - [Testing Scope](#testing-scope)
   - [Set And Get Power States](#set-and-get-power-states)
   - [Set and Get Status of Wakeup Sources](#set-and-get-status-of-wakeup-sources)
