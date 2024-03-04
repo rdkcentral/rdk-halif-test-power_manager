@@ -9,9 +9,13 @@
 ## Table of Contents
 
 - [Acronyms, Terms and Abbreviations](#acronyms-terms-and-abbreviations)
-- [Overview](#overview)
-- [Power Manager RDK HAL Functionality](#power-manager-rdk-hal-functionality)
-- [Test Scenarios](#test-scenarios)
+- [Introduction](#introduction)
+- [Module Description](#module-description)(#power-manager-rdk-hal-functionality)
+- [Testing Scope](#testing-scope)
+  - [Set And Get Power States](#set-and-get-power-states)
+  - [Set and Get Status of Wakeup Sources](#set-and-get-status-of-wakeup-sources)
+  - [Testing Wakeup Source](#testing-wakeup-source)
+  - [Test Reset Functionlity](#test-reset-functionlity)
 
 ## Acronyms, Terms and Abbreviations
 
@@ -24,24 +28,17 @@
 - `LAN` - Local Area Network
 - `NA` - Not Applicable
 
-## Scope
+## Introduction
 
-This document defines the requirements for testing the Power Manager from a level 2/3.
+This document provides an overview of the testing requirements for the Power Manager module. It outlines the scope of testing, objectives, testing levels and approaches, specific test requirements, and expected deliverables.
 
-## Overview
+Interface of the test is available here: [Power Manager HAL header](https://github.com/rdkcentral/rdk-halif-power_manager/blob/main/include/plat_power.h)
+
+## Module Description
 
 The Power manger `HAL` provides a set of `APIs` to initialize, query and set the power state, and query and set the wake up source.
-Refer [Power Manager HAL header](https://github.com/rdkcentral/rdk-halif-power_manager/blob/main/include/plat_power.h) for more information
 
-## Power Manager RDK HAL Functionality
-
-The `HAL` layer of Power Manager facilitate the following functionalities:
-
-- Sets the Wakeup Sources for Standby/Light Sleep/Deep Sleep Mode
-- Maintains the power state
-- Resets the device on user requests
-
-## Test Scenarios
+## Testing Scope
 
 |#|Test Functionality|Description|
 |-|------------------|-----------|
@@ -68,39 +65,6 @@ The `HAL` layer of Power Manager facilitate the following functionalities:
 
 `NA`
 
-### Test Procedure
-
-|Title|Details|
-|-----|-------|
-|Function Name|`PLAT_API_SetPowerState()`|
-|Description|This fumction is just required to hold the value of the current power state status|
-|Test Group|02|
-|Priority|High|
-
-|Title|Details|
-|-----|-------|
-|Function Name|`PLAT_API_GetPowerState()`|
-|Description|This fumction is gets the current power state status|
-|Test Group|02|
-|Priority|High|
-
-**Pre-Conditions :**
-
-- `PLAT_INIT()` must be called before calling dsGetSocIDFromSDK() function
-- `PLAT_TERM()` must be called after calling dsGetSocIDFromSDK() function
-
-**Procedure :**
-
-- Set the Power state using the function `PLAT_API_SetPowerState()`
-- Get the Power state using the function `PLAT_API_GetPowerState()`
-- Verify the Power state retrived matches with the set value
-
-|Variation / Steps|Description|Test Data|Expected Result|Notes|
-|-----------------|-----------|---------|---------------|-----|
-|01|Set the Power State|`NA`|Set the Power power state|Should be successful|
-|02|Get the Power State|`NA`|Get the Power power state|Should be successful|
-|03|Validate Power State|`NA`|Compare the power state values from step 01 and 02|Values should match|
-
 ## Set and Get Status of Wakeup Sources
 
 |Description|L2|L3|Control plane requirements|
@@ -124,44 +88,11 @@ Wakeup sources:
 - Power key wake up
 - Timer wake up
 - `CEC` wake up
-- `LAN` wake up</li></ul>
+- `LAN` wake up
 
 ### Control Plane Requirements - Set and Get Status of Wakeup Sources
 
 `NA`
-
-### Test Procedure - Set and Get Status of Wakeup Sources
-
-|Title|Details|
-|-----|-------|
-|Function Name|`PLAT_API_SetWakeupSrc()`|
-|Description|This fumction enables or disables the Wakeup source type|
-|Test Group|02|
-|Priority|High|
-
-|Title|Details|
-|-----|-------|
-|Function Name|`PLAT_API_GetWakeupSrc()`|
-|Description|This fumction checks if the wake up source is enabled or disabled for the device|
-|Test Group|02|
-|Priority|High|
-
-**Pre-Conditions :**
-
-- `PLAT_INIT()` must be called before calling dsGetSocIDFromSDK() function
-- `PLAT_TERM()` must be called after calling dsGetSocIDFromSDK() function
-
-**Procedure :**
-
-- Enable/Disable the wakeup source using the function `PLAT_API_SetWakeupSrc()`
-- Get the status of wakeup source using the function `PLAT_API_GetWakeupSrc()`
-- Verify the status of wakeup source retrived matches with the set value
-
-|Variation / Steps|Description|Test Data|Expected Result|Notes|
-|-----------------|-----------|---------|---------------|-----|
-|01|Set the status of wakeup source|`NA`|Set the status of wakeup source|Should be successful|
-|02|Get the status of wakeup source|`NA`|Get the status of wakeup source|Should be successful|
-|03|Validate Status|`NA`|Compare the set status values from step 01 and 02|Status should match|
 
 ## Testing Wakeup Source
 
@@ -189,35 +120,7 @@ Control panel to trigger the wakeup source. Supported Wakeup sources are:
 - Power key wake up
 - Timer wake up
 - `CEC` wake up
-- `LAN` wake up</li></ul>
-
-### Test Procedure - Testing Wakeup Source
-
-|Title|Details|
-|-----|-------|
-|Function Name|`PLAT_API_SetWakeupSrc()`|
-|Description|This fumction enables or disables the Wakeup source type|
-|Test Group|02|
-|Priority|High|
-
-**Pre-Conditions :**
-
-- `PLAT_INIT()` must be called before calling dsGetSocIDFromSDK() function
-- `PLAT_TERM()` must be called after calling dsGetSocIDFromSDK() function
-
-**Procedure :**
-
-- Enable/Disable the wakeup source using the function `PLAT_API_SetWakeupSrc()`
-- Change the device state to Standby
-- Wakeup the device
-- Verify the wakeup source matches with the set value
-
-|Variation / Steps|Description|Test Data|Expected Result|Notes|
-|-----------------|-----------|---------|---------------|-----|
-|01|Set the status of wakeup source|`NA`|Set the status of wakeup source|Should be successful|
-|02|Change the device state to Standby|`NA`|Change the device state to Standby|Should be successful|
-|03|Wakeup the device|`NA`|Wakeup the device|Should be successful|
-|04|Verify the wakeup source|`NA`|Wakeup source should matches with the set value|Should be successful|
+- `LAN` wake up
 
 ## Test Reset Functionlity
 
@@ -236,25 +139,3 @@ Control panel to trigger the wakeup source. Supported Wakeup sources are:
 ### Control Plane Requirements - Test Reset Functionlity
 
 `NA`
-
-### Test Procedure - Test Reset Functionlity
-
-|Title|Details|
-|-----|-------|
-|Function Name|`PLAT_Reset()`|
-|Description|Resets the power state of the device|
-|Test Group|02|
-|Priority|High|
-
-**Pre-Conditions :**
-
-- `PLAT_INIT()` must be called before calling dsGetSocIDFromSDK() function
-- `PLAT_TERM()` must be called after calling dsGetSocIDFromSDK() function
-
-**Procedure :**
-
-- Reboot the box using `PLAT_Reset()`
-
-|Variation / Steps|Description|Test Data|Expected Result|Notes|
-|-----------------|-----------|---------|---------------|-----|
-|01|Reboot the box|`NA`|Reboot the box|Should be successful|

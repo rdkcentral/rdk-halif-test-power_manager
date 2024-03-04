@@ -1,19 +1,22 @@
 # L2 Test Specification template
-## History
 
-| Version | Date(YY-MM-DD) | Author |Comments |
-| -------| ----- | ----- | ----- |
-| 1.0.0 | 22/02/23 | Anjali Thampi| Inital Document |
+## Version History
+
+|Date(DD/MM/YY)|Comment|Version|
+|--------------|-------|-------|
+|20/02/24|First Release|1.0.0|
 
 ## Table of Contents
 
 - [Overview](#overview)
-  - [Acronyms](#acronyms)
+  - [Acronyms](#acronyms-terms-and-abbreviations)
   - [Definitions](#definitions)
   - [References](#references)
 - [Level 2 Test Suite](#level-2-test-suite)
-  - [Test 1](#test-1)
-  - [Test 2](#test-2)
+  - [Set And Get Power States](#set-and-get-power-states)
+  - [Set and Get Status of Wakeup Sources](#set-and-get-status-of-wakeup-sources)
+  - [Testing Wakeup Source](#testing-wakeup-source)
+  - [Test Reset Functionlity](#test-reset-functionlity)
 
 ## Overview
 
@@ -30,6 +33,7 @@ This document describes the level 2 testing suite for the module.
 - `UT`  \- Unit Test(s)
 - `OEM`  \- Original Equipment Manufacture (Sky is also an OEM)
 - `SoC`  \- System on a Chip
+- `NA` \- Not Applicable
 
 ### Definitions
 
@@ -53,52 +57,150 @@ This document describes the level 2 testing suite for the module.
 
 The following functions are expecting to test the module operates correctly.
 
-### Test 1
+### Set And Get Power States
 
 |Title|Details|
-|--|--|
-|Function Name|`test_l2_<filename>_<testName>`|
-|Description|TODO: Add the description of what is tested and why in this test|
-|Test Group|TODO: Basic (for L1): 01 / Module (L2): 02 / Stress (L2): 03)|
-|Test Case ID|TODO: Add the ID of the test case so that it can be logically tracked in the logs|
-|Priority|TODO: (Low/Med/High) Add the priority for the level of test, how important is the test to overall functionality|
-
-**Pre-Conditions :**
-TODO: Add pre-conditions, if any
-
-**Dependencies :** TODO: Add dependencies for this test, if any
-
-**User Interaction :** TODO: Add any user interactions required during this test, if any
-
-#### Test Procedure :
-
-TODO: Add the steps to run this test and add a line in the below table for each input variation tried in this function.
-
-| Variation / Steps | Description | Test Data | Expected Result | Notes|
-| -- | --------- | ---------- | -------------- | ----- |
-| 01 | First set of conditions | What is input data to be tested | How to gauge success, is it a success variable? | Should be successful |
-
-### Test 2
+|-----|-------|
+|Function Name|`PLAT_API_SetPowerState()`|
+|Description|This fumction is just required to hold the value of the current power state status|
+|Test Group|02|
+|Priority|High|
 
 |Title|Details|
-|--|--|
-|Function Name|`test_l2_<filename>_<testName>`|
-|Description|TODO: Add the description of what is tested and why in this test|
-|Test Group|TODO: Basic (for L1): 01 / Module (L2): 02 / Stress (L2): 03)|
-|Test Case ID|TODO: Add the ID of the test case so that it can be logically tracked in the logs|
-|Priority|TODO: (Low/Med/High) Add the priority for the level of test, how important is the test to overall functionality|
+|-----|-------|
+|Function Name|`PLAT_API_GetPowerState()`|
+|Description|This fumction is gets the current power state status|
+|Test Group|02|
+|Priority|High|
 
 **Pre-Conditions :**
-TODO: Add pre-conditions, if any
 
-**Dependencies :** TODO: Add dependencies for this test, if any
+- `PLAT_INIT()` must be called before calling dsGetSocIDFromSDK() function
+- `PLAT_TERM()` must be called after calling dsGetSocIDFromSDK() function
 
-**User Interaction :** TODO: Add any user interactions required during this test, if any
+**Dependencies :**
 
-#### Test Procedure :
+`NA`
 
-TODO: Add the steps to run this test and add a line in the below table for each input variation tried in this function.
+**User Interaction :**
 
-| Variation / Steps | Description | Test Data | Expected Result | Notes|
-| -- | --------- | ---------- | -------------- | ----- |
-| 01 | First set of conditions | What is input data to be tested | How to gauge success, is it a success variable? | Should be successful |
+`NA`
+
+#### Test Procedure - Set And Get Power States
+
+- Set the Power state using the function `PLAT_API_SetPowerState()`
+- Get the Power state using the function `PLAT_API_GetPowerState()`
+- Verify the Power state retrived matches with the set value
+
+|Variation / Steps|Description|Test Data|Expected Result|Notes|
+|-----------------|-----------|---------|---------------|-----|
+|01|Set the Power State|`NA`|Set the Power power state|Should be successful|
+|02|Get the Power State|`NA`|Get the Power power state|Should be successful|
+|03|Validate Power State|`NA`|Compare the power state values from step 01 and 02|Values should match|
+
+### Set and Get Status of Wakeup Sources
+
+|Title|Details|
+|-----|-------|
+|Function Name|`PLAT_API_SetWakeupSrc()`|
+|Description|This fumction enables or disables the Wakeup source type|
+|Test Group|02|
+|Priority|High|
+
+|Title|Details|
+|-----|-------|
+|Function Name|`PLAT_API_GetWakeupSrc()`|
+|Description|This fumction checks if the wake up source is enabled or disabled for the device|
+|Test Group|02|
+|Priority|High|
+
+**Pre-Conditions :**
+
+- `PLAT_INIT()` must be called before calling dsGetSocIDFromSDK() function
+- `PLAT_TERM()` must be called after calling dsGetSocIDFromSDK() function
+
+**Dependencies :**
+
+`NA`
+
+**User Interaction :**
+
+`NA`
+
+#### Test Procedure - Set and Get Status of Wakeup Sources
+
+- Enable/Disable the wakeup source using the function `PLAT_API_SetWakeupSrc()`
+- Get the status of wakeup source using the function `PLAT_API_GetWakeupSrc()`
+- Verify the status of wakeup source retrived matches with the set value
+
+|Variation / Steps|Description|Test Data|Expected Result|Notes|
+|-----------------|-----------|---------|---------------|-----|
+|01|Set the status of wakeup source|`NA`|Set the status of wakeup source|Should be successful|
+|02|Get the status of wakeup source|`NA`|Get the status of wakeup source|Should be successful|
+|03|Validate Status|`NA`|Compare the set status values from step 01 and 02|Status should match|
+
+### Testing Wakeup Source
+
+|Title|Details|
+|-----|-------|
+|Function Name|`PLAT_API_SetWakeupSrc()`|
+|Description|This fumction enables or disables the Wakeup source type|
+|Test Group|02|
+|Priority|High|
+
+**Pre-Conditions :**
+
+- `PLAT_INIT()` must be called before calling dsGetSocIDFromSDK() function
+- `PLAT_TERM()` must be called after calling dsGetSocIDFromSDK() function
+
+**Dependencies :**
+
+`NA`
+
+**User Interaction :**
+
+`NA`
+
+#### Test Procedure - Testing Wakeup Source
+
+- Enable/Disable the wakeup source using the function `PLAT_API_SetWakeupSrc()`
+- Change the device state to Standby
+- Wakeup the device
+- Verify the wakeup source matches with the set value
+
+|Variation / Steps|Description|Test Data|Expected Result|Notes|
+|-----------------|-----------|---------|---------------|-----|
+|01|Set the status of wakeup source|`NA`|Set the status of wakeup source|Should be successful|
+|02|Change the device state to Standby|`NA`|Change the device state to Standby|Should be successful|
+|03|Wakeup the device|`NA`|Wakeup the device|Should be successful|
+|04|Verify the wakeup source|`NA`|Wakeup source should matches with the set value|Should be successful|
+
+### Test Reset Functionlity
+
+|Title|Details|
+|-----|-------|
+|Function Name|`PLAT_Reset()`|
+|Description|Resets the power state of the device|
+|Test Group|02|
+|Priority|High|
+
+**Pre-Conditions :**
+
+- `PLAT_INIT()` must be called before calling dsGetSocIDFromSDK() function
+- `PLAT_TERM()` must be called after calling dsGetSocIDFromSDK() function
+
+**Dependencies :**
+
+`NA`
+
+**User Interaction :**
+
+`NA`
+
+#### Test Procedure - Test Reset Functionlity
+
+- Reboot the box using `PLAT_Reset()`
+
+|Variation / Steps|Description|Test Data|Expected Result|Notes|
+|-----------------|-----------|---------|---------------|-----|
+|01|Reboot the box|`NA`|Reboot the box|Should be successful|
