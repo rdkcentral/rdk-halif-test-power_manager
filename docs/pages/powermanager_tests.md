@@ -15,7 +15,7 @@
   - [Set And Get Power States](#set-and-get-power-states)
   - [Set and Get Status of Wakeup Sources](#set-and-get-status-of-wakeup-sources)
   - [Testing Wakeup Source](#testing-wakeup-source)
-  - [Test Reset Functionlity](#test-reset-functionlity)
+  - [Test Reset Functionality](#test-reset-functionality)
 
 ## Acronyms, Terms and Abbreviations
 
@@ -30,7 +30,7 @@
 
 ## Introduction
 
-This document provides an overview of the testing requirements for the Power Manager module. It outlines the scope of testing, objectives, testing levels and approaches, specific test requirements, and expected deliverables.
+This document provides an overview of the testing requirements for the Power Manager module. It outlines the scope of testing, objectives, testing levels and approaches, specific test requirements, control plane emulator requirements and expected deliverables.
 
 Interface of the test is available here: [Power Manager HAL header](https://github.com/rdkcentral/rdk-halif-power_manager/blob/main/include/plat_power.h)
 
@@ -42,16 +42,32 @@ The Power manger `HAL` provides a set of `APIs` to initialize, query and set the
 
 |#|Test Functionality|Description|
 |-|------------------|-----------|
-|1|[Set And Get Power States](#set-and-get-power-states)|Power Manager should set the power state provided by caller and same should be retrived|
-|2|[Set and Get Status of Wakeup Sources](#set-and-get-status-of-wakeup-sources)|Power Manager should set the wakeup source provided by caller and same should be retrived|
-|3|[Testing Wakeup Source](#testing-wakeup-source)|Power manager should accept the supported wakeup soruces and device should wakeup from standby/sleep modes using wakeup sources set by caller|
-|4|[Test Reset Functionlity](#test-reset-functionlity)|Power manager should reboot the device|
+|1|[Set And Get Power States](#set-and-get-power-states)|Power Manager should set the power state provided by caller and same should be retrieved|
+|2|[Set and Get Status of Wakeup Sources](#set-and-get-status-of-wakeup-sources)|Power Manager should set the wakeup source provided by caller and same should be retrieved|
+|3|[Testing Wakeup Source](#testing-wakeup-source)|Power manager should accept the supported wakeup sources and device should wakeup from standby/sleep modes using wakeup sources set by caller|
+|4|[Test Reset Functionality](#test-reset-functionality)|Power manager should reboot the device|
+
+## Emulator Requirements
+
+Boot configuration: Wakeup sources supported by the device
+
+Wakeup sources:
+
+- Voice Wakeup
+- Presence Detection wake up
+- Bluetooth wake up
+- Wifi wake up
+- `IR` wake up
+- Power key wake up
+- Timer wake up
+- `CEC` wake up
+- `LAN` wake up
 
 ## Set And Get Power States
 
 |Description|L2|L3|Control plane requirements|
 |-----------|--|--|--------------------------|
-|Set various power states and retrive it for verification |Y|`NA`|`NA`|
+|Set various power states and retrieve it for verification |Y|`NA`|`NA`|
 
 ### Test Startup Requirement - Set And Get Power States
 
@@ -69,7 +85,7 @@ The Power manger `HAL` provides a set of `APIs` to initialize, query and set the
 
 |Description|L2|L3|Control plane requirements|
 |-----------|--|--|--------------------------|
-|Set status of various wakeup sources and retrives status for verification |Y|`NA`|`NA`|
+|Set status of various wakeup sources and retrieves status for verification |Y|`NA`|`NA`|
 
 ### Test Startup Requirement - Set and Get Status of Wakeup Sources
 
@@ -77,18 +93,7 @@ The Power manger `HAL` provides a set of `APIs` to initialize, query and set the
 
 ### Emulator Requirements - Set and Get Status of Wakeup Sources
 
-Boot configuration: Wakeup sources supported by the device
-Wakeup sources:
-
-- Voice Wakeup
-- Presence Detection wake up
-- Bluetooth wake up
-- Wifi wake up
-- `IR` wake up
-- Power key wake up
-- Timer wake up
-- `CEC` wake up
-- `LAN` wake up
+[Emulator Requirements](#emulator-requirements)
 
 ### Control Plane Requirements - Set and Get Status of Wakeup Sources
 
@@ -98,7 +103,7 @@ Wakeup sources:
 
 |Description|L2|L3|Control plane requirements|
 |-----------|--|--|--------------------------|
-|Power manager should accept the supported wakeup soruces and device should wakeup from standby/sleep modes using wakeup sources set by caller|`NA`|Y|Control panel to trigger the wakeup source|
+|Power manager should accept the supported wakeup sources and device should wakeup from standby/sleep modes using wakeup sources set by caller|`NA`|Y|Control plane to trigger the wakeup source|
 
 ### Test Startup Requirement - Testing Wakeup Source
 
@@ -106,36 +111,26 @@ Wakeup sources:
 
 ### Emulator Requirements - Testing Wakeup Source
 
-Boot configuration: Wakeup sources supported by the device
+[Emulator Requirements](#emulator-requirements)
 
 ### Control Plane Requirements - Testing Wakeup Source
 
-Control panel to trigger the wakeup source. Supported Wakeup sources are:
+Control plane to trigger the wakeup source supported by platform
 
-- Voice Wakeup
-- Presence Detection wake up
-- Bluetooth wake up
-- Wifi wake up
-- `IR` wake up
-- Power key wake up
-- Timer wake up
-- `CEC` wake up
-- `LAN` wake up
-
-## Test Reset Functionlity
+## Test Reset Functionality
 
 |Description|L2|L3|Control plane requirements|
 |-----------|--|--|--------------------------|
 |Power manager should reboot the device|Y|`NA`|`NA`|
 
-### Test Startup Requirement - Test Reset Functionlity
+### Test Startup Requirement - Test Reset Functionality
 
 `NA`
 
-### Emulator Requirements - Test Reset Functionlity
+### Emulator Requirements - Test Reset Functionality
 
 `NA`
 
-### Control Plane Requirements - Test Reset Functionlity
+### Control Plane Requirements - Test Reset Functionality
 
 `NA`
