@@ -65,9 +65,9 @@ Wakeup sources:
 
 ## Set And Get Power States
 
-|Description|L2|L3|Control plane requirements|
-|-----------|--|--|--------------------------|
-|Set various power states and retrieve it for verification |Y|`NA`|`NA`|
+|S.No.|Test Functionality|Description|HAL APIs|L2|L3|Control plane requirements|
+|-----|------------------|-----------|--------|--|--|--------------------------|
+|1|[Set and Get Power States](#set-and-get-power-states)|Set various power states and retrieve it for verification |PLAT_API_SetPowerState, PLAT_API_GetPowerState|Y|`NA`|`NA`|`NA`|
 
 ### Test Startup Requirement - Set And Get Power States
 
@@ -83,9 +83,9 @@ Wakeup sources:
 
 ## Set and Get Status of Wakeup Sources
 
-|Description|L2|L3|Control plane requirements|
-|-----------|--|--|--------------------------|
-|Set status of various wakeup sources and retrieves status for verification |Y|`NA`|`NA`|
+|S.No.|Test Functionality|Description|HAL APIs|L2|L3|Control plane requirements|
+|-----|------------------|-----------|--------|--|--|--------------------------|
+|1|[Set and Get Status of Wakeup Sources](#set-and-get-status-of-wakeup-sources)|Set status of various wakeup sources and retrieves status for verification |PLAT_API_SetWakeupSrc, PLAT_API_GetWakeupSrc|Y|`NA`|`NA`|`NA`|
 
 ### Test Startup Requirement - Set and Get Status of Wakeup Sources
 
@@ -101,9 +101,9 @@ Wakeup sources:
 
 ## Testing Wakeup Source
 
-|Description|L2|L3|Control plane requirements|
-|-----------|--|--|--------------------------|
-|Power manager should accept the supported wakeup sources and device should wakeup from standby/sleep modes using wakeup sources set by caller|`NA`|Y|Control plane to trigger the wakeup source|
+|S.No.|Test Functionality|Description|HAL APIs|L2|L3|Control plane requirements|
+|-----|------------------|-----------|--------|--|--|--------------------------|
+|1|[Testing Wakeup Source](#testing-wakeup-source)|Power manager should accept the supported wakeup sources and device should wakeup from standby/sleep modes using wakeup sources set by caller|PLAT_API_SetWakeupSrc, PLAT_DS_SetDeepSleep|`NA`|Y|Control plane to trigger the wakeup source|
 
 ### Test Startup Requirement - Testing Wakeup Source
 
@@ -119,9 +119,9 @@ Control plane to trigger the wakeup source supported by platform
 
 ## Test Reset Functionality
 
-|Description|L2|L3|Control plane requirements|
-|-----------|--|--|--------------------------|
-|Power manager should reboot the device|Y|`NA`|`NA`|
+|S.No.|Test Functionality|Description|HAL APIs|L2|L3|Control plane requirements|
+|-----|------------------|-----------|--------|--|--|--------------------------|
+|1|[Test Reset Functionality](#test-reset-functionality)|Power manager should reboot the device|PLAT_Reset|`NA`|Y|`NA`||
 
 ### Test Startup Requirement - Test Reset Functionality
 
@@ -133,4 +133,7 @@ Control plane to trigger the wakeup source supported by platform
 
 ### Control Plane Requirements - Test Reset Functionality
 
-`NA`
+- Discuss options to verify that the device as rebooted successfuly.
+    - Monitor power usage via control panel
+    - Verify that the device has rebooted via connectivity with another device
+    - Verify that the reboot as occurred by reconnecting to the device and calling linux `uptime` command
