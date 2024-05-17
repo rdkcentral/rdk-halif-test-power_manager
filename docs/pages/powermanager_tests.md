@@ -1,11 +1,5 @@
 # Power Manager Test Document
 
-## Version History
-
-|Date(DD/MM/YY)|Comment|Version|
-|--------------|-------|-------|
-|20/02/24|First Release|1.0.0|
-
 ## Table of Contents
 
 - [Acronyms, Terms and Abbreviations](#acronyms-terms-and-abbreviations)
@@ -121,7 +115,7 @@ Control plane to trigger the wakeup source supported by platform
 
 |S.No.|Test Functionality|Description|HAL APIs|L2|L3|Control plane requirements|
 |-----|------------------|-----------|--------|--|--|--------------------------|
-|1|[Test Reset Functionality](#test-reset-functionality)|Power manager should reboot the device|PLAT_Reset|`NA`|Y|`NA`||
+|1|[Test Reset Functionality](#test-reset-functionality)|Power manager should reboot the device and verify that the reboot occurs properly.|PLAT_Reset|`NA`|Y|`NA`||
 
 ### Test Startup Requirement - Test Reset Functionality
 
@@ -133,7 +127,8 @@ Control plane to trigger the wakeup source supported by platform
 
 ### Control Plane Requirements - Test Reset Functionality
 
-- Discuss options to verify that the device as rebooted successfuly.
-    - Monitor power usage via control panel
+- Raft framework enables the test to resume from the point where it was interrupted due to a reboot.
+- Discuss options to verify that the device as rebooted successfully.
+    - Monitor power usage via control plane
     - Verify that the device has rebooted via connectivity with another device
     - Verify that the reboot as occurred by reconnecting to the device and calling linux `uptime` command
