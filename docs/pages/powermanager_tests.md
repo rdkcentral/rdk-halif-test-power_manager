@@ -28,10 +28,6 @@ This document provides an overview of the testing requirements for the Power Man
 
 Interface of the test is available here: [Power Manager HAL header](https://github.com/rdkcentral/rdk-halif-power_manager/blob/main/include/plat_power.h)
 
-## Module Description
-
-The Power manger `HAL` provides a set of `APIs` to initialize, query and set the power state, and query and set the wake up source.
-
 ## Testing Scope
 
 |#|Test Functionality|Description|
