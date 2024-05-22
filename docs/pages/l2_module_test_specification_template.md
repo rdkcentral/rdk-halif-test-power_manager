@@ -62,21 +62,20 @@ The following functions are expecting to test the module operates correctly.
 |Title|Details|
 |-----|-------|
 |Function Name|`PLAT_API_SetPowerState()`|
-|Description|This fumction is just required to hold the value of the current power state status|
+|Description|This function is just required to hold the value of the current power state status|
 |Test Group|02|
 |Priority|High|
 
 |Title|Details|
 |-----|-------|
 |Function Name|`PLAT_API_GetPowerState()`|
-|Description|This fumction is gets the current power state status|
+|Description|This function is gets the current power state status|
 |Test Group|02|
 |Priority|High|
 
 **Pre-Conditions :**
 
-- `PLAT_INIT()` must be called before calling dsGetSocIDFromSDK() function
-- `PLAT_TERM()` must be called after calling dsGetSocIDFromSDK() function
+`NA`
 
 **Dependencies :**
 
@@ -88,36 +87,45 @@ The following functions are expecting to test the module operates correctly.
 
 #### Test Procedure - Set And Get Power States
 
-- Set the Power state using the function `PLAT_API_SetPowerState()`
-- Get the Power state using the function `PLAT_API_GetPowerState()`
-- Verify the Power state retrived matches with the set value
+| Variation / Steps | Description | Test Data | Expected Result | Notes|
+| -- | --------- | ---------- | -------------- | ----- |
+| 01 | Initialize the Power Manager HAL using PLAT_INIT() | `N/A` | PWRMGR_SUCCESS  | Should be successful |
+| 02 | Call PLAT_API_SetPowerState() | newState = PWRMGR_POWERSTATE_ON| PWRMGR_SUCCESS  | Should be successful |
+| 03 | Call PLAT_API_GetPowerState() | *newState = valid value| PWRMGR_SUCCESS  | Should be successful, newstate upon return should be PWRMGR_POWERSTATE_ON |
+| 04 | Uninitialize the Power Manager HAL using PLAT_TERM() | `N/A` | PWRMGR_SUCCESS  | Should be successful |
 
-|Variation / Steps|Description|Test Data|Expected Result|Notes|
-|-----------------|-----------|---------|---------------|-----|
-|01|Set the Power State|`NA`|Set the Power power state|Should be successful|
-|02|Get the Power State|`NA`|Get the Power power state|Should be successful|
-|03|Validate Power State|`NA`|Compare the power state values from step 01 and 02|Values should match|
+
+```mermaid
+graph TB
+A[Call PLAT_INIT] -->|PWRMGR_SUCCESS| B[Call PLAT_API_SetPowerState]
+A -->|Failure| A1[Test case fail]
+B -->|PWRMGR_SUCCESS| C[Call PLAT_API_GetPowerState]
+B -->|Failure| B1[Test case fail]
+C -->|PWRMGR_SUCCESS| D[Test PLAT_TERM]
+C -->|Failure| C1[Test case fail]
+D -->|PWRMGR_SUCCESS| E[Test case success]
+D -->|Failure| D1[Test case fail]
+```
 
 ### Set and Get Status of Wakeup Sources
 
 |Title|Details|
 |-----|-------|
 |Function Name|`PLAT_API_SetWakeupSrc()`|
-|Description|This fumction enables or disables the Wakeup source type|
+|Description|This function enables or disables the Wakeup source type|
 |Test Group|02|
 |Priority|High|
 
 |Title|Details|
 |-----|-------|
 |Function Name|`PLAT_API_GetWakeupSrc()`|
-|Description|This fumction checks if the wake up source is enabled or disabled for the device|
+|Description|This function checks if the wake up source is enabled or disabled for the device|
 |Test Group|02|
 |Priority|High|
 
 **Pre-Conditions :**
 
-- `PLAT_INIT()` must be called before calling dsGetSocIDFromSDK() function
-- `PLAT_TERM()` must be called after calling dsGetSocIDFromSDK() function
+`NA`
 
 **Dependencies :**
 
@@ -129,78 +137,21 @@ The following functions are expecting to test the module operates correctly.
 
 #### Test Procedure - Set and Get Status of Wakeup Sources
 
-- Enable/Disable the wakeup source using the function `PLAT_API_SetWakeupSrc()`
-- Get the status of wakeup source using the function `PLAT_API_GetWakeupSrc()`
-- Verify the status of wakeup source retrived matches with the set value
+| Variation / Steps | Description | Test Data | Expected Result | Notes|
+| -- | --------- | ---------- | -------------- | ----- |
+| 01 | Initialize the Power Manager HAL using PLAT_INIT() | `N/A` | PWRMGR_SUCCESS  | Should be successful |
+| 02 | Call PLAT_API_SetWakeupSrc() | srcType = valid wake-up source, enable = true| PWRMGR_SUCCESS  | Should be successful |
+| 03 | Call PLAT_API_GetWakeupSrc() | srcType = same wake-up source as previous step, *enable | PWRMGR_SUCCESS  | Should be successful, enable should be true |
+| 04 | Uninitialize the Power Manager HAL using PLAT_TERM() | `N/A` | PWRMGR_SUCCESS  | Should be successful |
 
-|Variation / Steps|Description|Test Data|Expected Result|Notes|
-|-----------------|-----------|---------|---------------|-----|
-|01|Set the status of wakeup source|`NA`|Set the status of wakeup source|Should be successful|
-|02|Get the status of wakeup source|`NA`|Get the status of wakeup source|Should be successful|
-|03|Validate Status|`NA`|Compare the set status values from step 01 and 02|Status should match|
-
-### Testing Wakeup Source
-
-|Title|Details|
-|-----|-------|
-|Function Name|`PLAT_API_SetWakeupSrc()`|
-|Description|This fumction enables or disables the Wakeup source type|
-|Test Group|02|
-|Priority|High|
-
-**Pre-Conditions :**
-
-- `PLAT_INIT()` must be called before calling dsGetSocIDFromSDK() function
-- `PLAT_TERM()` must be called after calling dsGetSocIDFromSDK() function
-
-**Dependencies :**
-
-`NA`
-
-**User Interaction :**
-
-`NA`
-
-#### Test Procedure - Testing Wakeup Source
-
-- Enable/Disable the wakeup source using the function `PLAT_API_SetWakeupSrc()`
-- Change the device state to Standby
-- Wakeup the device
-- Verify the wakeup source matches with the set value
-
-|Variation / Steps|Description|Test Data|Expected Result|Notes|
-|-----------------|-----------|---------|---------------|-----|
-|01|Set the status of wakeup source|`NA`|Set the status of wakeup source|Should be successful|
-|02|Change the device state to Standby|`NA`|Change the device state to Standby|Should be successful|
-|03|Wakeup the device|`NA`|Wakeup the device|Should be successful|
-|04|Verify the wakeup source|`NA`|Wakeup source should matches with the set value|Should be successful|
-
-### Test Reset Functionlity
-
-|Title|Details|
-|-----|-------|
-|Function Name|`PLAT_Reset()`|
-|Description|Resets the power state of the device|
-|Test Group|02|
-|Priority|High|
-
-**Pre-Conditions :**
-
-- `PLAT_INIT()` must be called before calling dsGetSocIDFromSDK() function
-- `PLAT_TERM()` must be called after calling dsGetSocIDFromSDK() function
-
-**Dependencies :**
-
-`NA`
-
-**User Interaction :**
-
-`NA`
-
-#### Test Procedure - Test Reset Functionlity
-
-- Reboot the box using `PLAT_Reset()`
-
-|Variation / Steps|Description|Test Data|Expected Result|Notes|
-|-----------------|-----------|---------|---------------|-----|
-|01|Reboot the box|`NA`|Reboot the box|Should be successful|
+```mermaid
+graph TB
+A[Call PLAT_INIT] -->|PWRMGR_SUCCESS| B[Call PLAT_API_SetWakeupSrc]
+A -->|Failure| A1[Test case fail]
+B -->|PWRMGR_SUCCESS| C[Call PLAT_API_GetWakeupSrc]
+B -->|Failure| B1[Test case fail]
+C -->|PWRMGR_SUCCESS| D[Test PLAT_TERM]
+C -->|Failure| C1[Test case fail]
+D -->|PWRMGR_SUCCESS| E[Test case success]
+D -->|Failure| D1[Test case fail]
+```
