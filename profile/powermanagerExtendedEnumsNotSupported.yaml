@@ -1,0 +1,4 @@
+---
+powermanager:
+  features:
+    extendedEnumsSupported: false
