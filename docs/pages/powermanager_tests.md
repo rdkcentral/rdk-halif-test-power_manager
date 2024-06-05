@@ -65,7 +65,7 @@ The Power manager Hal Spec document: [Power Manager HAL Spec](https://github.com
 
 |Description|HAL APIs|L2|L3|Control plane requirements|
 |-----------|--------|--|--|--------------------------|
-|Set status of various wakeup sources and retrieves status for verification |PLAT_API_SetWakeupSrc, PLAT_API_GetWakeupSrc|Y|`NA`|`NA`|`NA`|
+|Set status of various wakeup sources and retrieves status for verification based on the platform configuration|PLAT_API_SetWakeupSrc, PLAT_API_GetWakeupSrc|Y|`NA`|`NA`|`NA`|
 
 ### Test Startup Requirement - Set and Get Status of Wakeup Sources
 
@@ -81,40 +81,8 @@ The Power manager Hal Spec document: [Power Manager HAL Spec](https://github.com
 
 ## Testing Wakeup Source
 
-|Description|HAL APIs|L2|L3|Control plane requirements|
-|-----------|--------|--|--|--------------------------|
-|Power manager should accept the supported wakeup sources and device should wakeup from standby/sleep modes using wakeup sources set by caller|PLAT_API_SetWakeupSrc, PLAT_DS_SetDeepSleep|`NA`|Y|Control plane to trigger the wakeup source|
-
-### Test Startup Requirement - Testing Wakeup Source
-
-`NA`
-
-### Emulator Requirements - Testing Wakeup Source
-
-[Emulator Requirements](#emulator-requirements)
-
-### Control Plane Requirements - Testing Wakeup Source
-
-Control plane to trigger the wakeup source supported by platform
+Testing the wake-up sources is already done within the deep-sleep L3 test specification.
 
 ## Test Reset Functionality
 
-|Description|HAL APIs|L2|L3|Control plane requirements|
-|-----------|--------|--|--|--------------------------|
-|Power manager should reboot the device and verify that the reboot occurs properly.|PLAT_Reset|`NA`|Y|`NA`||
-
-### Test Startup Requirement - Test Reset Functionality
-
-`NA`
-
-### Emulator Requirements - Test Reset Functionality
-
-`NA`
-
-### Control Plane Requirements - Test Reset Functionality
-
-- Raft framework enables the test to resume from the point where it was interrupted due to a reboot.
-- Discuss options to verify that the device as rebooted successfully.
-    - Monitor power usage via control plane
-    - Verify that the device has rebooted via connectivity with another device
-    - Verify that the reboot as occurred by reconnecting to the device and calling linux `uptime` command
+This function is depreciated and we are not testing depreciated functions.
