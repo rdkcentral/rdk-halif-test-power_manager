@@ -47,7 +47,7 @@ The Power manager Hal Spec document: [Power Manager HAL Spec](https://github.com
 
 |Description|HAL APIs|L2|L3|Control plane requirements|
 |-----------|--------|--|--|--------------------------|
-|Set various power states and retrieve it for verification |PLAT_API_SetPowerState, PLAT_API_GetPowerState|Y|`NA`|`NA`|`NA`|
+|Set various power states and retrieve it for verification based on the platform configuration file. For source devices, check with the "source_powerManager.yaml" using the path "powermanager.PowerStates" and for sink devices, check with the "sink_powerManager.yaml" using the path "powermanager.PowerStates" |PLAT_API_SetPowerState, PLAT_API_GetPowerState|Y|`NA`|`NA`|`NA`|
 
 ### Test Startup Requirement - Set And Get Power States
 
@@ -65,7 +65,7 @@ The Power manager Hal Spec document: [Power Manager HAL Spec](https://github.com
 
 |Description|HAL APIs|L2|L3|Control plane requirements|
 |-----------|--------|--|--|--------------------------|
-|Set status of various wakeup sources and retrieves status for verification based on the platform configuration|PLAT_API_SetWakeupSrc, PLAT_API_GetWakeupSrc|Y|`NA`|`NA`|`NA`|
+|Set status of various wakeup sources and retrieves status for verification based on the platform configuration. For source devices, check with the "source_powerManager.yaml" using the path "powermanager.WakeupSources" and for sink devices, check with the "sink_powerManager.yaml" using the path "powermanager.WakeupSources"|PLAT_API_SetWakeupSrc, PLAT_API_GetWakeupSrc|Y|`NA`|`NA`|`NA`|
 
 ### Test Startup Requirement - Set and Get Status of Wakeup Sources
 
