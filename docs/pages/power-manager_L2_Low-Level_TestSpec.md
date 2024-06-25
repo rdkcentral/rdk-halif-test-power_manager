@@ -2,14 +2,11 @@
 
 ## Table of Contents
 
-- [PLAT POWER L2 Low Level Test Specification and Procedure Documentation](#plat-power-l2-low-level-test-specification-and-procedure-documentation)
-
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-    - [Acronyms, Terms and Abbreviations](#acronyms-terms-and-abbreviations)
-    - [Definitions](#definitions)
-    - [References](#references)
-  - [Level 2 Test Procedure](#level-2-test-procedure)
+- [Overview](#overview)
+- [Acronyms, Terms and Abbreviations](#acronyms-terms-and-abbreviations)
+- [Definitions](#definitions)
+- [References](#references)
+- [Level 2 Test Procedure](#level-2-test-procedure)
 
 ## Overview
 
@@ -24,11 +21,11 @@ This document describes the Low Level 2 Test Specification and Procedure for the
 
 ### Definitions
 
-  - `ut-core` \- Common Testing Framework <https://github.com/rdkcentral/ut-core>, which wraps a open-source framework that can be expanded to the requirements for future framework.
+- `ut-core` \- Common Testing Framework <https://github.com/rdkcentral/ut-core>, which wraps a open-source framework that can be expanded to the requirements for future framework.
 
 ### References
 
-- `High Level Test Specification` - [powermanager_tests.md](powermanager_tests.md)
+- `High Level Test Specification` - [Power Manager High Level Test Spec](power-manager_High-Level_TestSpec.md)
 - `HAL Interface file` - [Power Manager HAL header](https://github.com/rdkcentral/rdk-halif-power_manager/blob/main/include/plat_power.h)
 
 ## Level 2 Test Procedure

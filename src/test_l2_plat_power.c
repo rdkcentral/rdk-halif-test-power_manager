@@ -81,7 +81,7 @@ static int gTestID = 1;
 * **Test Case ID:** 001@n
 *
 * **Test Procedure:**
-* Refer to UT specification documentation [plat_power_L2_Low-Level_TestSpecification.md](../docs/pages/powermanager_L2_Low-Level_TestSpecification.md)
+* Refer to UT specification documentation [plat_power_L2_Low-Level_TestSpecification.md](../docs/pages/power-manager_L2_Low-Level_TestSpec.md)
 */
 
 void test_l2_plat_power_SetAndGetPowerState(void)
@@ -142,7 +142,7 @@ void test_l2_plat_power_SetAndGetPowerState(void)
 * **Test Case ID:** 002@n
 *
 * **Test Procedure:**
-* Refer to UT specification documentation [plat_power_L2_Low-Level_TestSpecification.md](../docs/pages/powermanager_L2_Low-Level_TestSpecification.md)
+* Refer to UT specification documentation [plat_power_L2_Low-Level_TestSpecification.md](../docs/pages/power-manager_L2_Low-Level_TestSpec.md)
 */
 
 void test_l2_plat_power_SetAndGetWakeupSrc(void)

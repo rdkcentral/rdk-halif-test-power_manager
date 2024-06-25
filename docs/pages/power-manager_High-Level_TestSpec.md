@@ -1,10 +1,9 @@
-# Power Manager Test Document
+# Power Manager High Level Test Specification Documentation
 
 ## Table of Contents
 
 - [Acronyms, Terms and Abbreviations](#acronyms-terms-and-abbreviations)
 - [Introduction](#introduction)
-- [Module Description](#module-description)
 - [Testing Scope](#testing-scope)
   - [Set And Get Power States](#set-and-get-power-states)
   - [Set and Get Status of Wakeup Sources](#set-and-get-status-of-wakeup-sources)
@@ -21,10 +20,11 @@
 - `CEC` - Consumer Electronics Control
 - `LAN` - Local Area Network
 - `NA` - Not Applicable
+- `Y` - Yes
 
 ## Introduction
 
-This document provides an overview of the testing requirements for the Power Manager module. It outlines the scope of testing, objectives, testing levels and approaches, specific test requirements, control plane emulator requirements and expected deliverables.
+This document provides an overview of High Level testing requirements for the Power Manager module. It outlines the scope of testing, objectives, testing levels and approaches, specific test requirements, control plane emulator requirements and expected deliverables.
 
 Interface of the test is available here: [Power Manager HAL header](https://github.com/rdkcentral/rdk-halif-power_manager/blob/main/include/plat_power.h)
 
@@ -47,7 +47,7 @@ The Power manager Hal Spec document: [Power Manager HAL Spec](https://github.com
 
 |Description|HAL APIs|L2|L3|Control plane requirements|
 |-----------|--------|--|--|--------------------------|
-|Set various power states and retrieve it for verification based on the platform configuration file. For source devices, check with the "source_powerManager.yaml" using the path "powermanager.PowerStates" and for sink devices, check with the "sink_powerManager.yaml" using the path "powermanager.PowerStates" |PLAT_API_SetPowerState, PLAT_API_GetPowerState|Y|`NA`|`NA`|`NA`|
+|Set various power states and retrieve it for verification based on the platform configuration file. For source devices, check with the "source_powerManager.yaml" using the path "powermanager.PowerStates" and for sink devices, check with the "sink_powerManager.yaml" using the path "powermanager.PowerStates" |PLAT_API_SetPowerState, PLAT_API_GetPowerState|`Y`|`NA`|`NA`|
 
 ### Test Startup Requirement - Set And Get Power States
 
@@ -65,7 +65,7 @@ The Power manager Hal Spec document: [Power Manager HAL Spec](https://github.com
 
 |Description|HAL APIs|L2|L3|Control plane requirements|
 |-----------|--------|--|--|--------------------------|
-|Set status of various wakeup sources and retrieves status for verification based on the platform configuration. For source devices, check with the "source_powerManager.yaml" using the path "powermanager.WakeupSources" and for sink devices, check with the "sink_powerManager.yaml" using the path "powermanager.WakeupSources"|PLAT_API_SetWakeupSrc, PLAT_API_GetWakeupSrc|Y|`NA`|`NA`|`NA`|
+|Set status of various wakeup sources and retrieves status for verification based on the platform configuration. For source devices, check with the "source_powerManager.yaml" using the path "powermanager.WakeupSources" and for sink devices, check with the "sink_powerManager.yaml" using the path "powermanager.WakeupSources"|PLAT_API_SetWakeupSrc, PLAT_API_GetWakeupSrc|`Y`|`NA`|`NA`|
 
 ### Test Startup Requirement - Set and Get Status of Wakeup Sources
 
