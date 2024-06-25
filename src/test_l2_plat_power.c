@@ -73,8 +73,8 @@ static int gTestID = 1;
 /**
 * @brief Test for setting and getting power state in the power management module
 *
-* This test function first initializes the power management module using `PLAT_INIT` and checks if it returns `PWRMGR_SUCCESS`. 
-* Then it sets and gets the power state for each power state defined in `PWRMgr_PowerState_t` using `PLAT_API_SetPowerState` and 
+* This test function first initializes the power management module using `PLAT_INIT` and checks if it returns `PWRMGR_SUCCESS`.
+* Then it sets and gets the power state for each power state defined in `PWRMgr_PowerState_t` using `PLAT_API_SetPowerState` and
 * `PLAT_API_GetPowerState` respectively, and checks if the set and get operations are successful and the power state is as expected. Finally, it terminates the power management module using `PLAT_TERM` and checks if it returns `PWRMGR_SUCCESS`.
 *
 * **Test Group ID:** 02@n
@@ -101,7 +101,7 @@ void test_l2_plat_power_SetAndGetPowerState(void)
 
     countOfPowerState = ut_kvp_getUInt8Field(ut_kvp_profile_getInstance(), "powermanager.CountOfPowerState");
     UT_LOG_DEBUG ("Count Of Power States %d" , countOfPowerState);
- 
+
     for(int i = 0; i < countOfPowerState; i++){
         snprintf(keyvalue, POWER_MANAGER_KEY_SIZE, "powermanager.PowerStates/%d", i);
         powerState = ut_kvp_getUInt8Field(ut_kvp_profile_getInstance(), keyvalue);
@@ -155,7 +155,7 @@ void test_l2_plat_power_SetAndGetWakeupSrc(void)
     PWRMGR_WakeupSrcType_t srcType = PWRMGR_WAKEUPSRC_MAX;
     char keyvalue[POWER_MANAGER_KEY_SIZE] = {0};
     uint8_t countOfWakeupSources = 0;
-    
+
     UT_LOG_DEBUG("Invoking PLAT_INIT");
     status = PLAT_INIT();
     UT_LOG_DEBUG("Return status: %d", status);
@@ -201,7 +201,7 @@ void test_l2_plat_power_SetAndGetWakeupSrc(void)
         status = PLAT_API_GetWakeupSrc(srcType, &enable);
         UT_LOG_DEBUG("Return status: %d, enable: %d", status, enable);
         UT_ASSERT_EQUAL(status, PWRMGR_SUCCESS);
-        UT_ASSERT_EQUAL(enable, false);    
+        UT_ASSERT_EQUAL(enable, false);
     }
 
     UT_LOG_DEBUG("Invoking PLAT_TERM");
