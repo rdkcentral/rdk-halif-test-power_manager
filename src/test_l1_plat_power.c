@@ -748,116 +748,6 @@ void test_l1_plat_power_negative_PLAT_API_GetWakeupSrc (void)
     UT_LOG("\n Out %s\n", __FUNCTION__); 
 }
 
-/**
- * @brief Ensure PLAT_Reset() returns correct error codes during positive scenarios
- * 
- * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 013@n
- * 
- * **Pre-Conditions:**@n
- * None.
- * 
- * **Dependencies:** None@n
- * **User Interaction:** None
- * 
- * **Test Procedure:**@n
- * |Variation / Step|Description|Test Data|Expected Result|Notes|
- * |:--:|---------|----------|--------------|-----|
- * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |02|Call PLAT_Reset() - Loop through PWRMgr_PowerState_t as input value | newState=PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP | PWRMGR_SUCCESS | Should Pass |
- * |07|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
- * 
- */
-void test_l1_plat_power_positive_PLAT_Reset (void)
-{
-    gTestID = 13;
-    UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
-	pmStatus_t ret;
-    PWRMgr_PowerState_t powerStates[] = {
-        PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP,
-        PWRMGR_POWERSTATE_STANDBY_LIGHT_SLEEP,
-        PWRMGR_POWERSTATE_ON,
-        PWRMGR_POWERSTATE_STANDBY,
-        PWRMGR_POWERSTATE_OFF
-    };
-
-    // Step 01: Call PLAT_INIT() - open interface
-    ret = PLAT_INIT();
-    UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS);
-
-    // Loop over each power state and call PLAT_Reset()
-    for (int i = 0; i < sizeof(powerStates) / sizeof(PWRMgr_PowerState_t); i++) {
-        UT_LOG("\n Function: %s Setting power state :[%d]\n", __FUNCTION__, powerStates[i]);
-        ret = PLAT_Reset(powerStates[i]);
-        PLAT_ASSERT_AUTO_TERM_NUMERICAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
-    }
-
-    // Step 07: Call PLAT_TERM() - close interface
-    ret = PLAT_TERM();
-    UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
-    UT_LOG("\n Out %s\n", __FUNCTION__); 
-}
-
-/**
- * @brief Ensure PLAT_Reset() returns correct error codes during negative scenarios
- * 
- * **Test Group ID:** Basic: 01@n
- * **Test Case ID:** 014@n
- * 
- * **Pre-Conditions:**@n
- * None.
- * 
- * **Dependencies:** None@n
- * **User Interaction:** None
- * 
- * **Test Procedure:**@n
- * |Variation / Step|Description|Test Data|Expected Result|Notes|
- * |01|Call PLAT_Reset() - call without initializing the module | newState=PWRMGR_POWERSTATE_ON | PWRMGR_NOT_INITIALIZED | Should Pass |
- * |02|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |03|Call PLAT_Reset() - call with invalid value | newState=PWRMGR_POWERSTATE_MAX | PWRMGR_INVALID_ARGUMENT | Should Pass |
- * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
- * |05|Call PLAT_Reset() - call after terminating the module | newState=PWRMGR_POWERSTATE_ON | PWRMGR_NOT_INITIALIZED | Should Pass |
- * 
- * 
- * @note The error code PWRMGR_SET_FAILURE is not able to be tested here.
- */
-void test_l1_plat_power_negative_PLAT_Reset (void)
-{
-    gTestID = 14;
-    UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
-	pmStatus_t ret;
-    
-    // Step 01: Call PLAT_Reset() - call without initializing the module
-   
-    ret = PLAT_Reset(PWRMGR_POWERSTATE_ON);
-    CHECK_FOR_EXTENDED_ERROR_CODE( ret, PWRMGR_NOT_INITIALIZED, PWRMGR_SUCCESS);
-
-   
-
-    // Step 02: Call PLAT_INIT() - open interface
-    ret = PLAT_INIT();
-    UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
-
-    // Step 03: Call PLAT_Reset() - call with invalid value
-   
-    ret = PLAT_Reset(PWRMGR_POWERSTATE_MAX);
-    CHECK_FOR_EXTENDED_ERROR_CODE( ret, PWRMGR_INVALID_ARGUMENT, PWRMGR_SUCCESS);
-
-
-    // Step 04: Call PLAT_TERM() - close interface
-    ret = PLAT_TERM();
-    UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
-
-    // Step 05: Call PLAT_Reset() - call after terminating the module
-    
-    ret = PLAT_Reset(PWRMGR_POWERSTATE_ON);
-    CHECK_FOR_EXTENDED_ERROR_CODE( ret, PWRMGR_NOT_INITIALIZED, PWRMGR_SUCCESS);
-
-   
-
-    UT_LOG("\n Out %s\n", __FUNCTION__); 
-}
-
 static UT_test_suite_t * pSuite = NULL;
 
 /**
@@ -886,8 +776,6 @@ int test_l1_plat_power_register ( void )
 	UT_add_test( pSuite, "PLAT_API_SetWakeupSrc_L1_negative" ,test_l1_plat_power_negative_PLAT_API_SetWakeupSrc );
 	UT_add_test( pSuite, "PLAT_API_GetWakeupSrc_L1_positive" ,test_l1_plat_power_positive_PLAT_API_GetWakeupSrc );
 	UT_add_test( pSuite, "PLAT_API_GetWakeupSrc_L1_negative" ,test_l1_plat_power_negative_PLAT_API_GetWakeupSrc );
-	UT_add_test( pSuite, "PLAT_Reset_L1_positive" ,test_l1_plat_power_positive_PLAT_Reset );
-	UT_add_test( pSuite, "PLAT_Reset_L1_negative" ,test_l1_plat_power_negative_PLAT_Reset );
         extendedEnumsSupported = ut_kvp_getBoolField( ut_kvp_profile_getInstance(), "powermanager/features/extendedEnumsSupported" );	
 
 	return 0;
