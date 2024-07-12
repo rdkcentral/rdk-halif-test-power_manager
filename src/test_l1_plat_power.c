@@ -767,7 +767,7 @@ void test_l1_plat_power_negative_PLAT_API_GetWakeupSrc (void)
  * |02|Call PLAT_Reset() - Loop through PWRMgr_PowerState_t as input value | newState=PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP | PWRMGR_SUCCESS | Should Pass |
  * |07|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * 
- * @note PLAT_Reset() is deprecated.
+ * @note This test case is deprecated.
  */
 void test_l1_plat_power_positive_PLAT_Reset (void)
 {
@@ -819,7 +819,7 @@ void test_l1_plat_power_positive_PLAT_Reset (void)
  * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * |05|Call PLAT_Reset() - call after terminating the module | newState=PWRMGR_POWERSTATE_ON | PWRMGR_NOT_INITIALIZED | Should Pass |
  * 
- * @note PLAT_Reset() is deprecated.
+ * @note This test case is deprecated.
  * @note The error code PWRMGR_SET_FAILURE is not able to be tested here.
  */
 void test_l1_plat_power_negative_PLAT_Reset (void)
