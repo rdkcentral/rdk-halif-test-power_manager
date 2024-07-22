@@ -72,18 +72,9 @@
 #include <ut_log.h>
 #include "ut_kvp_profile.h"
 
-
 static int gTestGroup = 1;
 static int gTestID = 1;
 static bool extendedEnumsSupported=false; 
-
-#define PLAT_ASSERT_AUTO_TERM_NUMERICAL(value, comparison){\
-      if(value != comparison){\
-	        UT_LOG("\n In %s Comparison: [%d = %d]\n", __FUNCTION__, value, comparison);\
-		PLAT_TERM();\
-		UT_FAIL_FATAL();\
-      }\
-}\
 
 #define CHECK_FOR_EXTENDED_ERROR_CODE( result, enhanced, old )\
 {\
@@ -176,7 +167,6 @@ void test_l1_plat_power_negative_PLAT_INIT (void)
 
     UT_LOG("\n Out %s\n", __FUNCTION__); 
 }
-
 
 /**
  * @brief Ensure PLAT_TERM() returns correct error codes during positive scenarios
@@ -302,7 +292,7 @@ void test_l1_plat_power_positive_PLAT_API_SetPowerState (void)
     for (int i = 0; i < (sizeof(powerStates)/sizeof(powerStates[0])); i++) {
         UT_LOG("\n Function: %s Setting power state :[%d]\n", __FUNCTION__, powerStates[i]);
         ret = PLAT_API_SetPowerState(powerStates[i]);
-        PLAT_ASSERT_AUTO_TERM_NUMERICAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
+        UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
     }
 
     // Variation/Step 07: Call PLAT_TERM() - close interface
@@ -352,18 +342,14 @@ void test_l1_plat_power_negative_PLAT_API_SetPowerState (void)
     ret = PLAT_API_SetPowerState(PWRMGR_POWERSTATE_MAX);
     CHECK_FOR_EXTENDED_ERROR_CODE( ret, PWRMGR_INVALID_ARGUMENT, PWRMGR_SUCCESS);
 
-    
-
     // Variation/Step 04: Call PLAT_TERM() - close interface
     ret = PLAT_TERM();
     UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
 
-    // Variation/Step 05: Call PLAT_API_SetPowerState() - call after terminating the module
-   
+    // Variation/Step 05: Call PLAT_API_SetPowerState() - call after terminating the module   
     ret = PLAT_API_SetPowerState(PWRMGR_POWERSTATE_ON);
     CHECK_FOR_EXTENDED_ERROR_CODE( ret, PWRMGR_NOT_INITIALIZED, PWRMGR_SUCCESS);
 
-    
     UT_LOG("\n Out %s\n", __FUNCTION__); 
 }
 
@@ -394,7 +380,7 @@ void test_l1_plat_power_positive_PLAT_API_GetPowerState (void)
 {
     gTestID = 7;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
-	pmStatus_t ret;
+    pmStatus_t ret;
     PWRMgr_PowerState_t state1, state2;
 
     // Variation/Step 01: Call PLAT_INIT() - open interface
@@ -403,14 +389,14 @@ void test_l1_plat_power_positive_PLAT_API_GetPowerState (void)
 
     // Variation/Step 02: Call PLAT_API_GetPowerState() - get power state
     ret = PLAT_API_GetPowerState(&state1);
-    PLAT_ASSERT_AUTO_TERM_NUMERICAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
+    UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
 
     // Variation/Step 03: Call PLAT_API_GetPowerState() - get power state
     ret = PLAT_API_GetPowerState(&state2);
-    PLAT_ASSERT_AUTO_TERM_NUMERICAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
+    UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
 
     // Variation/Step 04: Verify that PLAT_API_GetPowerState() calls return the same value
-    PLAT_ASSERT_AUTO_TERM_NUMERICAL(state1, state2); // Ensure both states are the same
+    UT_ASSERT_EQUAL(state1, state2); // Ensure both states are the same
 
     // Variation/Step 05: Call PLAT_TERM() - close interface
     ret = PLAT_TERM();
@@ -445,32 +431,26 @@ void test_l1_plat_power_negative_PLAT_API_GetPowerState (void)
 {
     gTestID = 8;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
-	pmStatus_t ret;
+    pmStatus_t ret;
     PWRMgr_PowerState_t state;
 
     // Variation/Step 01: Call PLAT_API_GetPowerState() - call without initializing the module
-    
     ret = PLAT_API_GetPowerState(&state);
     CHECK_FOR_EXTENDED_ERROR_CODE( ret, PWRMGR_NOT_INITIALIZED, PWRMGR_SUCCESS);
 
-    
     // Variation/Step 02: Call PLAT_INIT() - open interface
     ret = PLAT_INIT();
     UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
 
-    // Variation/Step 03: Call PLAT_API_GetPowerState() - call with NULL pointer
-    
+    // Variation/Step 03: Call PLAT_API_GetPowerState() - call with NULL pointer    
     ret = PLAT_API_GetPowerState(NULL);
     CHECK_FOR_EXTENDED_ERROR_CODE( ret, PWRMGR_INVALID_ARGUMENT, PWRMGR_SUCCESS);
-
-   
 
     // Variation/Step 04: Call PLAT_TERM() - close interface
     ret = PLAT_TERM();
     UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
 
-    // Variation/Step 05: Call PLAT_API_GetPowerState() - call after terminating the module
-    
+    // Variation/Step 05: Call PLAT_API_GetPowerState() - call after terminating the module    
     ret = PLAT_API_GetPowerState(&state);
     CHECK_FOR_EXTENDED_ERROR_CODE( ret, PWRMGR_NOT_INITIALIZED, PWRMGR_SUCCESS);
    
@@ -543,7 +523,7 @@ void test_l1_plat_power_positive_PLAT_API_SetWakeupSrc (void)
             UT_LOG("\n Function: %s Wake up source is not supported\n", __FUNCTION__);
         } 
         else{
-            PLAT_ASSERT_AUTO_TERM_NUMERICAL(ret, PWRMGR_SUCCESS);
+            UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS);
         }
 
     }
@@ -586,13 +566,11 @@ void test_l1_plat_power_negative_PLAT_API_SetWakeupSrc (void)
     ret = PLAT_API_SetWakeupSrc(PWRMGR_WAKEUPSRC_VOICE, false);
     CHECK_FOR_EXTENDED_ERROR_CODE( ret, PWRMGR_NOT_INITIALIZED, PWRMGR_SUCCESS);
     
-
     // Variation/Step 02: Call PLAT_INIT() - open interface
     ret = PLAT_INIT();
     UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
 
     // Variation/Step 03: Call PLAT_API_SetWakeupSrc() - call with invalid value
-   
     ret = PLAT_API_SetWakeupSrc(PWRMGR_WAKEUPSRC_MAX, false);
     CHECK_FOR_EXTENDED_ERROR_CODE( ret, PWRMGR_INVALID_ARGUMENT, PWRMGR_SUCCESS);
 
@@ -601,11 +579,9 @@ void test_l1_plat_power_negative_PLAT_API_SetWakeupSrc (void)
     UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
 
     // Variation/Step 05: Call PLAT_API_SetWakeupSrc() - call after terminating the module
-   
     ret = PLAT_API_SetWakeupSrc(PWRMGR_WAKEUPSRC_VOICE, false);
     CHECK_FOR_EXTENDED_ERROR_CODE( ret, PWRMGR_NOT_INITIALIZED, PWRMGR_SUCCESS);
 
-   
     UT_LOG("\n Out %s\n", __FUNCTION__); 
 }
 
@@ -664,7 +640,7 @@ void test_l1_plat_power_positive_PLAT_API_GetWakeupSrc (void)
         ret = PLAT_API_GetWakeupSrc(sources[i], &enable1);
 
 	if(ret != PWRMGR_OPERATION_NOT_SUPPORTED) {
-	   PLAT_ASSERT_AUTO_TERM_NUMERICAL(ret, PWRMGR_SUCCESS);
+	   UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS);
            if (i == (sizeof(sources)/sizeof(sources[0])) - 2) {
             // Save the result from the penultimate call
             enable2 = enable1;
@@ -678,7 +654,7 @@ void test_l1_plat_power_positive_PLAT_API_GetWakeupSrc (void)
 
     // Step 12: Verify that the last two PLAT_API_GetWakeupSrc() calls return the same value
     if (lan_support){
-      PLAT_ASSERT_AUTO_TERM_NUMERICAL(enable1, enable2);
+      UT_ASSERT_EQUAL(enable1, enable2);
     }
 
     // Step 13: Call PLAT_TERM() - close interface
@@ -722,35 +698,28 @@ void test_l1_plat_power_negative_PLAT_API_GetWakeupSrc (void)
     ret = PLAT_API_GetWakeupSrc(srcType, &enable);
     CHECK_FOR_EXTENDED_ERROR_CODE( ret, PWRMGR_NOT_INITIALIZED, PWRMGR_SUCCESS);
 
-   
-
     // Variation/Step 02: Call PLAT_INIT() - open interface
     ret = PLAT_INIT();
     UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
 
-    // Variation/Step 03: Call PLAT_API_GetWakeupSrc() - call with NULL pointer
-    
+    // Variation/Step 03: Call PLAT_API_GetWakeupSrc() - call with NULL pointer    
     ret = PLAT_API_GetWakeupSrc(srcType, NULL);
     CHECK_FOR_EXTENDED_ERROR_CODE( ret, PWRMGR_INVALID_ARGUMENT, PWRMGR_SUCCESS);
-
-    
 
     // Variation/Step 04: Call PLAT_TERM() - close interface
     ret = PLAT_TERM();
     UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
 
     // Variation/Step 05: Call PLAT_API_GetWakeupSrc() - call after terminating the module
-   
     ret = PLAT_API_GetWakeupSrc(srcType, &enable);
     CHECK_FOR_EXTENDED_ERROR_CODE( ret, PWRMGR_NOT_INITIALIZED, PWRMGR_SUCCESS);
 
-   
     UT_LOG("\n Out %s\n", __FUNCTION__); 
 }
 
 /**
  * @brief Ensure PLAT_Reset() returns correct error codes during positive scenarios
- * 
+ *
  * **Test Group ID:** Basic: 01@n
  * **Test Case ID:** 013@n
  * 
@@ -767,6 +736,7 @@ void test_l1_plat_power_negative_PLAT_API_GetWakeupSrc (void)
  * |02|Call PLAT_Reset() - Loop through PWRMgr_PowerState_t as input value | newState=PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP | PWRMGR_SUCCESS | Should Pass |
  * |07|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * 
+ * @note This test case is deprecated.
  */
 void test_l1_plat_power_positive_PLAT_Reset (void)
 {
@@ -789,7 +759,7 @@ void test_l1_plat_power_positive_PLAT_Reset (void)
     for (int i = 0; i < sizeof(powerStates) / sizeof(PWRMgr_PowerState_t); i++) {
         UT_LOG("\n Function: %s Setting power state :[%d]\n", __FUNCTION__, powerStates[i]);
         ret = PLAT_Reset(powerStates[i]);
-        PLAT_ASSERT_AUTO_TERM_NUMERICAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
+        UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
     }
 
     // Step 07: Call PLAT_TERM() - close interface
@@ -800,7 +770,7 @@ void test_l1_plat_power_positive_PLAT_Reset (void)
 
 /**
  * @brief Ensure PLAT_Reset() returns correct error codes during negative scenarios
- * 
+ *
  * **Test Group ID:** Basic: 01@n
  * **Test Case ID:** 014@n
  * 
@@ -818,42 +788,34 @@ void test_l1_plat_power_positive_PLAT_Reset (void)
  * |04|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * |05|Call PLAT_Reset() - call after terminating the module | newState=PWRMGR_POWERSTATE_ON | PWRMGR_NOT_INITIALIZED | Should Pass |
  * 
- * 
+ * @note This test case is deprecated.
  * @note The error code PWRMGR_SET_FAILURE is not able to be tested here.
  */
 void test_l1_plat_power_negative_PLAT_Reset (void)
 {
     gTestID = 14;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
-	pmStatus_t ret;
+    pmStatus_t ret;
     
     // Step 01: Call PLAT_Reset() - call without initializing the module
-   
     ret = PLAT_Reset(PWRMGR_POWERSTATE_ON);
     CHECK_FOR_EXTENDED_ERROR_CODE( ret, PWRMGR_NOT_INITIALIZED, PWRMGR_SUCCESS);
-
-   
 
     // Step 02: Call PLAT_INIT() - open interface
     ret = PLAT_INIT();
     UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
 
-    // Step 03: Call PLAT_Reset() - call with invalid value
-   
+    // Step 03: Call PLAT_Reset() - call with invalid value   
     ret = PLAT_Reset(PWRMGR_POWERSTATE_MAX);
     CHECK_FOR_EXTENDED_ERROR_CODE( ret, PWRMGR_INVALID_ARGUMENT, PWRMGR_SUCCESS);
-
 
     // Step 04: Call PLAT_TERM() - close interface
     ret = PLAT_TERM();
     UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
 
-    // Step 05: Call PLAT_Reset() - call after terminating the module
-    
+    // Step 05: Call PLAT_Reset() - call after terminating the module    
     ret = PLAT_Reset(PWRMGR_POWERSTATE_ON);
     CHECK_FOR_EXTENDED_ERROR_CODE( ret, PWRMGR_NOT_INITIALIZED, PWRMGR_SUCCESS);
-
-   
 
     UT_LOG("\n Out %s\n", __FUNCTION__); 
 }
