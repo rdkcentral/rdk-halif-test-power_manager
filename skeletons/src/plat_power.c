@@ -59,6 +59,7 @@ pmStatus_t PLAT_API_GetWakeupSrc(PWRMGR_WakeupSrcType_t srcType, bool* enable)
   return (pmStatus_t)0;
 }
 
+/* PLAT_Reset() is deprecated */
 pmStatus_t PLAT_Reset(PWRMgr_PowerState_t newState)
 {
   /*TODO: Implement Me!*/
