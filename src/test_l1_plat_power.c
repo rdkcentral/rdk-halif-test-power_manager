@@ -72,6 +72,8 @@
 #include <ut_log.h>
 #include "ut_kvp_profile.h"
 
+#define POWER_MANAGER_KEY_SIZE 50
+
 static int gTestGroup = 1;
 static int gTestID = 1;
 static bool extendedEnumsSupported=false; 
@@ -111,7 +113,7 @@ void test_l1_plat_power_positive_PLAT_INIT (void)
 {
     gTestID = 1;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID); 
-	pmStatus_t ret;
+    pmStatus_t ret;
 
     // Variation/Step 01: Call PLAT_INIT() - open interface
     ret = PLAT_INIT();
@@ -191,7 +193,7 @@ void test_l1_plat_power_positive_PLAT_TERM (void)
 {
     gTestID = 3;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
-	 pmStatus_t ret;
+    pmStatus_t ret;
 
     // Variation/Step 01: Call PLAT_INIT() - open interface
     ret = PLAT_INIT();
@@ -229,7 +231,7 @@ void test_l1_plat_power_negative_PLAT_TERM (void)
 {
     gTestID = 4;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
-	pmStatus_t ret;
+    pmStatus_t ret;
 
     // Variation/Step 01: Call PLAT_TERM() - close interface without initializing
     ret = PLAT_TERM();
@@ -266,7 +268,7 @@ void test_l1_plat_power_negative_PLAT_TERM (void)
  * |Variation / Step|Description|Test Data|Expected Result|Notes|
  * |:--:|---------|----------|--------------|-----|
  * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
- * |02|Call PLAT_API_SetPowerState() - Loop through and set for all values in PWRMgr_PowerState_t | newState=PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP | PWRMGR_SUCCESS | Should Pass |
+ * |02|Call PLAT_API_SetPowerState() - Iterate through various power states fetched from the KVP profile | newState=PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP | PWRMGR_SUCCESS | Should Pass |
  * |07|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * 
  */
@@ -274,24 +276,24 @@ void test_l1_plat_power_positive_PLAT_API_SetPowerState (void)
 {
     gTestID = 5;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
-	pmStatus_t ret;
+    pmStatus_t ret;
+    PWRMgr_PowerState_t powerState;
+    char keyvalue[POWER_MANAGER_KEY_SIZE] = {0};
+    uint8_t countOfPowerState = 0;
+
+    countOfPowerState = UT_KVP_PROFILE_GET_UINT32("powermanager/CountOfPowerState");
+    UT_LOG_DEBUG ("Count Of Power States %d" , countOfPowerState);
 
     // Variation/Step 01: Call PLAT_INIT() - open interface
     ret = PLAT_INIT();
     UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
 
-    PWRMgr_PowerState_t powerStates[] = {
-        PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP,
-        PWRMGR_POWERSTATE_STANDBY_LIGHT_SLEEP,
-        PWRMGR_POWERSTATE_ON,
-        PWRMGR_POWERSTATE_STANDBY,
-        PWRMGR_POWERSTATE_OFF
-    };
-
-    // Variation/step 02-06: Call PLAT_API_SetPowerState() - set a power state
-    for (int i = 0; i < (sizeof(powerStates)/sizeof(powerStates[0])); i++) {
-        UT_LOG("\n Function: %s Setting power state :[%d]\n", __FUNCTION__, powerStates[i]);
-        ret = PLAT_API_SetPowerState(powerStates[i]);
+    // Variation/step 02-06:Call PLAT_API_SetPowerState() -Iterate through various power states fetched from the KVP profile
+    for(int i = 0; i < countOfPowerState; i++) {
+        snprintf(keyvalue, POWER_MANAGER_KEY_SIZE, "powermanager/PowerStates/%d", i);
+        powerState = UT_KVP_PROFILE_GET_UINT32(keyvalue);
+	UT_LOG_DEBUG("Invoking PLAT_API_SetPowerState with powerState: %d", powerState);
+        ret = PLAT_API_SetPowerState(powerState);
         UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
     }
 
@@ -612,7 +614,7 @@ void test_l1_plat_power_positive_PLAT_API_GetWakeupSrc (void)
 {
     gTestID = 11;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
-	pmStatus_t ret;
+    pmStatus_t ret;
     bool enable1, enable2;
     bool lan_support = 0;
 
@@ -690,7 +692,7 @@ void test_l1_plat_power_negative_PLAT_API_GetWakeupSrc (void)
 {
     gTestID = 12;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
-	pmStatus_t ret;
+    pmStatus_t ret;
     bool enable;
     PWRMGR_WakeupSrcType_t srcType = PWRMGR_WAKEUPSRC_VOICE; // You can choose any valid srcType for this test
 
@@ -742,23 +744,24 @@ void test_l1_plat_power_positive_PLAT_Reset (void)
 {
     gTestID = 13;
     UT_LOG("\n In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
-	pmStatus_t ret;
-    PWRMgr_PowerState_t powerStates[] = {
-        PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP,
-        PWRMGR_POWERSTATE_STANDBY_LIGHT_SLEEP,
-        PWRMGR_POWERSTATE_ON,
-        PWRMGR_POWERSTATE_STANDBY,
-        PWRMGR_POWERSTATE_OFF
-    };
+    pmStatus_t ret;
+    char keyvalue[POWER_MANAGER_KEY_SIZE] = {0};
+    uint8_t countOfPowerState = 0;
+    PWRMgr_PowerState_t powerState;
+
+    countOfPowerState = UT_KVP_PROFILE_GET_UINT32("powermanager/CountOfPowerState");
+    UT_LOG_DEBUG ("Count Of Power States %d" , countOfPowerState);
 
     // Step 01: Call PLAT_INIT() - open interface
     ret = PLAT_INIT();
     UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS);
 
     // Loop over each power state and call PLAT_Reset()
-    for (int i = 0; i < sizeof(powerStates) / sizeof(PWRMgr_PowerState_t); i++) {
-        UT_LOG("\n Function: %s Setting power state :[%d]\n", __FUNCTION__, powerStates[i]);
-        ret = PLAT_Reset(powerStates[i]);
+    for(int i = 0; i < countOfPowerState; i++) {
+	snprintf(keyvalue, POWER_MANAGER_KEY_SIZE, "powermanager/PowerStates/%d", i);
+        powerState = UT_KVP_PROFILE_GET_UINT32(keyvalue);
+        UT_LOG_DEBUG("Invoking PLAT_API_SetPowerState with powerState: %d", powerState);
+        ret = PLAT_Reset(powerState);
         UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
     }
 
