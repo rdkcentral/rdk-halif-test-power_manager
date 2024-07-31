@@ -269,7 +269,7 @@ void test_l1_plat_power_negative_PLAT_TERM (void)
  * |:--:|---------|----------|--------------|-----|
  * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
  * |02|Call PLAT_API_SetPowerState() - Iterate through various power states fetched from the profile file | newState=PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP | PWRMGR_SUCCESS | Should Pass |
- * |07|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * |03|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * 
  */
 void test_l1_plat_power_positive_PLAT_API_SetPowerState (void)
@@ -288,7 +288,7 @@ void test_l1_plat_power_positive_PLAT_API_SetPowerState (void)
     ret = PLAT_INIT();
     UT_ASSERT_EQUAL_FATAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
 
-    // Variation/step 02-06:Call PLAT_API_SetPowerState() -Iterate through various power states fetched from the profile file
+    // Variation/step 02:Call PLAT_API_SetPowerState() -Iterate through various power states fetched from the profile file
     for(int i = 0; i < countOfPowerState; i++) {
         snprintf(keyvalue, POWER_MANAGER_KEY_SIZE, "powermanager/PowerStates/%d", i);
         powerState = UT_KVP_PROFILE_GET_UINT32(keyvalue);
@@ -297,7 +297,7 @@ void test_l1_plat_power_positive_PLAT_API_SetPowerState (void)
         UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
     }
 
-    // Variation/Step 07: Call PLAT_TERM() - close interface
+    // Variation/Step 03: Call PLAT_TERM() - close interface
     ret = PLAT_TERM();
     UT_ASSERT_EQUAL_FATAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
     UT_LOG("\n Out %s\n", __FUNCTION__); 
@@ -739,7 +739,7 @@ void test_l1_plat_power_negative_PLAT_API_GetWakeupSrc (void)
  * |:--:|---------|----------|--------------|-----|
  * |01|Call PLAT_INIT() - open interface | | PWRMGR_SUCCESS | Should Pass |
  * |02|Call PLAT_Reset() - Loop through PWRMgr_PowerState_t as input value | newState=PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP | PWRMGR_SUCCESS | Should Pass |
- * |07|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
+ * |03|Call PLAT_TERM() - close interface | | PWRMGR_SUCCESS | Should Pass |
  * 
  * @note This test case is deprecated.
  */
@@ -759,7 +759,7 @@ void test_l1_plat_power_positive_PLAT_Reset (void)
     ret = PLAT_INIT();
     UT_ASSERT_EQUAL_FATAL(ret, PWRMGR_SUCCESS);
 
-    // Loop over each power state and call PLAT_Reset()
+    // Step 02: Loop over each power state and call PLAT_Reset()
     for(int i = 0; i < countOfPowerState; i++) {
 	snprintf(keyvalue, POWER_MANAGER_KEY_SIZE, "powermanager/PowerStates/%d", i);
         powerState = UT_KVP_PROFILE_GET_UINT32(keyvalue);
@@ -768,7 +768,7 @@ void test_l1_plat_power_positive_PLAT_Reset (void)
         UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
     }
 
-    // Step 07: Call PLAT_TERM() - close interface
+    // Step 03: Call PLAT_TERM() - close interface
     ret = PLAT_TERM();
     UT_ASSERT_EQUAL_FATAL(ret, PWRMGR_SUCCESS); // Ensure the returned value is PWRMGR_SUCCESS
     UT_LOG("\n Out %s\n", __FUNCTION__); 
