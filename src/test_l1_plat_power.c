@@ -71,7 +71,7 @@
 #include <ut.h>
 #include <ut_log.h>
 #include "ut_kvp_profile.h"
-  
+ 
 #define POWER_MANAGER_KEY_SIZE 50
 
 static int gTestGroup = 1;
@@ -496,7 +496,7 @@ void test_l1_plat_power_positive_PLAT_API_SetWakeupSrc (void)
 
     for(int i = 0; i < countOfWakeupSources; i++){
         snprintf(keyvalue, POWER_MANAGER_KEY_SIZE, "powermanager/WakeupSources/%d", i);
-        srcType =(PWRMgr_PowerState_t)UT_KVP_PROFILE_GET_UINT32(keyvalue);
+        srcType =(PWRMGR_WakeupSrcType_t)UT_KVP_PROFILE_GET_UINT32(keyvalue);
         ret = PLAT_API_SetWakeupSrc(srcType, false);
         UT_LOG_DEBUG("Return status: %d", ret);
         if(ret == PWRMGR_OPERATION_NOT_SUPPORTED){
@@ -512,7 +512,7 @@ void test_l1_plat_power_positive_PLAT_API_SetWakeupSrc (void)
     // Step 03:Loop through all wakeup sources and set to true
     for(int i = 0; i < countOfWakeupSources; i++){
         snprintf(keyvalue, POWER_MANAGER_KEY_SIZE, "powermanager/WakeupSources/%d", i);
-        srcType =(PWRMgr_PowerState_t)UT_KVP_PROFILE_GET_UINT32(keyvalue);
+        srcType =(PWRMGR_WakeupSrcType_t)UT_KVP_PROFILE_GET_UINT32(keyvalue);
     	ret = PLAT_API_SetWakeupSrc(srcType, true);
         UT_LOG_DEBUG("Return status: %d", ret);
         if(ret == PWRMGR_OPERATION_NOT_SUPPORTED){
@@ -627,7 +627,7 @@ void test_l1_plat_power_positive_PLAT_API_GetWakeupSrc (void)
     //Step 03:Getting and setting supported wakeup sources, then verifying their states
     for(int i = 0; i < countOfWakeupSources; i++){
         snprintf(keyvalue, POWER_MANAGER_KEY_SIZE, "powermanager/WakeupSources/%d", i);
-        srcType =(PWRMgr_PowerState_t)UT_KVP_PROFILE_GET_UINT32(keyvalue);
+        srcType =(PWRMGR_WakeupSrcType_t)UT_KVP_PROFILE_GET_UINT32(keyvalue);
         UT_LOG_DEBUG("Invoking PLAT_API_SetWakeupSrc with srcType: %d and enable: true", srcType);
 
         ret = PLAT_API_SetWakeupSrc(srcType, true);
