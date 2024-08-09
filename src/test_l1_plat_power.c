@@ -635,7 +635,7 @@ void test_l1_plat_power_positive_PLAT_API_GetWakeupSrc (void)
         UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS);
         if (ret != PWRMGR_SUCCESS) {
             UT_LOG_ERROR("Failed to set Wakeup Src");
-            continue;
+
         }
 
        UT_LOG_DEBUG("Invoking PLAT_API_GetWakeupSrc with srcType: %d", srcType);
@@ -650,7 +650,7 @@ void test_l1_plat_power_positive_PLAT_API_GetWakeupSrc (void)
        UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS);
        if (ret != PWRMGR_SUCCESS) {
             UT_LOG_ERROR("Failed to set Wakeup Src");
-            continue;
+
        }
 
        UT_LOG_DEBUG("Invoking PLAT_API_GetWakeupSrc with srcType: %d", srcType);
