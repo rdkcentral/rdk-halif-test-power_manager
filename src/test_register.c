@@ -93,6 +93,16 @@ int UT_register_APIDEF_l2_tests( void )
 	return registerFailed;
 }
 
+/* Register UT Functions */
+int UT_register_APIDEF_l3_tests( void )
+{
+	int registerFailed=0;
+
+	registerFailed |= test_l3_plat_power_register();
+
+	return registerFailed;
+}
+
 /** @} */ // End of PLAT_POWER_HALTEST_REGISTER
 /** @} */ // End of POWER_MANAGER_HALTEST
 /** @} */ // End of POWER_MANAGER
