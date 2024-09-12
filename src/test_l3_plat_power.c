@@ -215,7 +215,8 @@ void test_l3_power_manager_hal_Set_Wakeup_Source(void)
    UT_LOG_INFO("Result PLAT_API_SetWakeupSrc: pmStatus_t:[%s]",
                 UT_Control_GetMapString(pmStatus_mapTable, status));
 
-   UT_LOG_INFO("Out %s\n", __FUNCTION__);
+   exit:
+    UT_LOG_INFO("Out %s", __FUNCTION__);
 }
 
 /**
