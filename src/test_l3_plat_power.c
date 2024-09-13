@@ -67,6 +67,7 @@
 #include "plat_power.h"
 
 #define POWER_MANAGER_KEY_SIZE 50
+#define UT_LOG_MENU_INFO UT_LOG_INFO
 
 static int gTestGroup = 3;
 static int gTestID = 1;
