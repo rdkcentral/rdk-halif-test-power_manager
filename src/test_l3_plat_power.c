@@ -63,6 +63,7 @@
 #include <ut.h>
 #include <ut_log.h>
 #include <ut_kvp_profile.h>
+#include <ut_control_plane.h>
 #include "plat_power.h"
 
 #define POWER_MANAGER_KEY_SIZE 50
