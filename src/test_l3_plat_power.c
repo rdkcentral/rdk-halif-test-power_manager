@@ -283,7 +283,7 @@ void test_l3_power_manager_hal_Get_Wakeup_Source(void)
    else{
     UT_LOG_MENU_INFO("\t%d.  %-20s is %s", sourceType, UT_Control_GetMapString(plat_source_types_mapTable, sourceType), enable ? "enabled" : "disabled");
    }
-
+   exit:
    UT_LOG_INFO("Out %s\n", __FUNCTION__);
 }
 
