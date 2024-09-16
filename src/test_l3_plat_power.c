@@ -274,7 +274,7 @@ void test_l3_power_manager_hal_Get_Wakeup_Source(void)
    PWRMGR_WakeupSrcType_t srcType = (PWRMGR_WakeupSrcType_t)sourceType;
    // Step 2: Call PLAT_API_GetWakeupSrc()
    UT_LOG_INFO("Calling PLAT_API_GetWakeupSrc()");
-   status = PLAT_API_GetWakeupSrc(srcType,*enable);
+   status = PLAT_API_GetWakeupSrc(srcType,&enable);
    if ((status != PWRMGR_SUCCESS ))
    {
        UT_LOG_INFO("Result PLAT_API_GetWakeupSrc: pmStatus_t:[%s]",
