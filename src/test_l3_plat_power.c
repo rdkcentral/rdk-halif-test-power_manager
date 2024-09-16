@@ -40,11 +40,11 @@
  */
 
 /**
- * @defgroup PLAT_POWER_HALTEST_L2 Power Manager HAL Tests L2 File
+ * @defgroup PLAT_POWER_HALTEST_L3 Power Manager HAL Tests L3 File
  * @{
  * @parblock
  *
- * ### L2 Tests for Power Manager HAL :
+ * ### L3 Tests for Power Manager HAL :
  *
  * Level 2 unit test cases for all APIs of Power Manager HAL
  *
@@ -56,7 +56,7 @@
  * @endparblock
  */
 /**
-* @file test_l2_plat_power.c
+* @file test_L3_plat_power.c
 *
 */
 
@@ -142,6 +142,7 @@ void test_l3_power_manager_hal_Init(void)
    UT_LOG_INFO("In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
 
    // Step 1: Call PLAT_INIT()
+   UT_LOG_INFO("Calling PLAT_INIT()");
    status = PLAT_INIT();
    UT_LOG_INFO("Result PLAT_INIT: pmStatus_t:[%s]",
                 UT_Control_GetMapString(pmStatus_mapTable, status));
@@ -150,7 +151,7 @@ void test_l3_power_manager_hal_Init(void)
 }
 
 /**
-* @brief Initialization of the HAL Power Manager Module
+* @brief Use case of set wake up source of the HAL Power Manager Module
 *
 * This test provides a scope to set what wake up sources are active.
 
@@ -177,7 +178,7 @@ void test_l3_power_manager_hal_Set_Wakeup_Source(void)
    int32_t  sourceType =0;
    int  enableGet = false;
 
-
+    //Step 1: Get the Wakeup Source Type
    UT_LOG_MENU_INFO("----------------------------------------------------------");
    UT_LOG_MENU_INFO("Supported Wake Up Source Types");
    UT_LOG_MENU_INFO("----------------------------------------------------------");
@@ -196,6 +197,8 @@ void test_l3_power_manager_hal_Set_Wakeup_Source(void)
             goto exit;
         }
    PWRMGR_WakeupSrcType_t srcType = (PWRMGR_WakeupSrcType_t)sourceType;
+
+   //Step 2: Get the Enable/Disable Wakeup Source
    UT_LOG_MENU_INFO("----------------------------------------------------------");
    UT_LOG_MENU_INFO("Supported Wake Up Source Types enabled/disabled");
    UT_LOG_MENU_INFO("----------------------------------------------------------");
@@ -212,7 +215,8 @@ void test_l3_power_manager_hal_Set_Wakeup_Source(void)
             goto exit;
         }
     bool enable = (bool)enableGet;
-   // Step 1: Call PLAT_DS_INIT()
+   // Step 3: Call PLAT_API_SetWakeupSrc()
+   UT_LOG_INFO("Calling PLAT_API_SetWakeupSrc()");
    status = PLAT_API_SetWakeupSrc( srcType, enable );
    UT_LOG_INFO("Result PLAT_API_SetWakeupSrc: pmStatus_t:[%s]",
                 UT_Control_GetMapString(pmStatus_mapTable, status));
@@ -222,7 +226,7 @@ void test_l3_power_manager_hal_Set_Wakeup_Source(void)
 }
 
 /**
-* @brief Initialization of the HAL Power Manager Module
+* @brief Use case of get wake up sources of the HAL Power Manager Module
 *
 * This test provides a scope to get what wake up sources are active.
 
@@ -241,7 +245,7 @@ void test_l3_power_manager_hal_Set_Wakeup_Source(void)
 */
 void test_l3_power_manager_hal_Get_Wakeup_Source(void)
 {
-   gTestID = 2;
+   gTestID = 3;
    pmStatus_t status = PWRMGR_SUCCESS ;
 
    UT_LOG_INFO("In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
@@ -249,7 +253,7 @@ void test_l3_power_manager_hal_Get_Wakeup_Source(void)
    int32_t  sourceType =0;
    bool  enable = false;
 
-
+    //Step 1: Get the Wakeup Source Type
    UT_LOG_MENU_INFO("----------------------------------------------------------");
    UT_LOG_MENU_INFO("Supported Wake Up Source Types");
    UT_LOG_MENU_INFO("----------------------------------------------------------");
@@ -268,7 +272,8 @@ void test_l3_power_manager_hal_Get_Wakeup_Source(void)
             goto exit;
         }
    PWRMGR_WakeupSrcType_t srcType = (PWRMGR_WakeupSrcType_t)sourceType;
-   // Step 1: Call PLAT_DS_INIT()
+   // Step 2: Call PLAT_API_GetWakeupSrc()
+   UT_LOG_INFO("Calling PLAT_API_GetWakeupSrc()");
    status = PLAT_API_GetWakeupSrc(srcType,*enable);
    if ((status != PWRMGR_SUCCESS ))
    {
@@ -276,7 +281,7 @@ void test_l3_power_manager_hal_Get_Wakeup_Source(void)
                 UT_Control_GetMapString(pmStatus_mapTable, status));
    }
    else{
-    UT_LOG_MENU_INFO("\t%d.  %-20s is ", sourceType, UT_Control_GetMapString(plat_source_types_mapTable, sourceType), enable ? "enabled" : "disabled");
+    UT_LOG_MENU_INFO("\t%d.  %-20s is %s", sourceType, UT_Control_GetMapString(plat_source_types_mapTable, sourceType), enable ? "enabled" : "disabled");
    }
 
    UT_LOG_INFO("Out %s\n", __FUNCTION__);
@@ -284,7 +289,7 @@ void test_l3_power_manager_hal_Get_Wakeup_Source(void)
 
 
 /**
-* @brief Initialization of the HAL Power Manager Module
+* @brief Termination of the HAL Power Manager Module
 *
 * This test provides a scope to close the HAL Power Manager module.
 
@@ -304,12 +309,13 @@ void test_l3_power_manager_hal_Get_Wakeup_Source(void)
 
 void test_l3_power_manager_hal_Term(void)
 {
-   gTestID = 3;
+   gTestID = 4;
    pmStatus_t status = PWRMGR_SUCCESS ;
 
    UT_LOG_INFO("In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
 
    // Step 1: Call PLAT_TERM()
+   UT_LOG_INFO("Calling PLAT_TERM()");
    status = PLAT_TERM();
    UT_LOG_INFO("Result PLAT_TERM: pmStatus_t:[%s]",
                 UT_Control_GetMapString(pmStatus_mapTable, status));
