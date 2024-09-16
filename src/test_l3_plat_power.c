@@ -46,7 +46,7 @@
  *
  * ### L3 Tests for Power Manager HAL :
  *
- * Level 2 unit test cases for all APIs of Power Manager HAL
+ * Level 3 unit test cases for all APIs of Power Manager HAL
  *
  * **Pre-Conditions:**  None@n
  * **Dependencies:** None@n
