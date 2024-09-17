@@ -56,7 +56,7 @@
  * @endparblock
  */
 /**
-* @file test_L3_plat_power.c
+* @file test_l3_plat_power.c
 *
 */
 
@@ -103,6 +103,17 @@ const static ut_control_keyStringMapping_t pmStatus_mapTable [] = {
   {  NULL, -1 }
 };
 
+const static ut_control_keyStringMapping_t plat_power_states_mapTable [] = {
+  { "PWRMGR_POWERSTATE_OFF",                  (int32_t)PWRMGR_POWERSTATE_OFF     },
+  { "PWRMGR_POWERSTATE_STANDBY",              (int32_t)PWRMGR_POWERSTATE_STANDBY      },
+  { "PWRMGR_POWERSTATE_ON",                   (int32_t)PWRMGR_POWERSTATE_ON     },
+  { "PWRMGR_POWERSTATE_STANDBY_LIGHT_SLEEP",  (int32_t)PWRMGR_POWERSTATE_STANDBY_LIGHT_SLEEP },
+  { "PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP",   (int32_t)PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP },
+  { "PWRMGR_POWERSTATE_MAX",                   (int32_t)PWRMGR_POWERSTATE_MAX },
+  {  NULL, -1 }
+};
+
+
 
 /**
  * @brief This function clears the stdin buffer.
@@ -136,24 +147,26 @@ void readAndDiscardRestOfLine(FILE* in)
 
 void test_l3_power_manager_hal_Init(void)
 {
-   gTestID = 1;
-   pmStatus_t status = PWRMGR_SUCCESS ;
+    gTestID = 1;
+    pmStatus_t status = PWRMGR_SUCCESS ;
 
-   UT_LOG_INFO("In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
+    UT_LOG_INFO("In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
 
-   // Step 1: Call PLAT_INIT()
-   UT_LOG_INFO("Calling PLAT_INIT()");
-   status = PLAT_INIT();
-   UT_LOG_INFO("Result PLAT_INIT: pmStatus_t:[%s]",
-                UT_Control_GetMapString(pmStatus_mapTable, status));
+    // Step 1: Call PLAT_INIT()
+    UT_LOG_INFO("Calling PLAT_INIT()");
+    status = PLAT_INIT();
+    UT_LOG_INFO("Result PLAT_INIT: pmStatus_t:[%s]",
+                 UT_Control_GetMapString(pmStatus_mapTable, status));
 
-   UT_LOG_INFO("Out %s\n", __FUNCTION__);
+    UT_ASSERT_EQUAL_FATAL(status, PWRMGR_SUCCESS);
+
+    UT_LOG_INFO("Out %s\n", __FUNCTION__);
 }
 
 /**
-* @brief Use case of set wake up source of the HAL Power Manager Module
+* @brief Use case of set power state of the HAL Power Manager Module
 *
-* This test provides a scope to set what wake up sources are active.
+* This test provides a scope to set the power state
 
 *
 * **Test Group ID:** 03@n
@@ -168,72 +181,56 @@ void test_l3_power_manager_hal_Init(void)
 * User or Automation tool should select the Test 1 to before running any test.
 *
 */
-void test_l3_power_manager_hal_Set_Wakeup_Source(void)
+void test_l3_power_manager_hal_Set_Power_State(void)
 {
-   gTestID = 2;
-   pmStatus_t status = PWRMGR_SUCCESS ;
+    gTestID = 2;
+    pmStatus_t status = PWRMGR_SUCCESS ;
 
-   UT_LOG_INFO("In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
+    UT_LOG_INFO("In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
 
-   int32_t  sourceType =0;
-   int  enableGet = false;
+    int32_t  powerState =0;
 
-    //Step 1: Get the Wakeup Source Type
-   UT_LOG_MENU_INFO("----------------------------------------------------------");
-   UT_LOG_MENU_INFO("Supported Wake Up Source Types");
-   UT_LOG_MENU_INFO("----------------------------------------------------------");
-   UT_LOG_MENU_INFO("\t#  %-20s","Wakeup Source Type");
-   for(int32_t i = PWRMGR_WAKEUPSRC_VOICE; i <= PWRMGR_WAKEUPSRC_LAN; i++)
-   {
-       UT_LOG_MENU_INFO("\t%d.  %-20s", i, UT_Control_GetMapString(plat_source_types_mapTable, i));
-   }
-   UT_LOG_MENU_INFO("----------------------------------------------------------");
-   UT_LOG_MENU_INFO("Select Wake Up Source Type: ");
-   scanf("%d", &sourceType);
-   readAndDiscardRestOfLine(stdin);
-   if(sourceType < PWRMGR_WAKEUPSRC_VOICE || sourceType > PWRMGR_WAKEUPSRC_LAN)
-        {
-            UT_LOG_ERROR("Invalid ARC Type");
-            goto exit;
-        }
-   PWRMGR_WakeupSrcType_t srcType = (PWRMGR_WakeupSrcType_t)sourceType;
+     //Step 1: Get the Power State
+    UT_LOG_MENU_INFO("----------------------------------------------------------");
+    UT_LOG_MENU_INFO("Supported Power States");
+    UT_LOG_MENU_INFO("----------------------------------------------------------");
+    UT_LOG_MENU_INFO("\t#  %-20s","Power State");
+    for(int32_t i = PWRMGR_POWERSTATE_OFF; i <= PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP; i++)
+    {
+        UT_LOG_MENU_INFO("\t%d.  %-20s", i, UT_Control_GetMapString(plat_power_states_mapTable, i));
+    }
+    UT_LOG_MENU_INFO("----------------------------------------------------------");
+    UT_LOG_MENU_INFO("Select Power State: ");
+    scanf("%d", &powerState);
+    readAndDiscardRestOfLine(stdin);
+    if(powerState < PWRMGR_POWERSTATE_OFF || powerState > PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP)
+    {
+        UT_LOG_ERROR("Invalid Power State");
+        goto exit;
+    }
+    PWRMGR_PowerState_t state = (PWRMGR_PowerState_t)powerState;
 
-   //Step 2: Get the Enable/Disable Wakeup Source
-   UT_LOG_MENU_INFO("----------------------------------------------------------");
-   UT_LOG_MENU_INFO("Supported Wake Up Source Types enabled/disabled");
-   UT_LOG_MENU_INFO("----------------------------------------------------------");
-   UT_LOG_MENU_INFO("\t#  %-20s","Enable/Disable Wakeup Source");
-   UT_LOG_MENU_INFO("\t%d  %-20s", 0, "Disable");
-   UT_LOG_MENU_INFO("\t%d  %-20s", 1, "Enable");
-   UT_LOG_MENU_INFO("----------------------------------------------------------");
-   UT_LOG_MENU_INFO("Select Enable/Disable Wakeup Source: ");
-   scanf("%d", &enableGet);
-   readAndDiscardRestOfLine(stdin);
-   if(sourceType != 0 && sourceType != 1)
-        {
-            UT_LOG_ERROR("Invalid enable type");
-            goto exit;
-        }
-    bool enable = (bool)enableGet;
-   // Step 3: Call PLAT_API_SetWakeupSrc()
-   UT_LOG_INFO("Calling PLAT_API_SetWakeupSrc()");
-   status = PLAT_API_SetWakeupSrc( srcType, enable );
-   UT_LOG_INFO("Result PLAT_API_SetWakeupSrc: pmStatus_t:[%s]",
-                UT_Control_GetMapString(pmStatus_mapTable, status));
+    // Step 2: Call PLAT_API_SetPowerState()
+    UT_LOG_INFO("Calling PLAT_API_SetPowerState()");
+    status = PLAT_API_SetPowerState( state );
+    UT_LOG_INFO("Result PLAT_API_SetPowerState: pmStatus_t:[%s]",
+                 UT_Control_GetMapString(pmStatus_mapTable, status));
 
-   exit:
+    UT_ASSERT_EQUAL_FATAL(status, PWRMGR_SUCCESS);
+
+    exit:
     UT_LOG_INFO("Out %s", __FUNCTION__);
 }
 
 /**
-* @brief Use case of get wake up sources of the HAL Power Manager Module
+* @brief Use case of get power state of the HAL Power Manager Module
 *
-* This test provides a scope to get what wake up sources are active.
+* This test provides a scope to get the power state
 
 *
 * **Test Group ID:** 03@n
 *
-* **Test Case ID:** 003@n
+* **Test Case ID:** 002@n
 *
 * **Pre-Conditions:** None@n
 *
@@ -243,55 +240,30 @@ void test_l3_power_manager_hal_Set_Wakeup_Source(void)
 * User or Automation tool should select the Test 1 to before running any test.
 *
 */
-void test_l3_power_manager_hal_Get_Wakeup_Source(void)
+void test_l3_power_manager_hal_Get_Power_State(void)
 {
-   gTestID = 3;
-   pmStatus_t status = PWRMGR_SUCCESS ;
+    gTestID = 3;
+    pmStatus_t status = PWRMGR_SUCCESS ;
 
-   UT_LOG_INFO("In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
+    UT_LOG_INFO("In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
 
-   int32_t  sourceType =0;
-   bool  enable = false;
+    PWRMGR_PowerState_t state = PWRMGR_POWERSTATE_MAX;
 
-    //Step 1: Get the Wakeup Source Type
-   UT_LOG_MENU_INFO("----------------------------------------------------------");
-   UT_LOG_MENU_INFO("Supported Wake Up Source Types");
-   UT_LOG_MENU_INFO("----------------------------------------------------------");
-   UT_LOG_MENU_INFO("\t#  %-20s","Wakeup Source Type");
-   for(int32_t i = PWRMGR_WAKEUPSRC_VOICE; i <= PWRMGR_WAKEUPSRC_LAN; i++)
-   {
-       UT_LOG_MENU_INFO("\t%d.  %-20s", i, UT_Control_GetMapString(plat_source_types_mapTable, i));
-   }
-   UT_LOG_MENU_INFO("----------------------------------------------------------");
-   UT_LOG_MENU_INFO("Select Wake Up Source Type: ");
-   scanf("%d", &sourceType);
-   readAndDiscardRestOfLine(stdin);
-   if(sourceType < PWRMGR_WAKEUPSRC_VOICE || sourceType > PWRMGR_WAKEUPSRC_LAN)
-        {
-            UT_LOG_ERROR("Invalid ARC Type");
-            goto exit;
-        }
-   PWRMGR_WakeupSrcType_t srcType = (PWRMGR_WakeupSrcType_t)sourceType;
-   // Step 2: Call PLAT_API_GetWakeupSrc()
-   UT_LOG_INFO("Calling PLAT_API_GetWakeupSrc()");
-   status = PLAT_API_GetWakeupSrc(srcType,&enable);
-   if ((status != PWRMGR_SUCCESS ))
-   {
-       UT_LOG_INFO("Result PLAT_API_GetWakeupSrc: pmStatus_t:[%s]",
-                UT_Control_GetMapString(pmStatus_mapTable, status));
-   }
-   else{
-    UT_LOG_MENU_INFO("\t%d.  %-20s is %s", sourceType, UT_Control_GetMapString(plat_source_types_mapTable, sourceType), enable ? "enabled" : "disabled");
-   }
-   exit:
-   UT_LOG_INFO("Out %s\n", __FUNCTION__);
+    // Step 1: Call PLAT_API_GetPowerState()
+    UT_LOG_INFO("Calling PLAT_API_GetPowerState()");
+    status = PLAT_API_GetPowerState(&state);
+    
+    UT_LOG_INFO("Result PLAT_API_GetPowerState: pmStatus_t:[%s]",
+                 UT_Control_GetMapString(pmStatus_mapTable, status));
+    UT_LOG_MENU_INFO("Current Power State is %s", UT_Control_GetMapString(plat_power_states_mapTable, state));
+    UT_ASSERT_EQUAL_FATAL(status, PWRMGR_SUCCESS);
+    UT_LOG_INFO("Out %s\n", __FUNCTION__);
 }
 
-
 /**
-* @brief Termination of the HAL Power Manager Module
+* @brief Use case of set wake up source of the HAL Power Manager Module
 *
-* This test provides a scope to close the HAL Power Manager module.
+* This test provides a scope to set what wake up sources are active.
 
 *
 * **Test Group ID:** 03@n
@@ -306,21 +278,165 @@ void test_l3_power_manager_hal_Get_Wakeup_Source(void)
 * User or Automation tool should select the Test 1 to before running any test.
 *
 */
+void test_l3_power_manager_hal_Set_Wakeup_Source(void)
+{
+    gTestID = 4;
+    pmStatus_t status = PWRMGR_SUCCESS ;
+
+    UT_LOG_INFO("In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
+
+    int32_t  sourceType =0;
+    int  enableGet = false;
+
+     //Step 1: Get the Wakeup Source Type
+    UT_LOG_MENU_INFO("----------------------------------------------------------");
+    UT_LOG_MENU_INFO("Supported Wake Up Source Types");
+    UT_LOG_MENU_INFO("----------------------------------------------------------");
+    UT_LOG_MENU_INFO("\t#  %-20s","Wakeup Source Type");
+    for(int32_t i = PWRMGR_WAKEUPSRC_VOICE; i <= PWRMGR_WAKEUPSRC_LAN; i++)
+    {
+        UT_LOG_MENU_INFO("\t%d.  %-20s", i, UT_Control_GetMapString(plat_source_types_mapTable, i));
+    }
+    UT_LOG_MENU_INFO("----------------------------------------------------------");
+    UT_LOG_MENU_INFO("Select Wake Up Source Type: ");
+    scanf("%d", &sourceType);
+    readAndDiscardRestOfLine(stdin);
+    if(sourceType < PWRMGR_WAKEUPSRC_VOICE || sourceType > PWRMGR_WAKEUPSRC_LAN)
+    {
+        UT_LOG_ERROR("Invalid ARC Type");
+        goto exit;
+    }
+    PWRMGR_WakeupSrcType_t srcType = (PWRMGR_WakeupSrcType_t)sourceType;
+
+    //Step 2: Get the Enable/Disable Wakeup Source
+    UT_LOG_MENU_INFO("----------------------------------------------------------");
+    UT_LOG_MENU_INFO("Supported Wake Up Source Types enabled/disabled");
+    UT_LOG_MENU_INFO("----------------------------------------------------------");
+    UT_LOG_MENU_INFO("\t#  %-20s","Enable/Disable Wakeup Source");
+    UT_LOG_MENU_INFO("\t%d  %-20s", 0, "Disable");
+    UT_LOG_MENU_INFO("\t%d  %-20s", 1, "Enable");
+    UT_LOG_MENU_INFO("----------------------------------------------------------");
+    UT_LOG_MENU_INFO("Select Enable/Disable Wakeup Source: ");
+    scanf("%d", &enableGet);
+    readAndDiscardRestOfLine(stdin);
+    if(sourceType != 0 && sourceType != 1)
+    {
+        UT_LOG_ERROR("Invalid enable type");
+        goto exit;
+    }
+     bool enable = (bool)enableGet;
+    // Step 3: Call PLAT_API_SetWakeupSrc()
+    UT_LOG_INFO("Calling PLAT_API_SetWakeupSrc()");
+    status = PLAT_API_SetWakeupSrc( srcType, enable );
+    UT_LOG_INFO("Result PLAT_API_SetWakeupSrc: pmStatus_t:[%s]",
+                 UT_Control_GetMapString(pmStatus_mapTable, status));
+
+    UT_ASSERT_EQUAL_FATAL(status, PWRMGR_SUCCESS);
+
+    exit:
+    UT_LOG_INFO("Out %s", __FUNCTION__);
+}
+
+/**
+* @brief Use case of get wake up sources of the HAL Power Manager Module
+*
+* This test provides a scope to get what wake up sources are active.
+
+*
+* **Test Group ID:** 03@n
+*
+* **Test Case ID:** 005@n
+*
+* **Pre-Conditions:** None@n
+*
+* **Dependencies:** None@n
+*
+* **User Interaction:** @n
+* User or Automation tool should select the Test 1 to before running any test.
+*
+*/
+void test_l3_power_manager_hal_Get_Wakeup_Source(void)
+{
+    gTestID = 5;
+    pmStatus_t status = PWRMGR_SUCCESS ;
+
+    UT_LOG_INFO("In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
+
+    int32_t  sourceType =0;
+    bool  enable = false;
+
+     //Step 1: Get the Wakeup Source Type
+    UT_LOG_MENU_INFO("----------------------------------------------------------");
+    UT_LOG_MENU_INFO("Supported Wake Up Source Types");
+    UT_LOG_MENU_INFO("----------------------------------------------------------");
+    UT_LOG_MENU_INFO("\t#  %-20s","Wakeup Source Type");
+    for(int32_t i = PWRMGR_WAKEUPSRC_VOICE; i <= PWRMGR_WAKEUPSRC_LAN; i++)
+    {
+        UT_LOG_MENU_INFO("\t%d.  %-20s", i, UT_Control_GetMapString(plat_source_types_mapTable, i));
+    }
+    UT_LOG_MENU_INFO("----------------------------------------------------------");
+    UT_LOG_MENU_INFO("Select Wake Up Source Type: ");
+    scanf("%d", &sourceType);
+    readAndDiscardRestOfLine(stdin);
+    if(sourceType < PWRMGR_WAKEUPSRC_VOICE || sourceType > PWRMGR_WAKEUPSRC_LAN)
+    {
+        UT_LOG_ERROR("Invalid ARC Type");
+        goto exit;
+    }
+    PWRMGR_WakeupSrcType_t srcType = (PWRMGR_WakeupSrcType_t)sourceType;
+    // Step 2: Call PLAT_API_GetWakeupSrc()
+    UT_LOG_INFO("Calling PLAT_API_GetWakeupSrc()");
+    status = PLAT_API_GetWakeupSrc(srcType,&enable);
+    if ((status != PWRMGR_SUCCESS ))
+    {
+        UT_LOG_INFO("Result PLAT_API_GetWakeupSrc: pmStatus_t:[%s]",
+                 UT_Control_GetMapString(pmStatus_mapTable, status));
+    }
+    else{
+         UT_LOG_MENU_INFO("\t%d.  %-20s is %s", sourceType, UT_Control_GetMapString(plat_source_types_mapTable, sourceType), enable ? "enabled" : "disabled");
+    }
+    UT_ASSERT_EQUAL_FATAL(status, PWRMGR_SUCCESS);
+
+    exit:
+    UT_LOG_INFO("Out %s\n", __FUNCTION__);
+}
+
+
+/**
+* @brief Termination of the HAL Power Manager Module
+*
+* This test provides a scope to close the HAL Power Manager module.
+
+*
+* **Test Group ID:** 03@n
+*
+* **Test Case ID:** 006@n
+*
+* **Pre-Conditions:** None@n
+*
+* **Dependencies:** None@n
+*
+* **User Interaction:** @n
+* User or Automation tool should select the Test 1 to before running any test.
+*
+*/
 
 void test_l3_power_manager_hal_Term(void)
 {
-   gTestID = 4;
-   pmStatus_t status = PWRMGR_SUCCESS ;
+    gTestID = 6;
+    pmStatus_t status = PWRMGR_SUCCESS ;
 
-   UT_LOG_INFO("In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
+    UT_LOG_INFO("In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
 
-   // Step 1: Call PLAT_TERM()
-   UT_LOG_INFO("Calling PLAT_TERM()");
-   status = PLAT_TERM();
-   UT_LOG_INFO("Result PLAT_TERM: pmStatus_t:[%s]",
-                UT_Control_GetMapString(pmStatus_mapTable, status));
+    // Step 1: Call PLAT_TERM()
+    UT_LOG_INFO("Calling PLAT_TERM()");
+    status = PLAT_TERM();
+    UT_LOG_INFO("Result PLAT_TERM: pmStatus_t:[%s]",
+                 UT_Control_GetMapString(pmStatus_mapTable, status));
 
-   UT_LOG_INFO("Out %s\n", __FUNCTION__);
+    UT_ASSERT_EQUAL_FATAL(status, PWRMGR_SUCCESS);
+
+    UT_LOG_INFO("Out %s\n", __FUNCTION__);
 }
 
 static UT_test_suite_t * pSuite = NULL;
@@ -334,17 +450,16 @@ int test_l3_plat_power_register(void)
 {
     // Create the test suite
     pSuite = UT_add_suite("[L3 power manager Functions] ", NULL, NULL);
-    if (pSuite == NULL)
-    {
-        return -1;
-    }
+    UT_ASSERT_EQUAL_FATAL(pSuite == UT_KVP_STATUS_SUCCESS);
     // List of test function names and strings
-
+    
     UT_add_test( pSuite, "L3_Init_pwrmgr", test_l3_power_manager_hal_Init);
+    UT_add_test( pSuite, "L3_pwrmgr_SetPowerState", test_l3_power_manager_hal_Set_Power_State);
+    UT_add_test( pSuite, "L3_pwrmgr_GetPowerState", test_l3_power_manager_hal_Get_Power_State);
     UT_add_test( pSuite, "L3_pwrmgr_SetWakeUpSource", test_l3_power_manager_hal_Set_Wakeup_Source);
     UT_add_test( pSuite, "L3_pwrmgr_GetWakeUpSource", test_l3_power_manager_hal_Get_Wakeup_Source);
     UT_add_test( pSuite, "L3_Term_pwrmgr", test_l3_power_manager_hal_Term);
-
+    
     return 0;
 }
 
