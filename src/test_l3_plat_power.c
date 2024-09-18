@@ -208,7 +208,7 @@ void test_l3_power_manager_hal_Set_Power_State(void)
         UT_LOG_ERROR("Invalid Power State");
         goto exit;
     }
-    PWRMGR_PowerState_t state = (PWRMGR_PowerState_t)powerState;
+    PWRMgr_PowerState_t state = (PWRMgr_PowerState_t)powerState;
 
     // Step 2: Call PLAT_API_SetPowerState()
     UT_LOG_INFO("Calling PLAT_API_SetPowerState()");
@@ -247,7 +247,7 @@ void test_l3_power_manager_hal_Get_Power_State(void)
 
     UT_LOG_INFO("In %s [%02d%03d]\n", __FUNCTION__, gTestGroup, gTestID);
 
-    PWRMGR_PowerState_t state = PWRMGR_POWERSTATE_MAX;
+    PWRMgr_PowerState_t state = PWRMGR_POWERSTATE_MAX;
 
     // Step 1: Call PLAT_API_GetPowerState()
     UT_LOG_INFO("Calling PLAT_API_GetPowerState()");
@@ -450,7 +450,7 @@ int test_l3_plat_power_register(void)
 {
     // Create the test suite
     pSuite = UT_add_suite("[L3 power manager Functions] ", NULL, NULL);
-    UT_ASSERT_EQUAL_FATAL(pSuite == UT_KVP_STATUS_SUCCESS);
+    UT_ASSERT_EQUAL_FATAL(pSuite, UT_KVP_STATUS_SUCCESS);
     // List of test function names and strings
     
     UT_add_test( pSuite, "L3_Init_pwrmgr", test_l3_power_manager_hal_Init);
