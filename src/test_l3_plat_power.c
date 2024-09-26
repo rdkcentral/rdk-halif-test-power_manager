@@ -69,6 +69,8 @@
 #define POWER_MANAGER_KEY_SIZE 50
 #define UT_LOG_MENU_INFO UT_LOG_INFO
 
+#define DS_ASSERT assert
+
 static int gTestGroup = 3;
 static int gTestID = 1;
 
@@ -158,7 +160,7 @@ void test_l3_power_manager_hal_Init(void)
     UT_LOG_INFO("Result PLAT_INIT: pmStatus_t:[%s]",
                  UT_Control_GetMapString(pmStatus_mapTable, status));
 
-    assert(status, PWRMGR_SUCCESS);
+    assert(status == PWRMGR_SUCCESS);
 
     UT_LOG_INFO("Out %s\n", __FUNCTION__);
 }
@@ -216,7 +218,7 @@ void test_l3_power_manager_hal_Set_Power_State(void)
     UT_LOG_INFO("Result PLAT_API_SetPowerState: pmStatus_t:[%s]",
                  UT_Control_GetMapString(pmStatus_mapTable, status));
 
-    assert(status, PWRMGR_SUCCESS);
+    assert(status == PWRMGR_SUCCESS);
 
     exit:
     UT_LOG_INFO("Out %s", __FUNCTION__);
@@ -256,7 +258,7 @@ void test_l3_power_manager_hal_Get_Power_State(void)
     UT_LOG_INFO("Result PLAT_API_GetPowerState: pmStatus_t:[%s]",
                  UT_Control_GetMapString(pmStatus_mapTable, status));
     UT_LOG_MENU_INFO("Current Power State is %s", UT_Control_GetMapString(plat_power_states_mapTable, state));
-    assert(status, PWRMGR_SUCCESS);
+    assert(status == PWRMGR_SUCCESS);
     UT_LOG_INFO("Out %s\n", __FUNCTION__);
 }
 
@@ -331,7 +333,7 @@ void test_l3_power_manager_hal_Set_Wakeup_Source(void)
     UT_LOG_INFO("Result PLAT_API_SetWakeupSrc: pmStatus_t:[%s]",
                  UT_Control_GetMapString(pmStatus_mapTable, status));
 
-    assert(status, PWRMGR_SUCCESS);
+    assert(status == PWRMGR_SUCCESS);
 
     exit:
     UT_LOG_INFO("Out %s", __FUNCTION__);
@@ -395,7 +397,7 @@ void test_l3_power_manager_hal_Get_Wakeup_Source(void)
     else{
          UT_LOG_MENU_INFO("\t%d.  %-20s is %s", sourceType, UT_Control_GetMapString(plat_source_types_mapTable, sourceType), enable ? "enabled" : "disabled");
     }
-    assert(status, PWRMGR_SUCCESS);
+    assert(status == PWRMGR_SUCCESS);
 
     exit:
     UT_LOG_INFO("Out %s\n", __FUNCTION__);
@@ -434,7 +436,7 @@ void test_l3_power_manager_hal_Term(void)
     UT_LOG_INFO("Result PLAT_TERM: pmStatus_t:[%s]",
                  UT_Control_GetMapString(pmStatus_mapTable, status));
 
-    assert(status, PWRMGR_SUCCESS);
+    assert(status == PWRMGR_SUCCESS);
 
     UT_LOG_INFO("Out %s\n", __FUNCTION__);
 }
@@ -450,7 +452,7 @@ int test_l3_plat_power_register(void)
 {
     // Create the test suite
     pSuite = UT_add_suite("[Power Manager Functions] ", NULL, NULL);
-    assert(pSuite, UT_KVP_STATUS_SUCCESS);
+    assert(pSuite == UT_KVP_STATUS_SUCCESS);
     // List of test function names and strings
     
     UT_add_test( pSuite, "Initialize Power Manger", test_l3_power_manager_hal_Init);
