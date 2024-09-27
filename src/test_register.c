@@ -77,31 +77,13 @@ extern int test_l2_plat_power_register( void );
 /*L3 Testing Functions*/
 extern int test_l3_plat_power_register( void );
 
-int UT_register_APIDEF_l1_tests( void )
+int UT_register_tests( void )
 {
 	int registerFailed=0;
 
 	registerFailed |= test_l1_plat_power_register();
-
-	return registerFailed;
-}
-
-/* Register UT Functions */
-int UT_register_APIDEF_l2_tests( void )
-{
-	int registerFailed=0;
-
-	registerFailed |= test_l2_plat_power_register();
-
-	return registerFailed;
-}
-
-/* Register UT Functions */
-int UT_register_APIDEF_l3_tests( void )
-{
-	int registerFailed=0;
-
-	registerFailed |= test_l3_plat_power_register();
+    registerFailed |= test_l2_plat_power_register();
+    registerFailed |= test_l3_plat_power_register();
 
 	return registerFailed;
 }
