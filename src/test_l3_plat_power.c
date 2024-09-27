@@ -451,8 +451,11 @@ static UT_test_suite_t * pSuite = NULL;
 int test_l3_plat_power_register(void)
 {
     // Create the test suite
-    pSuite = UT_add_suite("[Power Manager Functions] ", NULL, NULL);
-    assert(pSuite == UT_KVP_STATUS_SUCCESS);
+    pSuite = UT_add_suite_withGroupID("[L3 power manager ]", NULL, NULL,UT_TESTS_L3);
+    if (pSuite == NULL)
+     {
+         return -1;
+    }
     // List of test function names and strings
     
     UT_add_test( pSuite, "Initialize Power Manger", test_l3_power_manager_hal_Init);
