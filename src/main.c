@@ -66,9 +66,7 @@
 
 #include <ut.h>
 
-extern int UT_register_APIDEF_l1_tests( void );
-extern int UT_register_APIDEF_l2_tests( void );
-
+extern int UT_register_tests( void );
 int main(int argc, char** argv) 
 {
 	int registerReturn = 0;
@@ -78,17 +76,10 @@ int main(int argc, char** argv)
 
 	/* Check if tests are registered successfully */
 
-	registerReturn = UT_register_APIDEF_l1_tests();
+	registerReturn = UT_register_tests();
 	if ( registerReturn == -1 )
 	{
-		printf("\n UT_register_APIDEF_l1_tests() returned failure");
-		return -1;
-	}
-
-	registerReturn = UT_register_APIDEF_l2_tests();
-	if ( registerReturn == -1 )
-	{	
-		printf("\n UT_register_APIDEF_l2_tests() returned failure");
+		printf("\n UT_register_tests() returned failure");
 		return -1;
 	}
 
