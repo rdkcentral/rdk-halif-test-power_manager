@@ -76,42 +76,42 @@ static int gTestID = 1;
 
 /*PWRMGR_WakeupSrcType_t*/
 const static ut_control_keyStringMapping_t plat_source_types_mapTable [] = {
-  { "PWRMGR_WAKEUPSRC_VOICE",               (int32_t)PWRMGR_WAKEUPSRC_VOICE     },
-  { "PWRMGR_WAKEUPSRC_PRESENCE_DETECTION",  (int32_t)PWRMGR_WAKEUPSRC_PRESENCE_DETECTION      },
-  { "PWRMGR_WAKEUPSRC_BLUETOOTH",           (int32_t)PWRMGR_WAKEUPSRC_BLUETOOTH     },
-  { "PWRMGR_WAKEUPSRC_WIFI",                (int32_t)PWRMGR_WAKEUPSRC_WIFI   },
-  { "PWRMGR_WAKEUPSRC_IR",                  (int32_t)PWRMGR_WAKEUPSRC_IR  },
-  { "PWRMGR_WAKEUPSRC_POWER_KEY",           (int32_t)PWRMGR_WAKEUPSRC_POWER_KEY },
-  { "PWRMGR_WAKEUPSRC_TIMER",               (int32_t)PWRMGR_WAKEUPSRC_TIMER },
-  { "PWRMGR_WAKEUPSRC_CEC",                 (int32_t)PWRMGR_WAKEUPSRC_CEC },
-  { "PWRMGR_WAKEUPSRC_LAN",                 (int32_t)PWRMGR_WAKEUPSRC_LAN },
-  { "PWRMGR_WAKEUPSRC_MAX",                 (int32_t)PWRMGR_WAKEUPSRC_MAX       },
+  { "PWRMGR_WAKEUPSRC_VOICE",               (int32_t)PWRMGR_WAKEUPSRC_VOICE},
+  { "PWRMGR_WAKEUPSRC_PRESENCE_DETECTION",  (int32_t)PWRMGR_WAKEUPSRC_PRESENCE_DETECTION},
+  { "PWRMGR_WAKEUPSRC_BLUETOOTH",           (int32_t)PWRMGR_WAKEUPSRC_BLUETOOTH},
+  { "PWRMGR_WAKEUPSRC_WIFI",                (int32_t)PWRMGR_WAKEUPSRC_WIFI},
+  { "PWRMGR_WAKEUPSRC_IR",                  (int32_t)PWRMGR_WAKEUPSRC_IR},
+  { "PWRMGR_WAKEUPSRC_POWER_KEY",           (int32_t)PWRMGR_WAKEUPSRC_POWER_KEY},
+  { "PWRMGR_WAKEUPSRC_TIMER",               (int32_t)PWRMGR_WAKEUPSRC_TIMER},
+  { "PWRMGR_WAKEUPSRC_CEC",                 (int32_t)PWRMGR_WAKEUPSRC_CEC},
+  { "PWRMGR_WAKEUPSRC_LAN",                 (int32_t)PWRMGR_WAKEUPSRC_LAN},
+  { "PWRMGR_WAKEUPSRC_MAX",                 (int32_t)PWRMGR_WAKEUPSRC_MAX},
   {  NULL, -1 }
 };
 
 
 /* pmStatus_t */
 const static ut_control_keyStringMapping_t pmStatus_mapTable [] = {
-  { "PWRMGR_SUCCESS",                   (int32_t)PWRMGR_SUCCESS                     },
-  { "PWRMGR_INVALID_ARGUMENT",          (int32_t)PWRMGR_INVALID_ARGUMENT                 },
-  { "PWRMGR_ALREADY_INITIALIZED",       (int32_t)PWRMGR_ALREADY_INITIALIZED           },
-  { "PWRMGR_NOT_INITIALIZED",           (int32_t)PWRMGR_NOT_INITIALIZED           },
-  { "PWRMGR_INIT_FAILURE",              (int32_t)PWRMGR_INIT_FAILURE     },
-  { "PWRMGR_SET_FAILURE",               (int32_t)PWRMGR_SET_FAILURE         },
-  { "PWRMGR_GET_FAILURE",               (int32_t)PWRMGR_GET_FAILURE },
-  { "PWRMGR_OPERATION_NOT_SUPPORTED",   (int32_t)PWRMGR_OPERATION_NOT_SUPPORTED  },
-  { "PWRMGR_TERM_FAILURE",              (int32_t)PWRMGR_TERM_FAILURE        },
-  { "PWRMGR_MAX",                       (int32_t)PWRMGR_MAX                                           },
+  { "PWRMGR_SUCCESS",                   (int32_t)PWRMGR_SUCCESS},
+  { "PWRMGR_INVALID_ARGUMENT",          (int32_t)PWRMGR_INVALID_ARGUMENT},
+  { "PWRMGR_ALREADY_INITIALIZED",       (int32_t)PWRMGR_ALREADY_INITIALIZED},
+  { "PWRMGR_NOT_INITIALIZED",           (int32_t)PWRMGR_NOT_INITIALIZED},
+  { "PWRMGR_INIT_FAILURE",              (int32_t)PWRMGR_INIT_FAILURE},
+  { "PWRMGR_SET_FAILURE",               (int32_t)PWRMGR_SET_FAILURE},
+  { "PWRMGR_GET_FAILURE",               (int32_t)PWRMGR_GET_FAILURE},
+  { "PWRMGR_OPERATION_NOT_SUPPORTED",   (int32_t)PWRMGR_OPERATION_NOT_SUPPORTED},
+  { "PWRMGR_TERM_FAILURE",              (int32_t)PWRMGR_TERM_FAILURE},
+  { "PWRMGR_MAX",                       (int32_t)PWRMGR_MAX},
   {  NULL, -1 }
 };
 
 const static ut_control_keyStringMapping_t plat_power_states_mapTable [] = {
-  { "PWRMGR_POWERSTATE_OFF",                  (int32_t)PWRMGR_POWERSTATE_OFF     },
-  { "PWRMGR_POWERSTATE_STANDBY",              (int32_t)PWRMGR_POWERSTATE_STANDBY      },
-  { "PWRMGR_POWERSTATE_ON",                   (int32_t)PWRMGR_POWERSTATE_ON     },
-  { "PWRMGR_POWERSTATE_STANDBY_LIGHT_SLEEP",  (int32_t)PWRMGR_POWERSTATE_STANDBY_LIGHT_SLEEP },
-  { "PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP",   (int32_t)PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP },
-  { "PWRMGR_POWERSTATE_MAX",                   (int32_t)PWRMGR_POWERSTATE_MAX },
+  { "PWRMGR_POWERSTATE_OFF",                  (int32_t)PWRMGR_POWERSTATE_OFF},
+  { "PWRMGR_POWERSTATE_STANDBY",              (int32_t)PWRMGR_POWERSTATE_STANDBY},
+  { "PWRMGR_POWERSTATE_ON",                   (int32_t)PWRMGR_POWERSTATE_ON},
+  { "PWRMGR_POWERSTATE_STANDBY_LIGHT_SLEEP",  (int32_t)PWRMGR_POWERSTATE_STANDBY_LIGHT_SLEEP},
+  { "PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP",   (int32_t)PWRMGR_POWERSTATE_STANDBY_DEEP_SLEEP},
+  { "PWRMGR_POWERSTATE_MAX",                   (int32_t)PWRMGR_POWERSTATE_MAX},
   {  NULL, -1 }
 };
 
@@ -157,7 +157,7 @@ void test_l3_power_manager_hal_Init(void)
     // Step 1: Call PLAT_INIT()
     UT_LOG_INFO("Calling PLAT_INIT()");
     status = PLAT_INIT();
-    UT_LOG_INFO("Result PLAT_INIT: pmStatus_t:[%s]",
+    UT_LOG_INFO("Result PLAT_INIT() pmStatus_t:[%s]",
                  UT_Control_GetMapString(pmStatus_mapTable, status));
 
     assert(status == PWRMGR_SUCCESS);
@@ -213,10 +213,10 @@ void test_l3_power_manager_hal_Set_Power_State(void)
     PWRMgr_PowerState_t state = (PWRMgr_PowerState_t)powerState;
 
     // Step 2: Call PLAT_API_SetPowerState()
-    UT_LOG_INFO("Calling PLAT_API_SetPowerState() (IN:State[%s])", UT_Control_GetMapString(plat_power_states_mapTable, state));
+    UT_LOG_INFO("Calling PLAT_API_SetPowerState(IN:State[%s])", UT_Control_GetMapString(plat_power_states_mapTable, state));
     status = PLAT_API_SetPowerState( state );
-    UT_LOG_INFO("Result PLAT_API_SetPowerState: (pmStatus_t:[%s], (IN:State[%s])",
-                 UT_Control_GetMapString(pmStatus_mapTable, status), UT_Control_GetMapString(plat_power_states_mapTable, state));
+    UT_LOG_INFO("Result PLAT_API_SetPowerState(IN:State[%s]) pmStatus_t:[%s]",
+                 UT_Control_GetMapString(plat_power_states_mapTable, state), UT_Control_GetMapString(pmStatus_mapTable, status));
 
     assert(status == PWRMGR_SUCCESS);
 
@@ -252,12 +252,11 @@ void test_l3_power_manager_hal_Get_Power_State(void)
     PWRMgr_PowerState_t state = PWRMGR_POWERSTATE_MAX;
 
     // Step 1: Call PLAT_API_GetPowerState()
-    UT_LOG_INFO("Calling PLAT_API_GetPowerState(): (OUT:State[])");
+    UT_LOG_INFO("Calling PLAT_API_GetPowerState(OUT:State[])");
     status = PLAT_API_GetPowerState(&state);
     
-    UT_LOG_INFO("Result PLAT_API_GetPowerState: pmStatus_t:[%s], (OUT:State[%s])",
-                 UT_Control_GetMapString(pmStatus_mapTable, status), UT_Control_GetMapString(plat_power_states_mapTable, state));
-    UT_LOG_MENU_INFO("Current Power State is %s", UT_Control_GetMapString(plat_power_states_mapTable, state));
+    UT_LOG_INFO("Result PLAT_API_GetPowerState(OUT:State[%s]) pmStatus_t:[%s]",
+                 UT_Control_GetMapString(plat_power_states_mapTable, state), UT_Control_GetMapString(pmStatus_mapTable, status));
     assert(status == PWRMGR_SUCCESS);
     UT_LOG_INFO("Out %s\n", __FUNCTION__);
 }
@@ -328,12 +327,12 @@ void test_l3_power_manager_hal_Set_Wakeup_Source(void)
     }
      bool enable = (bool)enableGet;
     // Step 3: Call PLAT_API_SetWakeupSrc()
-    UT_LOG_INFO("Calling PLAT_API_SetWakeupSrc(): (IN:srcType[%s], enable[%s])",
+    UT_LOG_INFO("Calling PLAT_API_SetWakeupSrc(IN:srcType[%s], enable[%s])",
                  UT_Control_GetMapString(plat_source_types_mapTable, srcType), enable ? "true" : "false");
     status = PLAT_API_SetWakeupSrc( srcType, enable );
-    UT_LOG_INFO("Result PLAT_API_SetWakeupSrc: pmStatus_t:[%s], (IN:srcType[%s], enable[%s])",
-                 UT_Control_GetMapString(pmStatus_mapTable, status), 
-                 UT_Control_GetMapString(plat_source_types_mapTable, srcType), enable ? "true" : "false");
+    UT_LOG_INFO("Result PLAT_API_SetWakeupSrc(IN:srcType[%s], enable[%s]) pmStatus_t:[%s]",
+                 UT_Control_GetMapString(plat_source_types_mapTable, srcType), enable ? "true" : "false",
+                 UT_Control_GetMapString(pmStatus_mapTable, status));
 
     assert(status == PWRMGR_SUCCESS);
 
@@ -384,22 +383,17 @@ void test_l3_power_manager_hal_Get_Wakeup_Source(void)
     readAndDiscardRestOfLine(stdin);
     if(sourceType < PWRMGR_WAKEUPSRC_VOICE || sourceType > PWRMGR_WAKEUPSRC_LAN)
     {
-        UT_LOG_ERROR("Invalid ARC Type");
+        UT_LOG_ERROR("Invalid wakeup Type");
         goto exit;
     }
     PWRMGR_WakeupSrcType_t srcType = (PWRMGR_WakeupSrcType_t)sourceType;
     // Step 2: Call PLAT_API_GetWakeupSrc()
-    UT_LOG_INFO("Calling PLAT_API_GetWakeupSrc(): (IN:srcType[%s], OUT:enable[])",
+    UT_LOG_INFO("Calling PLAT_API_GetWakeupSrc(IN:srcType[%s], OUT:enable[])",
                  UT_Control_GetMapString(plat_source_types_mapTable, srcType));
     status = PLAT_API_GetWakeupSrc(srcType,&enable);
-    if ((status != PWRMGR_SUCCESS ))
-    {
-        UT_LOG_INFO("Result PLAT_API_GetWakeupSrc: pmStatus_t:[%s], (IN:srcType[%s], OUT:enable[])",
-                 UT_Control_GetMapString(pmStatus_mapTable, status), UT_Control_GetMapString(plat_source_types_mapTable, srcType), enable ? "true" : "false");
-    }
-    else{
-         UT_LOG_MENU_INFO("\t%d.  %-20s is %s", sourceType, UT_Control_GetMapString(plat_source_types_mapTable, sourceType), enable ? "enabled" : "disabled");
-    }
+    UT_LOG_INFO("Result PLAT_API_GetWakeupSrc(IN:srcType[%s], OUT:enable[%s]) pmStatus_t:[%s]",
+                 UT_Control_GetMapString(plat_source_types_mapTable, srcType), enable ? "true" : "false",
+                 UT_Control_GetMapString(pmStatus_mapTable, status));
     assert(status == PWRMGR_SUCCESS);
 
     exit:
@@ -436,7 +430,7 @@ void test_l3_power_manager_hal_Term(void)
     // Step 1: Call PLAT_TERM()
     UT_LOG_INFO("Calling PLAT_TERM()");
     status = PLAT_TERM();
-    UT_LOG_INFO("Result PLAT_TERM: pmStatus_t:[%s]",
+    UT_LOG_INFO("Result PLAT_TERM() pmStatus_t:[%s]",
                  UT_Control_GetMapString(pmStatus_mapTable, status));
 
     assert(status == PWRMGR_SUCCESS);
