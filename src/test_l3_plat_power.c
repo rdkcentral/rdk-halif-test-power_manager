@@ -320,7 +320,7 @@ void test_l3_power_manager_hal_Set_Wakeup_Source(void)
     UT_LOG_MENU_INFO("Select Enable/Disable Wakeup Source: ");
     scanf("%d", &enableGet);
     readAndDiscardRestOfLine(stdin);
-    if(sourceType != 0 && sourceType != 1)
+    if(enableGet != 0 && enableGet != 1)
     {
         UT_LOG_ERROR("Invalid enable type");
         goto exit;
