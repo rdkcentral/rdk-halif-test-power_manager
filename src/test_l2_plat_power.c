@@ -172,22 +172,6 @@ void test_l2_plat_power_SetAndGetWakeupSrc(void)
 
         UT_LOG_DEBUG("Invoking PLAT_API_SetWakeupSrc with srcType: %d and enable: true", srcType);
 
-        status = PLAT_API_SetWakeupSrc(srcType, true);
-        UT_LOG_DEBUG("Return status: %d", status);
-        UT_ASSERT_EQUAL(status, PWRMGR_SUCCESS);
-        if (status != PWRMGR_SUCCESS)
-        {
-            UT_LOG_ERROR("Failed to set Wakeup Src");
-            continue;
-        }
-
-        UT_LOG_DEBUG("Invoking PLAT_API_GetWakeupSrc with srcType: %d", srcType);
-        status = PLAT_API_GetWakeupSrc(srcType, &enable);
-        UT_LOG_DEBUG("Return status: %d, enable: %d", status, enable);
-        UT_ASSERT_EQUAL(status, PWRMGR_SUCCESS);
-        UT_ASSERT_EQUAL(enable, true);
-
-        UT_LOG_DEBUG("Invoking PLAT_API_SetWakeupSrc with srcType: %d and enable: false", srcType);
         status = PLAT_API_SetWakeupSrc(srcType, false);
         UT_LOG_DEBUG("Return status: %d", status);
         UT_ASSERT_EQUAL(status, PWRMGR_SUCCESS);
@@ -202,6 +186,22 @@ void test_l2_plat_power_SetAndGetWakeupSrc(void)
         UT_LOG_DEBUG("Return status: %d, enable: %d", status, enable);
         UT_ASSERT_EQUAL(status, PWRMGR_SUCCESS);
         UT_ASSERT_EQUAL(enable, false);
+
+        UT_LOG_DEBUG("Invoking PLAT_API_SetWakeupSrc with srcType: %d and enable: false", srcType);
+        status = PLAT_API_SetWakeupSrc(srcType, true);
+        UT_LOG_DEBUG("Return status: %d", status);
+        UT_ASSERT_EQUAL(status, PWRMGR_SUCCESS);
+        if (status != PWRMGR_SUCCESS)
+        {
+            UT_LOG_ERROR("Failed to set Wakeup Src");
+            continue;
+        }
+
+        UT_LOG_DEBUG("Invoking PLAT_API_GetWakeupSrc with srcType: %d", srcType);
+        status = PLAT_API_GetWakeupSrc(srcType, &enable);
+        UT_LOG_DEBUG("Return status: %d, enable: %d", status, enable);
+        UT_ASSERT_EQUAL(status, PWRMGR_SUCCESS);
+        UT_ASSERT_EQUAL(enable, true);
     }
 
     UT_LOG_DEBUG("Invoking PLAT_TERM");

@@ -630,7 +630,7 @@ void test_l1_plat_power_positive_PLAT_API_GetWakeupSrc (void)
         srcType =(PWRMGR_WakeupSrcType_t)UT_KVP_PROFILE_GET_UINT32(keyvalue);
         UT_LOG_DEBUG("Invoking PLAT_API_SetWakeupSrc with srcType: %d and enable: true", srcType);
 
-        ret = PLAT_API_SetWakeupSrc(srcType, true);
+        ret = PLAT_API_SetWakeupSrc(srcType, false);
         UT_LOG_DEBUG("Return status: %d", ret);
         UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS);
         if (ret != PWRMGR_SUCCESS) {
@@ -642,10 +642,10 @@ void test_l1_plat_power_positive_PLAT_API_GetWakeupSrc (void)
        ret = PLAT_API_GetWakeupSrc(srcType, &enable);
        UT_LOG_DEBUG("Return status: %d, enable: %d", ret, enable);
        UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS);
-       UT_ASSERT_EQUAL(enable, true);
+       UT_ASSERT_EQUAL(enable, false);
 
        UT_LOG_DEBUG("Invoking PLAT_API_SetWakeupSrc with srcType: %d and enable: false", srcType);
-       ret = PLAT_API_SetWakeupSrc(srcType, false);
+       ret = PLAT_API_SetWakeupSrc(srcType, true);
        UT_LOG_DEBUG("Return status: %d", ret);
        UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS);
        if (ret != PWRMGR_SUCCESS) {
@@ -657,7 +657,7 @@ void test_l1_plat_power_positive_PLAT_API_GetWakeupSrc (void)
        ret= PLAT_API_GetWakeupSrc(srcType, &enable);
        UT_LOG_DEBUG("Return status: %d, enable: %d", ret, enable);
        UT_ASSERT_EQUAL(ret, PWRMGR_SUCCESS);
-       UT_ASSERT_EQUAL(enable, false);
+       UT_ASSERT_EQUAL(enable, true);
     }
 
     // Step 04: Call PLAT_TERM() - close interface
