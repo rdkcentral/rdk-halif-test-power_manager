@@ -44,3 +44,5 @@ Alternatively, use the run.sh script with the profile file:
  ```
 
 - Profiles file available for sink and source [profile yaml file](./profiles/)
+
+- Install Python Environment and Activation Scripts please check the[HPK Documentation](https://github.com/rdkcentral/rdk-hpk-documentation/blob/main/README.md)
