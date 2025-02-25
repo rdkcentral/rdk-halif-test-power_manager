@@ -5,6 +5,7 @@
 - [Acronyms, Terms and Abbreviations](#acronyms-terms-and-abbreviations)
 - [Description](#description)
 - [Reference Documents](#reference-documents)
+- [How to build the test suite](#how-to-build-the-test-suite)
 - [Notes](#notes)
 
 ## Acronyms, Terms and Abbreviations
@@ -13,11 +14,11 @@
 - `L1` - Functional Tests
 - `L2` - Module functional Testing
 - `High-Level Test Specification` : These specification will provide a broad overview of the system's functionality from the callers' perspective. It focuses on major use cases, system behavior, and overall caller experience.
-- `Low-Level Test Specification` : These specification will delve deeper into the technical details. They will define specific test cases with inputs, expected outputs, and pass/fail criteria for individual functionalities, modules, or APIs.
+- `Low-Level Test Specification` : These specification will deeper into the technical details. They will define specific test cases with inputs, expected outputs, and pass/fail criteria for individual functionalities, modules, or APIs.
 
 ## Description
 
-This repository contains the Unit Test Suites (L1 & L2) for Power Manager `HAL`.
+This repository contains the Unit Test Suites (`L1` and `L2`) for Power Manager `HAL`.
 
 ## Reference Documents
 
@@ -33,8 +34,56 @@ This repository contains the Unit Test Suites (L1 & L2) for Power Manager `HAL`.
 - Building against the actual library may introduce SOC dependencies. Hence, a template SKELETON library is created without SOC dependencies. On the real platform (target), it can be mounted, copied and bound with the actual library.
 - When executing the binary, ensure to include a platform-specific profile file as an argument for the designated test cases. The following example illustrates this:
 
+## How to build the test suite
+
+In order to build the test suits, there is a requirement to supply the toolchain, either as a vendor independent toolchain, an SDK, or an RDK Docker Toolchain .
+
+For more information about RDK Docker Toolchain, please check [RDK Docker Toolchain](https://github.com/rdkcentral/ut-core/wiki/FAQ:-RDK-Docker-Toolchain)
+
+- Export the Toolchain Path:
+
 ```bash
-./hal_test -p sink_powerManager.yaml
+export TOOLCHAIN_PATH=/opt/toolchains/rdk-glibc-x86_64/sysroots/armv7at2hf-neon-rdk-linux-gnueabi
+export CC="arm-rdk-linux-gnueabi-gcc  -march=armv7-a -mthumb -mfpu=neon -mfloat-abi=hard --sysroot=$TOOLCHAIN_PATH"
+```
+
+- Clone the `HAL` Repository:
+
+```bash
+git clone git@github.com:rdkcentral/rdk-halif-power_manager.git
+```
+
+- Set Project Version:
+
+If you want to build the test repository with a specific tag or branch, set the UT_PROJECT_VERSION variable accordingly. If not set, the default main branch will be used.
+
+```bash
+export UT_PROJECT_VERSION=1.0.1  # Build using a specific tag
+```
+
+or
+
+```bash
+export UT_PROJECT_VERSION=develop  # Build using a specific branch
+```
+
+- Build Targets:
+
+ There are two targets for the platform
+
+  1. linux - (default)
+  2. arm - TARGET=arm
+
+```bash
+build_ut.sh TARGET=arm
+```
+
+- `build_ut.sh` script will clone the hal-test repo, ut-core and generate a `hal_test_iarmmgrs-power-hal` binary in `ut/bin/` upon successful completion.
+
+### Running the `L1` and `L2` test cases
+
+```bash
+./hal_test_iarmmgrs-power-hal -p sink_powerManager.yaml
  ```
 
 Alternatively, use the run.sh script with the profile file:
