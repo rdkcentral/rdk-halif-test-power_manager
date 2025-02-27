@@ -38,7 +38,7 @@ SKELETON_SRCS := $(ROOT_DIR)/skeletons/src/plat_power.c
 TARGET_EXEC :=hal_test_$(HAL_LIB)
 
 # Export the tag version
-VERSION := $(shell git describe --tags --abbrev=0 | head -n1)
+VERSION := $(shell git describe --tags | head -n1)
 KCFLAGS := -D HALIF_TEST_TAG_VERSION=\"$(VERSION)\"
 
 ifeq ($(TARGET),)
