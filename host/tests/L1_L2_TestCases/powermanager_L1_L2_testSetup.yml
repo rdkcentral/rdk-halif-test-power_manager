@@ -1,0 +1,59 @@
+# This is a sample test configuration file. Users can customize the YAML entries as needed
+# This test configuration file includes sample YAML entries for executing various combinations
+dsAudio:
+  description: "power manager L1 and L2 test setup"
+  test_suites: # List of L1 and L2 test suites
+
+    ######################################
+    # Entry to run all test case
+    ######################################
+    #- name: "L1 powermanager"
+    #  test_cases:
+    #    - all
+
+    #######################################
+    # Entries to run individual test cases
+    #######################################
+    - name: "L1 powermanager"
+      test_cases:
+        - PLAT_INIT_L1_positive
+    - name: "L1 powermanager"
+      test_cases:
+        - PLAT_INIT_L1_negative
+    - name: "L1 powermanager"
+      test_cases:
+        - PLAT_TERM_L1_positive
+    - name: "L1 powermanager"
+      test_cases:
+        - PLAT_TERM_L1_negative
+    - name: "L1 powermanager"
+      test_cases:
+        - PLAT_API_SetPowerState_L1_positive
+    - name: "L1 powermanager"
+      test_cases:
+        - PLAT_API_SetPowerState_L1_negative
+    - name: "L1 powermanager"
+      test_cases:
+        - PLAT_API_GetPowerState_L1_positive
+    - name: "L1 powermanager"
+      test_cases:
+        - PLAT_API_GetPowerState_L1_negative
+    - name: "L1 powermanager"
+      test_cases:
+        - PLAT_API_SetWakeupSrc_L1_positive
+    - name: "L1 powermanager"
+      test_cases:
+        - PLAT_API_SetWakeupSrc_L1_negative
+    - name: "L1 powermanager"
+      test_cases:
+        - PLAT_API_GetWakeupSrc_L1_positive
+    - name: "L1 powermanager"
+      test_cases:
+        - PLAT_API_GetWakeupSrc_L1_negative
+    - name: "L1 powermanager"
+      test_cases:
+        - PLAT_Reset_L1_positive
+    - name: "L1 powermanager"
+      test_cases:
+        - PLAT_Reset_L1_negative
+
