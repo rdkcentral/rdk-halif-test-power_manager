@@ -843,20 +843,20 @@ int test_l1_plat_power_register ( void )
        return -1;
     }
 
-    UT_add_test( pSuite, "PLAT_INIT_L1_positive" ,test_l1_plat_power_positive_PLAT_INIT );
-    UT_add_test( pSuite, "PLAT_INIT_L1_negative" ,test_l1_plat_power_negative_PLAT_INIT );
-    UT_add_test( pSuite, "PLAT_TERM_L1_positive" ,test_l1_plat_power_positive_PLAT_TERM );
-    UT_add_test( pSuite, "PLAT_TERM_L1_negative" ,test_l1_plat_power_negative_PLAT_TERM );
-    UT_add_test( pSuite, "PLAT_API_SetPowerState_L1_positive" ,test_l1_plat_power_positive_PLAT_API_SetPowerState );
-    UT_add_test( pSuite, "PLAT_API_SetPowerState_L1_negative" ,test_l1_plat_power_negative_PLAT_API_SetPowerState );
-    UT_add_test( pSuite, "PLAT_API_GetPowerState_L1_positive" ,test_l1_plat_power_positive_PLAT_API_GetPowerState );
-    UT_add_test( pSuite, "PLAT_API_GetPowerState_L1_negative" ,test_l1_plat_power_negative_PLAT_API_GetPowerState );
-    UT_add_test( pSuite, "PLAT_API_SetWakeupSrc_L1_positive" ,test_l1_plat_power_positive_PLAT_API_SetWakeupSrc );
-    UT_add_test( pSuite, "PLAT_API_SetWakeupSrc_L1_negative" ,test_l1_plat_power_negative_PLAT_API_SetWakeupSrc );
-    UT_add_test( pSuite, "PLAT_API_GetWakeupSrc_L1_positive" ,test_l1_plat_power_positive_PLAT_API_GetWakeupSrc );
-    UT_add_test( pSuite, "PLAT_API_GetWakeupSrc_L1_negative" ,test_l1_plat_power_negative_PLAT_API_GetWakeupSrc );
-    UT_add_test( pSuite, "PLAT_Reset_L1_positive" ,test_l1_plat_power_positive_PLAT_Reset );
-    UT_add_test( pSuite, "PLAT_Reset_L1_negative" ,test_l1_plat_power_negative_PLAT_Reset );
+    UT_add_test( pSuite, "PLAT_INIT_pos" ,test_l1_plat_power_positive_PLAT_INIT );
+    UT_add_test( pSuite, "PLAT_INIT_neg" ,test_l1_plat_power_negative_PLAT_INIT );
+    UT_add_test( pSuite, "PLAT_TERM_pos" ,test_l1_plat_power_positive_PLAT_TERM );
+    UT_add_test( pSuite, "PLAT_TERM_neg" ,test_l1_plat_power_negative_PLAT_TERM );
+    UT_add_test( pSuite, "PLAT_SetPowerState_pos" ,test_l1_plat_power_positive_PLAT_API_SetPowerState );
+    UT_add_test( pSuite, "PLAT_SetPowerState_neg" ,test_l1_plat_power_negative_PLAT_API_SetPowerState );
+    UT_add_test( pSuite, "PLAT_GetPowerState_pos" ,test_l1_plat_power_positive_PLAT_API_GetPowerState );
+    UT_add_test( pSuite, "PLAT_GetPowerState_neg" ,test_l1_plat_power_negative_PLAT_API_GetPowerState );
+    UT_add_test( pSuite, "PLAT_SetWakeupSrc_pos" ,test_l1_plat_power_positive_PLAT_API_SetWakeupSrc );
+    UT_add_test( pSuite, "PLAT_SetWakeupSrc_neg" ,test_l1_plat_power_negative_PLAT_API_SetWakeupSrc );
+    UT_add_test( pSuite, "PLAT_GetWakeupSrc_pos" ,test_l1_plat_power_positive_PLAT_API_GetWakeupSrc );
+    UT_add_test( pSuite, "PLAT_GetWakeupSrc_neg" ,test_l1_plat_power_negative_PLAT_API_GetWakeupSrc );
+    UT_add_test( pSuite, "PLAT_Reset_L1_pos" ,test_l1_plat_power_positive_PLAT_Reset );
+    UT_add_test( pSuite, "PLAT_Reset_L1_neg" ,test_l1_plat_power_negative_PLAT_Reset );
     extendedEnumsSupported = ut_kvp_getBoolField( ut_kvp_profile_getInstance(), "powermanager/features/extendedEnumsSupported" );
 
     return 0;

@@ -30,6 +30,8 @@ sys.path.append(os.path.join(dir_path, "../"))
 from raft.framework.plugins.ut_raft.configRead import ConfigRead
 from raft.framework.core.logModule import logModule
 from raft.framework.plugins.ut_raft import utHelperClass
+from raft.framework.plugins.ut_raft.utSuiteNavigator import UTSuiteNavigatorClass
+from raft.framework.plugins.ut_raft.utBaseUtils import utBaseUtils
 
 class powermanager_L1_L2_tests(utHelperClass):
     """
@@ -61,7 +63,7 @@ class powermanager_L1_L2_tests(utHelperClass):
         self.testSetup = ConfigRead(testSetupPath, moduleName)
         self.hal_session = self.dut.getConsoleSession("ssh_hal_test")
 
-     def power_manager(self, moduleConfigProfileFile :str, session=None, testSuite:str=" ", targetWorkspace="/tmp"):
+    def config_powermanager(self, moduleConfigProfileFile :str, session=None, testSuite:str=" ", targetWorkspace="/tmp"):
         """
         Initializes the powermanager instance with configuration settings.
 
@@ -90,6 +92,20 @@ class powermanager_L1_L2_tests(utHelperClass):
 
         # Start the user interface menu
         self.utMenu.start()
+    
+    def runTest(self, test_case:str=None):
+        """
+        Runs the test case passed to this funtion
+        Args:
+            test_case (str, optional): test case name to run, default runs all test
+        Returns:
+            bool: True - test pass, False - test fails
+        """
+        output = self.utMenu.select( self.testSuite, test_case)
+        results = self.utMenu.collect_results(output)
+        if results == None:
+            results = False
+        return results
 
     def testFunction(self):
         """
@@ -106,23 +122,23 @@ class powermanager_L1_L2_tests(utHelperClass):
             testsuite_name = testsuite.get("name")
 
             # Create the powermanager config instance
-            testpowermanager = power_manager(self.moduleConfigProfileFile, self.hal_session, testsuite_name, self.targetWorkspace)
+            self.config_powermanager(self.moduleConfigProfileFile, self.hal_session, testsuite_name, self.targetWorkspace)
             test_cases = testsuite.get("test_cases")
 
             if len(test_cases) == 1 and test_cases[0] == "all":
                 self.log.stepStart(f'Test Suit: {testsuite_name} Run all Tests cases')
                 # If 'all' test case mentioned in list, run all tests with 'r' option
-                result = testpowermanager.runTest()
+                result = self.runTest()
                 finalresult &= result
                 self.log.stepResult(result, f'Test Suit: {testsuite_name} Run all Tests cases')
             else:
                 for test_case in testsuite.get("test_cases"):
                     self.log.stepStart(f'Test Suit: {testsuite_name} Test Case: {test_case}')
-                    result = testpowermanager.runTest(test_case)
+                    result = self.runTest(test_case)
                     finalresult &= result
                     self.log.stepResult(result, f'Test Suit: {testsuite_name} Test Case: {test_case}')
 
-            del testpowermanager
+            self.utMenu.stop()
 
         return finalresult
 

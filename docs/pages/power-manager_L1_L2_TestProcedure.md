@@ -1,4 +1,4 @@
-# powermanager HAL L1 and L2 Test Procedure
+# Power Manager HAL L1 and L2 Test Procedure
 
 ## Table of Contents
 
@@ -89,7 +89,7 @@ deviceConfig:
         target_directory: "/tmp/"  # Target Directory on device
         prompt: "" # Prompt string on console
         test:
-            profile: "../../../../profiles/sink/sink_powerManager.yaml"
+            profile: "../../../profiles/sink/sink_powerManager.yaml"
 ```
 
 #### Test Setup Configuration File
@@ -101,20 +101,20 @@ This `yaml` contains the list of test_suites and test_cases to run
 eg:
 ```yaml
 powermanager:
-  description: "powermanager L1 and L2 test setup"
+  description: "Power Manager L1 and L2 test setup"
   test_suites: # List of test suites to run
-    - name: "L1 powermanager"
+    - name: "L1 plat_power"
       test_cases: # List of test cases to execute, to run all test cases in test suite with R option use `all`
         - all
-    - name: "L1 powermanager"
+    - name: "L1 plat_power"
       test_cases:
-        - PLAT_INIT_L1_positive
-        - PLAT_INIT_L1_negative
-        - PLAT_TERM_L1_positive
-        - PLAT_TERM_L1_negative
-        - PLAT_API_SetPowerState_L1_positive
-        - PLAT_API_SetPowerState_L1_negative
-    - name: "L2 powermanager"
+        - PLAT_INIT_pos
+        - PLAT_INIT_neg
+        - PLAT_TERM_pos
+        - PLAT_TERM_neg
+        - PLAT_SetPowerState_pos
+        - PLAT_SetPowerState_neg
+    - name: "L2 plat_power"
       test_cases:
         - L2_SetAndGetPowerState
         - L2_SetAndGetWakeupSrc
@@ -122,7 +122,7 @@ powermanager:
 
 #### Test Configuration
 
-Example Test Setup configuration File: [powermanager_testConfig.yml](../../../../ut/host/tests/dsClasses/powermanager_testConfig.yml)
+Example Test Setup configuration File: [powermanager_testConfig.yml](../../../../ut/host/tests/L1_L2_TestCases/powermanager_testConfig.yml)
 
 Execute command to run the HAL binary was provided in this file.
 
