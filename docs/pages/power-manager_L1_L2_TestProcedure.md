@@ -94,7 +94,7 @@ deviceConfig:
 
 #### Test Setup Configuration File
 
-Example Test Setup configuration File: [powermanager_L1_L2_testSetup.yml](../../ut/host/tests/L1_L2_TestCases/powermanager_L1_L2_testSetup.yml)
+Example Test Setup configuration File: [powermanager_L1_L2_testSetup.yml](../../host/tests/L1_L2_TestCases/powermanager_L1_L2_testSetup.yml)
 
 This `yaml` contains the list of test_suites and test_cases to run
 
@@ -122,7 +122,7 @@ powermanager:
 
 #### Test Configuration
 
-Example Test Setup configuration File: [powermanager_testConfig.yml](../../ut/host/tests/L1_L2_TestCases/powermanager_testConfig.yml)
+Example Test Setup configuration File: [powermanager_testConfig.yml](../../host/tests/L1_L2_TestCases/powermanager_testConfig.yml)
 
 Execute command to run the HAL binary was provided in this file.
 
