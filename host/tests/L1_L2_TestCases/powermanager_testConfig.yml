@@ -20,13 +20,13 @@
 # *
 #* ******************************************************************************
 powermanager:
-    description: "power manager testing profile / menu system for UT"
+    description: "powermanager testing profile / menu system for UT"
     test:
       artifacts:
       #List of artifacts folders, test class copies the content of folder to the target device workspace
         - "../../../bin/"
       # exectute command, this will appended with the target device workspace path
-      execute: "run.sh"
+      execute: "/opt/ahmed/powermanager/run.sh"
       type: UT-C # C (UT-C Cunit) / C++ (UT-G (g++ ut-core gtest backend))
       suites:
             0:
@@ -44,8 +44,6 @@ powermanager:
                     - PLAT_SetWakeupSrc_neg
                     - PLAT_GetWakeupSrc_pos
                     - PLAT_GetWakeupSrc_neg
-                    - PLAT_Reset_L1_pos
-                    - PLAT_Reset_L1_neg
             1:
                 name: "L2 plat_power"
                 tests:

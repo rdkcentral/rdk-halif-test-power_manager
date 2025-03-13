@@ -15,47 +15,41 @@ powermanager:
     # Entries to run individual test cases
     #######################################
     #- name: "L1 plat_power"
-    # test_cases:
-    #    - PLAT_INIT_pos
+     # test_cases:
+      #  - PLAT_INIT_pos
     #- name: "L1 plat_power"
-    #  test_cases:
-    #    - PLAT_INIT_neg
+     # test_cases:
+      #  - PLAT_INIT_neg
     #- name: "L1 plat_power"
-    #  test_cases:
-    #    - PLAT_TERM_pos
+     # test_cases:
+      #  - PLAT_TERM_pos
     #- name: "L1 plat_power"
-    #  test_cases:
-    #    - PLAT_TERM_neg
+     # test_cases:
+      #  - PLAT_TERM_neg
     #- name: "L1 plat_power"
-    #  test_cases:
-    #    - PLAT_SetPowerState_pos
+     # test_cases:
+      #  - PLAT_SetPowerState_pos
     #- name: "L1 plat_power"
-    #  test_cases:
-    #    - PLAT_SetPowerState_neg
+     # test_cases:
+      #  - PLAT_SetPowerState_neg
     #- name: "L1 plat_power"
-    #  test_cases:
-    #    - PLAT_GetPowerState_pos
+     # test_cases:
+      #  - PLAT_GetPowerState_pos
     #- name: "L1 plat_power"
-    #  test_cases:
-    #    - PLAT_GetPowerState_neg
+     # test_cases:
+      #  - PLAT_GetPowerState_neg
     #- name: "L1 plat_power"
-    #  test_cases:
-    #    - PLAT_SetWakeupSrc_pos
+     # test_cases:
+      #  - PLAT_SetWakeupSrc_pos
     #- name: "L1 plat_power"
-    #  test_cases:
-    #    - PLAT_SetWakeupSrc_neg
+     # test_cases:
+      #  - PLAT_SetWakeupSrc_neg
     #- name: "L1 plat_power"
-    #  test_cases:
-    #    - PLAT_GetWakeupSrc_pos
+     # test_cases:
+      #  - PLAT_GetWakeupSrc_pos
     #- name: "L1 plat_power"
-    #  test_cases:
-    #    - PLAT_GetWakeupSrc_neg
-    #- name: "L1 plat_power"
-    #  test_cases:
-    #    - PLAT_Reset_L1_pos
-    #- name: "L1 plat_power"
-    #  test_cases:
-    #    - PLAT_Reset_L1_neg
+     # test_cases:
+      #  - PLAT_GetWakeupSrc_neg
 
     ######################################
     # Entries to run selected test case
@@ -84,11 +78,11 @@ powermanager:
     # Entries to run individual test cases
     #######################################
     #- name: "L2 plat_power"
-    #  test_cases:
-    #    - L2_SetAndGetPowerState
+     # test_cases:
+      #  - L2_SetAndGetPowerState
     #- name: "L2 plat_power"
-    #  test_cases:
-    #    - L2_SetAndGetWakeupSrc
+     # test_cases:
+      #  - L2_SetAndGetWakeupSrc
 
     ######################################
     # Entries to run selected test case

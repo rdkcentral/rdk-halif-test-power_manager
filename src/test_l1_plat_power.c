@@ -723,6 +723,8 @@ void test_l1_plat_power_negative_PLAT_API_GetWakeupSrc (void)
 /**
  * @brief Ensure PLAT_Reset() returns correct error codes during positive scenarios
  *
+ * *** This test case is deprecated
+ *
  * **Test Group ID:** Basic: 01@n
  * **Test Case ID:** 013@n
  *
@@ -777,6 +779,8 @@ void test_l1_plat_power_positive_PLAT_Reset (void)
 
 /**
  * @brief Ensure PLAT_Reset() returns correct error codes during negative scenarios
+ *
+ ** *** This test case is deprecated
  *
  * **Test Group ID:** Basic: 01@n
  * **Test Case ID:** 014@n
@@ -855,8 +859,6 @@ int test_l1_plat_power_register ( void )
     UT_add_test( pSuite, "PLAT_SetWakeupSrc_neg" ,test_l1_plat_power_negative_PLAT_API_SetWakeupSrc );
     UT_add_test( pSuite, "PLAT_GetWakeupSrc_pos" ,test_l1_plat_power_positive_PLAT_API_GetWakeupSrc );
     UT_add_test( pSuite, "PLAT_GetWakeupSrc_neg" ,test_l1_plat_power_negative_PLAT_API_GetWakeupSrc );
-    UT_add_test( pSuite, "PLAT_Reset_L1_pos" ,test_l1_plat_power_positive_PLAT_Reset );
-    UT_add_test( pSuite, "PLAT_Reset_L1_neg" ,test_l1_plat_power_negative_PLAT_Reset );
     extendedEnumsSupported = ut_kvp_getBoolField( ut_kvp_profile_getInstance(), "powermanager/features/extendedEnumsSupported" );
 
     return 0;
