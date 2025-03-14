@@ -1,0 +1,93 @@
+# This is a sample test configuration file. Users can customize the YAML entries as needed
+# This test configuration file includes sample YAML entries for executing various combinations
+powermanager:
+  description: "Power Manager L1 and L2 test setup"
+  test_suites: # List of L1 and L2 test suites
+
+    ######################################
+    # Entry to run all test case
+    ######################################
+    - name: "L1 plat_power"
+      test_cases:
+         - all
+
+    #######################################
+    # Entries to run individual test cases
+    #######################################
+    #- name: "L1 plat_power"
+     # test_cases:
+      #  - PLAT_INIT_pos
+    #- name: "L1 plat_power"
+     # test_cases:
+      #  - PLAT_INIT_neg
+    #- name: "L1 plat_power"
+     # test_cases:
+      #  - PLAT_TERM_pos
+    #- name: "L1 plat_power"
+     # test_cases:
+      #  - PLAT_TERM_neg
+    #- name: "L1 plat_power"
+     # test_cases:
+      #  - PLAT_SetPowerState_pos
+    #- name: "L1 plat_power"
+     # test_cases:
+      #  - PLAT_SetPowerState_neg
+    #- name: "L1 plat_power"
+     # test_cases:
+      #  - PLAT_GetPowerState_pos
+    #- name: "L1 plat_power"
+     # test_cases:
+      #  - PLAT_GetPowerState_neg
+    #- name: "L1 plat_power"
+     # test_cases:
+      #  - PLAT_SetWakeupSrc_pos
+    #- name: "L1 plat_power"
+     # test_cases:
+      #  - PLAT_SetWakeupSrc_neg
+    #- name: "L1 plat_power"
+     # test_cases:
+      #  - PLAT_GetWakeupSrc_pos
+    #- name: "L1 plat_power"
+     # test_cases:
+      #  - PLAT_GetWakeupSrc_neg
+
+    ######################################
+    # Entries to run selected test case
+    ######################################
+    #- name: "L1 plat_power"  # Name of the test suit to run
+    #  test_cases:  # List of test cases to execute, to run all test cases in test suite with R option use `all`
+    #    - PLAT_INIT_pos
+    #    - PLAT_INIT_neg
+    #    - PLAT_TERM_pos
+    #    - PLAT_TERM_neg
+    #    - PLAT_SetPowerState_pos
+    #    - PLAT_SetPowerState_neg
+    #    - PLAT_GetPowerState_pos
+    #    - PLAT_GetPowerState_neg
+    #    - PLAT_SetWakeupSrc_pos
+    #    - PLAT_SetWakeupSrc_neg
+
+    ######################################
+    # Entry to run all test case
+    ######################################
+    - name: "L2 plat_power"
+      test_cases:
+         - all
+
+    #######################################
+    # Entries to run individual test cases
+    #######################################
+    #- name: "L2 plat_power"
+     # test_cases:
+      #  - L2_SetAndGetPowerState
+    #- name: "L2 plat_power"
+     # test_cases:
+      #  - L2_SetAndGetWakeupSrc
+
+    ######################################
+    # Entries to run selected test case
+    ######################################
+    #- name: "L2 plat_power"
+    #  test_cases:
+    #    - L2_SetAndGetPowerState
+    #    - L2_SetAndGetWakeupSrc
