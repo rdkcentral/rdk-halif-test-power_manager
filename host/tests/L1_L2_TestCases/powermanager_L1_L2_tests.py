@@ -37,8 +37,8 @@ from raft.framework.core.commandModules.sshConsole import sshConsole
 
 class powermanager_L1_L2_tests(utHelperClass):
     """
-    Test class to interact with the device 
-    
+    Test class to interact with the device
+
     and run the L1 and L2 tests on the device.
 
     """
@@ -65,7 +65,7 @@ class powermanager_L1_L2_tests(utHelperClass):
         self.testSetup = ConfigRead(testSetupPath, moduleName)
         self.hal_session = self.dut.getConsoleSession("ssh_hal_test")
 
-    def config_powermanager(self, moduleConfigProfileFile :str, session=None, testSuite:str=" ", targetWorkspace="/tmp"):
+    def config_powermanager(self, moduleConfigProfileFile :str, session=None, testSuite:str=" ", targetWorkspace="/tmp", copyArtifacts:bool=True):
         """
         Initializes the powermanager instance with configuration settings.
 
@@ -84,17 +84,18 @@ class powermanager_L1_L2_tests(utHelperClass):
         self.utils         = utBaseUtils()
         self.ports = self.moduleConfigProfile.fields.get("Ports")
 
-        # Copy bin files to the target
-        for artifact in self.testConfig.test.artifacts:
-            filesPath = os.path.join(dir_path, artifact)
-            self.utils.rsync(self.testSession, filesPath, targetWorkspace)
+        if copyArtifacts:
+            # Copy bin files to the target
+            for artifact in self.testConfig.test.artifacts:
+                filesPath = os.path.join(dir_path, artifact)
+                self.utils.rsync(self.testSession, filesPath, targetWorkspace)
 
-        # Copy the profile file to the target
-        self.utils.scpCopy(self.testSession, moduleConfigProfileFile, targetWorkspace)
+            # Copy the profile file to the target
+            self.utils.scpCopy(self.testSession, moduleConfigProfileFile, targetWorkspace)
 
         # Start the user interface menu
         self.utMenu.start()
-    
+
     def runTest(self, test_case:str=None):
         """
         Runs the test case passed to this funtion
@@ -120,28 +121,32 @@ class powermanager_L1_L2_tests(utHelperClass):
 
         finalresult = True
 
+        copyArtifacts = True
         for testsuite in testsuites:
             testsuite_name = testsuite.get("name")
 
             # Create the powermanager config instance
-            self.config_powermanager(self.moduleConfigProfileFile, self.hal_session, testsuite_name, self.targetWorkspace)
+            self.config_powermanager(self.moduleConfigProfileFile, self.hal_session, testsuite_name, self.targetWorkspace, copyArtifacts)
+            copyArtifacts = False
             test_cases = testsuite.get("test_cases")
 
             if len(test_cases) == 1 and test_cases[0] == "all":
                 self.log.stepStart(f'Test Suit: {testsuite_name} Run all Tests cases')
                 # If 'all' test case mentioned in list, run all tests with 'r' option
                 result = self.runTest()
-                finalresult &= result
+                if not result:
+                    finalresult = False
                 self.log.stepResult(result, f'Test Suit: {testsuite_name} Run all Tests cases')
             else:
                 for test_case in testsuite.get("test_cases"):
                     self.log.stepStart(f'Test Suit: {testsuite_name} Test Case: {test_case}')
                     result = self.runTest(test_case)
-                    finalresult &= result
+                    if not result:
+                        finalresult = False
                     self.log.stepResult(result, f'Test Suit: {testsuite_name} Test Case: {test_case}')
 
             self.utMenu.stop()
-                
+
         return finalresult
 
 if __name__ == '__main__':
