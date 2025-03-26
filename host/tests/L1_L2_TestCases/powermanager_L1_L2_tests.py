@@ -81,17 +81,17 @@ class powermanager_L1_L2_tests(utHelperClass):
         self.utMenu        = UTSuiteNavigatorClass(self.testConfig, None, session)
         self.testConfig.test.execute = self.testConfig.test.execute + f" -p {os.path.basename(moduleConfigProfileFile)}"
         self.testSession   = session
-        self.utils         = utBaseUtils()
+        self.baseUtils         = utBaseUtils()
         self.ports = self.moduleConfigProfile.fields.get("Ports")
 
         if copyArtifacts:
             # Copy bin files to the target
             for artifact in self.testConfig.test.artifacts:
                 filesPath = os.path.join(dir_path, artifact)
-                self.utils.rsync(self.testSession, filesPath, targetWorkspace)
+                self.baseUtils.rsync(self.testSession, filesPath, targetWorkspace)
 
             # Copy the profile file to the target
-            self.utils.scpCopy(self.testSession, moduleConfigProfileFile, targetWorkspace)
+            self.baseUtils.scpCopy(self.testSession, moduleConfigProfileFile, targetWorkspace)
 
         # Start the user interface menu
         self.utMenu.start()
