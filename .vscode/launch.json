@@ -17,9 +17,9 @@
             "stopAtEntry": false,
             "externalConsole": false,
             "cwd": "${workspaceFolder}",
-            "program": "${workspaceFolder}/bin/deepsleepmanager/hal_test",
-            "environment": [ {"name": "LD_LIBRARY_PATH", "value":"${workspaceFolder}/bin/deepsleepmanager/"} ],
-            "args": [ "-l", "${workspaceFolder}/logs/", "-p", "${workspaceFolder}/profiles/sink/deepsleepmanager.yaml" ],
+            "program": "${workspaceFolder}/bin/powermanager/hal_test",
+            "environment": [ {"name": "LD_LIBRARY_PATH", "value":"${workspaceFolder}/bin/powermanager/"} ],
+            "args": [ "-l", "${workspaceFolder}/logs/", "-p", "${workspaceFolder}/profiles/sink/powermanager.yaml" ],
             "MIMode": "gdb",
             "miDebuggerPath": "gdb",
             "setupCommands": [
