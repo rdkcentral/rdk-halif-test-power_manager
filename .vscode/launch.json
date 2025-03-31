@@ -1,0 +1,34 @@
+{
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "args": [ "--config", "./host/tests/configs/example_rack_config.yml"],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "C/C++ Runner: Debug Session",
+            "type": "cppdbg",
+            "request": "launch",
+            "stopAtEntry": false,
+            "externalConsole": false,
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/bin/deepsleepmanager/hal_test",
+            "environment": [ {"name": "LD_LIBRARY_PATH", "value":"${workspaceFolder}/bin/deepsleepmanager/"} ],
+            "args": [ "-l", "${workspaceFolder}/logs/", "-p", "${workspaceFolder}/profiles/sink/deepsleepmanager.yaml" ],
+            "MIMode": "gdb",
+            "miDebuggerPath": "gdb",
+            "setupCommands": [
+              {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+              }
+            ]
+          }
+    ]
+}
