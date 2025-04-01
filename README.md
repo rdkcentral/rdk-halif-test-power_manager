@@ -7,6 +7,8 @@
 - [Reference Documents](#reference-documents)
 - [How to build the test suite](#how-to-build-the-test-suite)
 - [Notes](#notes)
+- [Manual way of running the L1 and L2 test cases](#manual-way-of-running-the-l1-and-l2-test-cases)
+- [Setting Python environment for running the L1 L2 automation test cases](#setting-python-environment-for-running-the-l1-l2-automation-test-cases)
 
 ## Acronyms, Terms and Abbreviations
 
@@ -27,6 +29,7 @@ This repository contains the Unit Test Suites (`L1` and `L2`) for Power Manager 
 |1|`HAL` Specification Document|This document provides specific information on the APIs for which tests are written in this module|[power-manager_halSpec.md](https://github.com/rdkcentral/rdk-halif-power_manager/blob/main/docs/pages/power-manager_halSpec.md)|
 |2|High Level Test Specification |High Level Test Specification Documentation this module |[power-manager_High-Level_TestSpec.md](https://github.com/rdkcentral/rdk-halif-test-power_manager/blob/main/docs/pages/power-manager_High-Level_TestSpec.md)|
 |3|`L2` Low Level Test Specification |`L2`Low Level Test Specification Documentation this module |[power-manager_L2_Low-Level_TestSpec.md](https://github.com/rdkcentral/rdk-halif-test-power_manager/blob/main/docs/pages/power-manager_L2_Low-Level_TestSpec.md)|
+|4|`L1` and `L2` Test Procedure Document|`L1` and `L2` Test Procedure Document|[power-manager_L1_L2_TestProcedure.md](docs/pages/power-manager_L1_L2_TestProcedure.md)|
 
 ## Notes
 
@@ -80,7 +83,7 @@ build_ut.sh TARGET=arm
 
 - `build_ut.sh` script will clone the hal-test repo, ut-core and generate a `hal_test_iarmmgrs-power-hal` binary in `ut/bin/` upon successful completion.
 
-### Running the `L1` and `L2` test cases
+### Manual way of running the `L1` and `L2` test cases
 
 ```bash
 ./hal_test_iarmmgrs-power-hal -p sink_powerManager.yaml
@@ -94,4 +97,7 @@ Alternatively, use the run.sh script with the profile file:
 
 - Profiles file available for sink and source [profile yaml file](./profiles/)
 
+### Setting Python environment for running the `L1` `L2` automation test cases
+
 - Install Python Environment and Activation Scripts please check the[HPK Documentation](https://github.com/rdkcentral/rdk-hpk-documentation/blob/main/README.md)
+- To run the `L1` `L2` test cases follow the [power-manager_L1_L2_TestProcedure.md](docs/pages/power-manager_L1_L2_TestProcedure.md)
