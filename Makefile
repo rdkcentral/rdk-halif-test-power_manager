@@ -35,6 +35,11 @@ SRC_DIRS = $(ROOT_DIR)/src
 INC_DIRS := $(ROOT_DIR)/../include
 HAL_LIB := iarmmgrs-power-hal
 SKELETON_SRCS := $(ROOT_DIR)/skeletons/src/plat_power.c
+TARGET_EXEC :=hal_test_$(HAL_LIB)
+
+# Export the tag version
+VERSION := $(shell git describe --tags | head -n1)
+KCFLAGS := -D HALIF_TEST_TAG_VERSION=\"$(VERSION)\"
 
 ifeq ($(TARGET),)
 $(info TARGET NOT SET )
@@ -62,6 +67,8 @@ export INC_DIRS
 export TARGET
 export TOP_DIR
 export HAL_LIB_DIR
+export TARGET_EXEC
+export KCFLAGS
 
 .PHONY: clean list build skeleton
 
@@ -71,6 +78,8 @@ build: $(SETUP_SKELETON_LIBS)
 	@echo UT [$@]
 	make -C ./ut-core framework
 	make -C ./ut-core test
+	rm -rf $(BIN_DIR)/lib$(HAL_LIB).so
+	rm -rf $(ROOT_DIR)/libs/lib$(HAL_LIB).so
 
 #Build against the real library leads to the SOC library dependency also.SOC lib dependency cannot be specified in the ut Makefile, since it is supposed to be common across may platforms. So in order to over come this situation, creating a template skelton library with empty templates so that the template library wont have any other Soc dependency. And in the real platform mount copy bind with the actual library will work fine.
 skeleton:
