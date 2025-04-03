@@ -66,6 +66,8 @@ powermanager:
     #    - PLAT_GetPowerState_neg
     #    - PLAT_SetWakeupSrc_pos
     #    - PLAT_SetWakeupSrc_neg
+    #    - PLAT_GetWakeupSrc_pos
+    #    - PLAT_GetWakeupSrc_neg
 
     ######################################
     # Entry to run all test case
