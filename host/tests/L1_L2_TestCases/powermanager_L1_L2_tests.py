@@ -63,40 +63,29 @@ class powermanager_L1_L2_tests(utHelperClass):
         # Load test setup configuration
         testSetupPath = os.path.join(dir_path, "powermanager_L1_L2_testSetup.yml")
         self.testSetup = ConfigRead(testSetupPath, moduleName)
+
+        # Open the session
         self.hal_session = self.dut.getConsoleSession("ssh_hal_test")
 
-    def config_powermanager(self, moduleConfigProfileFile :str, session=None, testSuite:str=" ", targetWorkspace="/tmp", copyArtifacts:bool=True):
-        """
-        Initializes the powermanager instance with configuration settings.
-
-        """
-        self.moduleName = "powermanager"
+        # Open Suite navigator
         self.testConfigFile = os.path.join(dir_path, "powermanager_testConfig.yml")
-        self.testSuite = testSuite
+        self.testConfig    = ConfigRead(self.testConfigFile, moduleName)
+        self.testConfig.test.execute = os.path.join(self.targetWorkspace, self.testConfig.test.execute)
+        self.testConfig.test.execute = self.testConfig.test.execute + f" -p {os.path.basename(self.moduleConfigProfileFile)}"
+        self.utMenu        = UTSuiteNavigatorClass(self.testConfig, None, self.hal_session)
 
-        # Load configurations for device profile and menu
-        self.moduleConfigProfile = ConfigRead( moduleConfigProfileFile , self.moduleName)
-        self.testConfig    = ConfigRead(self.testConfigFile, self.moduleName)
-        self.testConfig.test.execute = os.path.join(targetWorkspace, self.testConfig.test.execute)
-        self.utMenu        = UTSuiteNavigatorClass(self.testConfig, None, session)
-        self.testConfig.test.execute = self.testConfig.test.execute + f" -p {os.path.basename(moduleConfigProfileFile)}"
-        self.testSession   = session
+        # Copy the binaries to the target
         self.baseUtils         = utBaseUtils()
-        self.ports = self.moduleConfigProfile.fields.get("Ports")
 
-        if copyArtifacts:
-            # Copy bin files to the target
-            for artifact in self.testConfig.test.artifacts:
-                filesPath = os.path.join(dir_path, artifact)
-                self.baseUtils.rsync(self.testSession, filesPath, targetWorkspace)
+        # Copy bin files to the target
+        for artifact in self.testConfig.test.artifacts:
+            filesPath = os.path.join(dir_path, artifact)
+            self.baseUtils.rsync(self.hal_session, filesPath, targetWorkspace)
 
-            # Copy the profile file to the target
-            self.baseUtils.scpCopy(self.testSession, moduleConfigProfileFile, targetWorkspace)
+        # Copy the profile file to the target
+        self.baseUtils.scpCopy(self.hal_session, self.moduleConfigProfileFile, targetWorkspace)
 
-        # Start the user interface menu
-        self.utMenu.start()
-
-    def runTest(self, test_case:str=None):
+    def runTest(self, testsuite_name:str, test_case:str=None):
         """
         Runs the test case passed to this funtion
         Args:
@@ -104,7 +93,7 @@ class powermanager_L1_L2_tests(utHelperClass):
         Returns:
             bool: True - test pass, False - test fails
         """
-        output = self.utMenu.select( self.testSuite, test_case)
+        output = self.utMenu.select( testsuite_name, test_case)
         results = self.utMenu.collect_results(output)
         if results == None:
             results = False
@@ -121,13 +110,12 @@ class powermanager_L1_L2_tests(utHelperClass):
 
         finalresult = True
 
-        copyArtifacts = True
         for testsuite in testsuites:
+
             testsuite_name = testsuite.get("name")
 
-            # Create the powermanager config instance
-            self.config_powermanager(self.moduleConfigProfileFile, self.hal_session, testsuite_name, self.targetWorkspace, copyArtifacts)
-            copyArtifacts = False
+            self.utMenu.start()
+
             test_cases = testsuite.get("test_cases")
 
             if len(test_cases) == 1 and test_cases[0] == "all":
@@ -140,7 +128,7 @@ class powermanager_L1_L2_tests(utHelperClass):
             else:
                 for test_case in testsuite.get("test_cases"):
                     self.log.stepStart(f'Test Suit: {testsuite_name} Test Case: {test_case}')
-                    result = self.runTest(test_case)
+                    result = self.runTest(testsuite_name, test_case)
                     if not result:
                         finalresult = False
                     self.log.stepResult(result, f'Test Suit: {testsuite_name} Test Case: {test_case}')
