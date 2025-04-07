@@ -80,10 +80,10 @@ class powermanager_L1_L2_tests(utHelperClass):
         # Copy bin files to the target
         for artifact in self.testConfig.test.artifacts:
             filesPath = os.path.join(dir_path, artifact)
-            self.baseUtils.rsync(self.hal_session, filesPath, targetWorkspace)
+            self.baseUtils.rsync(self.hal_session, filesPath, self.targetWorkspace)
 
         # Copy the profile file to the target
-        self.baseUtils.scpCopy(self.hal_session, self.moduleConfigProfileFile, targetWorkspace)
+        self.baseUtils.scpCopy(self.hal_session, self.moduleConfigProfileFile, self.targetWorkspace)
 
     def runTest(self, testsuite_name:str, test_case:str=None):
         """
