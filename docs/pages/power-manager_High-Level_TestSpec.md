@@ -8,7 +8,6 @@
   - [Set And Get Power States](#set-and-get-power-states)
   - [Set and Get Status of Wakeup Sources](#set-and-get-status-of-wakeup-sources)
   - [Testing Wakeup Source](#testing-wakeup-source)
-  - [Test Reset Functionality](#test-reset-functionality)
 
 ## Acronyms, Terms and Abbreviations
 
@@ -37,7 +36,6 @@ The Power manager Hal Spec document: [Power Manager HAL Spec](https://github.com
 |1|[Set And Get Power States](#set-and-get-power-states)|Power Manager should set the power state provided by caller and same should be retrieved|
 |2|[Set and Get Status of Wakeup Sources](#set-and-get-status-of-wakeup-sources)|Power Manager should set the wakeup source provided by caller and same should be retrieved|
 |3|[Testing Wakeup Source](#testing-wakeup-source)|Power manager should accept the supported wakeup sources and device should wakeup from standby/sleep modes using wakeup sources set by caller|
-|4|[Test Reset Functionality](#test-reset-functionality)|Power manager should reboot the device|
 
 ## Emulator Requirements
 
@@ -82,7 +80,3 @@ The Power manager Hal Spec document: [Power Manager HAL Spec](https://github.com
 ## Testing Wakeup Source
 
 Testing the wake-up sources is already done within the deep-sleep L3 test specification.
-
-## Test Reset Functionality
-
-This function is depreciated and we are not testing depreciated functions.
