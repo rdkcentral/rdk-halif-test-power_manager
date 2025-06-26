@@ -95,8 +95,7 @@ Alternatively, use the run.sh script with the profile file:
 ./run.sh -p /absolute/path/to/profile/file
  ```
 
-- Profiles file available for sink [sink_powerManager yaml file](https://github.com/rdkcentral/rdk-halif-test-power_manager/blob/main/profiles/sink/sink_powerManager.yaml)
-- Profiles file available for source [source_powerManager yaml file](https://github.com/rdkcentral/rdk-halif-test-power_manager/blob/main/profiles/source/source_powerManager.yaml)
+Profiles file available for sink and source at [sink profile yaml file](./profiles/sink/sink_powerManager.yaml) and  [source  profile yaml file](./profiles/source/source_powerManager.yaml)
 
 ### Setting Python environment for running the `L1` `L2` automation test cases
 
