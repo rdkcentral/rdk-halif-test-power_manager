@@ -1,15 +1,5 @@
 # Power Manager High Level Test Specification Documentation
 
-## Table of Contents
-
-- [Acronyms, Terms and Abbreviations](#acronyms-terms-and-abbreviations)
-- [Introduction](#introduction)
-- [Testing Scope](#testing-scope)
-  - [Set And Get Power States](#set-and-get-power-states)
-  - [Set and Get Status of Wakeup Sources](#set-and-get-status-of-wakeup-sources)
-  - [Testing Wakeup Source](#testing-wakeup-source)
-  - [Test Reset Functionality](#test-reset-functionality)
-
 ## Acronyms, Terms and Abbreviations
 
 - `HAL` - Hardware Abstraction Layer
