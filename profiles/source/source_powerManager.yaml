@@ -3,7 +3,7 @@ powermanager:
   name: STB_wakeupsrc_pwrstate_all
 
   features:
-    extendedEnumsSupported: false
+    extendedEnumsSupported: true
 
   CountOfWakeupSources: 3
 
