@@ -69,7 +69,7 @@
 #define POWER_MANAGER_KEY_SIZE 50
 #define UT_LOG_MENU_INFO UT_LOG_INFO
 
-#define DS_ASSERT assert
+#define DS_ASSERT UT_ASSERT
 
 static int gTestGroup = 3;
 static int gTestID = 1;
@@ -160,7 +160,7 @@ void test_l3_power_manager_hal_Init(void)
     UT_LOG_INFO("Result PLAT_INIT() pmStatus_t:[%s]",
                  UT_Control_GetMapString(pmStatus_mapTable, status));
 
-    assert(status == PWRMGR_SUCCESS);
+    DS_ASSERT(status == PWRMGR_SUCCESS);
 
     UT_LOG_INFO("Out %s\n", __FUNCTION__);
 }
@@ -218,7 +218,7 @@ void test_l3_power_manager_hal_Set_Power_State(void)
     UT_LOG_INFO("Result PLAT_API_SetPowerState(IN:State[%s]) pmStatus_t:[%s]",
                  UT_Control_GetMapString(plat_power_states_mapTable, state), UT_Control_GetMapString(pmStatus_mapTable, status));
 
-    assert(status == PWRMGR_SUCCESS);
+    DS_ASSERT(status == PWRMGR_SUCCESS);
 
     exit:
     UT_LOG_INFO("Out %s", __FUNCTION__);
@@ -257,7 +257,7 @@ void test_l3_power_manager_hal_Get_Power_State(void)
     
     UT_LOG_INFO("Result PLAT_API_GetPowerState(OUT:State[%s]) pmStatus_t:[%s]",
                  UT_Control_GetMapString(plat_power_states_mapTable, state), UT_Control_GetMapString(pmStatus_mapTable, status));
-    assert(status == PWRMGR_SUCCESS);
+    DS_ASSERT(status == PWRMGR_SUCCESS);
     UT_LOG_INFO("Out %s\n", __FUNCTION__);
 }
 
@@ -334,7 +334,7 @@ void test_l3_power_manager_hal_Set_Wakeup_Source(void)
                  UT_Control_GetMapString(plat_source_types_mapTable, srcType), enable ? "true" : "false",
                  UT_Control_GetMapString(pmStatus_mapTable, status));
 
-    assert(status == PWRMGR_SUCCESS);
+    DS_ASSERT(status == PWRMGR_SUCCESS);
 
     exit:
     UT_LOG_INFO("Out %s", __FUNCTION__);
@@ -394,7 +394,7 @@ void test_l3_power_manager_hal_Get_Wakeup_Source(void)
     UT_LOG_INFO("Result PLAT_API_GetWakeupSrc(IN:srcType[%s], OUT:enable[%s]) pmStatus_t:[%s]",
                  UT_Control_GetMapString(plat_source_types_mapTable, srcType), enable ? "true" : "false",
                  UT_Control_GetMapString(pmStatus_mapTable, status));
-    assert(status == PWRMGR_SUCCESS);
+    DS_ASSERT(status == PWRMGR_SUCCESS);
 
     exit:
     UT_LOG_INFO("Out %s\n", __FUNCTION__);
@@ -433,7 +433,7 @@ void test_l3_power_manager_hal_Term(void)
     UT_LOG_INFO("Result PLAT_TERM() pmStatus_t:[%s]",
                  UT_Control_GetMapString(pmStatus_mapTable, status));
 
-    assert(status == PWRMGR_SUCCESS);
+    DS_ASSERT(status == PWRMGR_SUCCESS);
 
     UT_LOG_INFO("Out %s\n", __FUNCTION__);
 }
